@@ -1,0 +1,51 @@
+<section class="max-w-[1440px] mx-auto px-4 md:px-8 xl:px-0 w-full py-16 relative z-10">
+    {% if component.fields.title %}
+        <div class="mb-12 flex flex-col md:flex-row justify-between items-end gap-6 border-b border-white/20 pb-6">
+            <div>
+                <h2 class="font-display-2xl text-[32px] text-ona-primary font-extrabold mb-2">{{ component.fields.title }}</h2>
+                <div class="w-16 h-1 bg-ona-accent rounded-full"></div>
+            </div>
+            {% if component.fields.description %}
+                <p class="font-body-base text-[15px] text-gray-500 max-w-md">{{ component.fields.description }}</p>
+            {% else %}
+                <p class="font-body-base text-[15px] text-gray-500 max-w-md">{{ trans('blocks.home.curated_desc') }}</p>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {% for product in component.fields.products %}
+            <div class="group relative flex flex-col glass-panel rounded-[2rem] p-4 border border-white/30 hover:border-ona-accent/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-ambient bg-white/40 h-full">
+                
+                <div class="relative aspect-square overflow-hidden rounded-[1.5rem] mb-4 bg-white/50">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+                    
+                    <salla-button type="favorite" product-id="{{ product.id }}" class="absolute top-3 left-3 w-10 h-10 glass-panel border border-white/50 rounded-full flex items-center justify-center text-ona-primary hover:text-danger hover:bg-white transition-all z-10 shadow-sm">
+                        <i class="sicon-heart text-[18px]"></i>
+                    </salla-button>
+                </div>
+                
+                <div class="flex flex-col flex-grow">
+                    <h3 class="font-title-base text-[15px] text-ona-primary font-bold line-clamp-2 mb-2 group-hover:text-ona-secondary transition-colors leading-snug">
+                        <a href="{{ product.url }}">{{ product.name }}</a>
+                    </h3>
+                    
+                    <div class="mt-auto flex items-end justify-between pt-4 border-t border-white/20">
+                        <div class="flex flex-col">
+                            {% if product.has_special_price %}
+                                <span class="font-headline-lg text-[18px] text-ona-secondary font-extrabold">{{ product.price|money }}</span>
+                                <span class="font-label-caps text-xs text-gray-400 line-through">{{ product.regular_price|money }}</span>
+                            {% else %}
+                                <span class="font-headline-lg text-[18px] text-ona-primary font-extrabold">{{ product.price|money }}</span>
+                            {% endif %}
+                        </div>
+                        
+                        <salla-add-product-button product-id="{{ product.id }}" class="w-10 h-10 rounded-full bg-ona-primary text-white flex items-center justify-center hover:bg-ona-accent hover:text-ona-primary transition-all duration-300 shadow-sm hover:shadow-glow hover:-translate-y-1">
+                            <i class="sicon-add text-[20px]"></i>
+                        </salla-add-product-button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>

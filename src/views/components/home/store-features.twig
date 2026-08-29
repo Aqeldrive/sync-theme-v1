@@ -1,0 +1,13 @@
+<section class="max-w-[1440px] mx-auto px-4 md:px-8 xl:px-0 w-full py-16 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {% for feature in component.fields.features %}
+            <div class="flex flex-col items-center text-center p-8 rounded-[3rem] glass-panel border border-white/20 backdrop-blur-xl shadow-ambient hover:shadow-glow transition-all duration-500 hover:-translate-y-2 group">
+                <div class="w-20 h-20 rounded-full bg-white/50 text-ona-secondary flex items-center justify-center mb-6 shadow-inner group-hover:bg-ona-accent group-hover:text-ona-primary transition-colors duration-500 border border-white/40">
+                    <i class="{{ feature.icon }} text-[36px]"></i>
+                </div>
+                <h4 class="font-title-base text-[20px] font-bold text-ona-primary mb-3 group-hover:text-ona-secondary transition-colors">{{ feature.title }}</h4>
+                <p class="font-body-base text-[14px] text-gray-600 leading-relaxed">{{ feature.description }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>

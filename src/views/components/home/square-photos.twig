@@ -1,0 +1,27 @@
+<section class="container mx-auto px-4 md:px-8 xl:px-0 py-12 relative z-10">
+    {% if component.fields.section_title %}
+        <div class="mb-12 text-center">
+            <h2 class="font-display-2xl text-[36px] text-ona-primary font-extrabold mb-4">{{ component.fields.section_title }}</h2>
+            <div class="w-24 h-1.5 bg-gradient-to-r from-transparent via-ona-accent to-transparent mx-auto rounded-full opacity-80 shadow-glow"></div>
+        </div>
+    {% endif %}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for photo in component.fields.photos %}
+            <a href="{{ photo.url }}" class="group relative block aspect-[4/5] lg:aspect-square overflow-hidden rounded-[3rem] glass-panel border border-white/20 shadow-lg hover:shadow-elevated transition-all duration-500 hover:-translate-y-2">
+                <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 group-hover:opacity-100" loading="lazy">
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-ona-primary/90 via-ona-primary/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
+                
+                <div class="absolute inset-0 p-8 flex flex-col justify-end items-start text-right">
+                    <h3 class="font-headline-lg text-[28px] text-white font-bold mb-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{{ photo.title }}</h3>
+                    
+                    <span class="inline-flex items-center gap-2 text-[14px] font-label-caps text-label-caps text-ona-accent uppercase tracking-widest opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                        استكشف الآن 
+                        <span class="material-symbols-outlined text-[16px] transform group-hover:-translate-x-2 transition-transform duration-500">arrow_forward</span>
+                    </span>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</section>

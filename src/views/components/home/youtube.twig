@@ -1,0 +1,19 @@
+<section class="max-w-[1200px] mx-auto px-4 md:px-8 xl:px-0 w-full py-16 relative z-10">
+    {% if component.fields.title %}
+        <div class="mb-12 text-center">
+            <h2 class="font-display-2xl text-[36px] text-ona-primary font-extrabold mb-4">{{ component.fields.title }}</h2>
+            <div class="w-24 h-1.5 bg-gradient-to-r from-transparent via-ona-accent to-transparent mx-auto rounded-full opacity-80 shadow-glow"></div>
+        </div>
+    {% endif %}
+
+    <div class="relative w-full aspect-video rounded-[3rem] overflow-hidden glass-panel border border-white/20 p-2 shadow-ambient hover:shadow-elevated transition-shadow duration-500 group">
+        <div class="absolute inset-0 bg-gradient-to-tr from-ona-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10"></div>
+        <iframe class="w-full h-full rounded-[2.5rem] relative z-0" 
+                src="{{ component.fields.video_url }}" 
+                title="{{ component.fields.title }}" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+    </div>
+</section>

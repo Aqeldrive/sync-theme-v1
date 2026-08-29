@@ -1,0 +1,24 @@
+<section class="ona-fixed-products container mx-auto px-4 my-16">
+    {% if component.fields.title %}
+        <div class="mb-10 text-right border-b border-white/10 pb-4">
+            <h2 class="{{ theme.settings.typography.heading_size }} font-bold" 
+                style="color: {{ theme.settings.colors.primary }}; font-family: '{{ theme.settings.typography.font_family }}', sans-serif;">
+                {{ component.fields.title }}
+            </h2>
+        </div>
+    {% endif %}
+    <div class="flex flex-col gap-4">
+        {% for product in component.fields.products %}
+            <div class="flex items-center gap-4 p-4 rounded-[{{ theme.settings.ui_options.border_radius }}] {% if theme.settings.ui_options.glassmorphism %}glass-panel border border-white/10{% else %}bg-surface-container{% endif %}">
+                <img src="{{ product.image.url }}" class="w-24 h-24 object-cover rounded-lg">
+                <div class="flex-grow">
+                    <h3 class="font-bold text-lg" style="color: {{ theme.settings.colors.primary }};">{{ product.name }}</h3>
+                    <p class="text-sm opacity-80" style="color: {{ theme.settings.colors.text_color }};">{{ product.subtitle }}</p>
+                </div>
+                <div class="text-left">
+                    <span class="font-bold text-xl" style="color: {{ theme.settings.colors.secondary }};">{{ product.price }} {{ trans('blocks.home.currency') }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>

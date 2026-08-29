@@ -1,0 +1,24 @@
+<section class="max-w-[1000px] mx-auto px-4 md:px-8 xl:px-0 w-full py-16 relative z-10">
+    {% if component.fields.title %}
+        <div class="mb-12 text-center">
+            <h2 class="font-display-2xl text-[36px] text-ona-primary font-extrabold mb-4">{{ component.fields.title }}</h2>
+            <div class="w-24 h-1.5 bg-gradient-to-r from-transparent via-ona-accent to-transparent mx-auto rounded-full opacity-80 shadow-glow"></div>
+        </div>
+    {% endif %}
+
+    <div class="space-y-4">
+        {% for item in component.fields.questions %}
+            <details class="group rounded-[2rem] glass-panel border border-white/20 backdrop-blur-xl shadow-ambient hover:shadow-elevated transition-all duration-300">
+                <summary class="flex justify-between items-center font-title-base text-[18px] font-bold cursor-pointer list-none p-6 text-ona-primary hover:text-ona-secondary transition-colors outline-none">
+                    <span>{{ item.question }}</span>
+                    <div class="w-10 h-10 rounded-full bg-white/50 flex items-center justify-center border border-white/40 group-open:bg-ona-accent group-open:text-ona-primary transition-all duration-300 group-open:rotate-180">
+                        <span class="material-symbols-outlined text-[24px]">expand_more</span>
+                    </div>
+                </summary>
+                <div class="text-[16px] text-gray-600 p-6 pt-0 leading-relaxed bg-white/10 rounded-b-[2rem] border-t border-white/10 mt-2 font-body-base">
+                    {{ item.answer }}
+                </div>
+            </details>
+        {% endfor %}
+    </div>
+</section>

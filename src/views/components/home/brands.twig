@@ -1,0 +1,18 @@
+<section class="ona-brands container mx-auto px-4 my-16">
+    {% if component.fields.title %}
+        <div class="text-center mb-10">
+            <h2 class="{{ theme.settings.typography.heading_size }} font-bold" 
+                style="color: {{ theme.settings.colors.primary }}; font-family: '{{ theme.settings.typography.font_family }}', sans-serif;">
+                {{ component.fields.title }}
+            </h2>
+        </div>
+    {% endif %}
+    
+    <div class="flex flex-wrap justify-center gap-6 md:gap-12 items-center opacity-80 hover:opacity-100 transition-opacity">
+        {% for brand in component.fields.brands_list %}
+            <a href="{{ brand.url }}" class="block w-24 md:w-32 hover:scale-110 transition-transform filter grayscale hover:grayscale-0">
+                <img src="{{ brand.image.url }}" alt="Brand Logo" class="w-full h-auto object-contain">
+            </a>
+        {% endfor %}
+    </div>
+</section>

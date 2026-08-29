@@ -1,0 +1,11 @@
+<section class="ona-quick-links container mx-auto px-4 my-16">
+    <div class="flex flex-wrap justify-center gap-4">
+        {% for link in component.fields.links %}
+            <a href="{{ link.url }}" class="flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-transform hover:scale-105 {% if theme.settings.ui_options.glassmorphism %}glass-panel border border-white/10{% endif %}"
+               style="color: {{ theme.settings.colors.primary }}; background-color: {{ theme.settings.colors.primary }}10;">
+                <span class="material-symbols-outlined text-sm">{{ link.icon }}</span>
+                <span>{{ link.title }}</span>
+            </a>
+        {% endfor %}
+    </div>
+</section>

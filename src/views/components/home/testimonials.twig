@@ -1,0 +1,35 @@
+<section class="ona-testimonials container mx-auto px-4 my-16">
+    {% if component.fields.title %}
+        <div class="text-center mb-10">
+            <h2 class="{{ theme.settings.typography.heading_size }} font-bold" 
+                style="color: {{ theme.settings.colors.primary }}; font-family: '{{ theme.settings.typography.font_family }}', sans-serif;">
+                {{ component.fields.title }}
+            </h2>
+        </div>
+    {% endif %}
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for review in component.fields.reviews %}
+            <div class="p-8 rounded-[{{ theme.settings.ui_options.border_radius }}] {% if theme.settings.ui_options.glassmorphism %}glass-panel shadow-lg border border-white/10{% else %}bg-surface-container{% endif %}">
+                <div class="flex items-center gap-1 mb-4" style="color: {{ theme.settings.colors.secondary }};">
+                    {% for i in 1..review.rating %}
+                        <span class="material-symbols-outlined text-lg text-current">star</span>
+                    {% endfor %}
+                </div>
+                <p class="text-sm leading-relaxed mb-6" style="color: {{ theme.settings.colors.text_color }};">
+                    "{{ review.content }}"
+                </p>
+                <div class="flex items-center gap-3 border-t border-white/10 pt-4">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-gray-900" 
+                         style="background-color: {{ theme.settings.colors.primary }};">
+                        {{ review.author|first }}
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm" style="color: {{ theme.settings.colors.primary }};">{{ review.author }}</h4>
+                        <span class="text-xs opacity-70" style="color: {{ theme.settings.colors.text_color }};">عميل موثق</span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>

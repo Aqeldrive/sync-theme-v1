@@ -1,0 +1,41 @@
+{% if component.fields.slides|length %}
+<section class="home-slider container mx-auto px-4 md:px-8 xl:px-0 mt-8 mb-section-gap z-10 relative">
+    <salla-slider type="carousel" controls="outer" class="rounded-[3rem] overflow-hidden shadow-elevated">
+        <div slot="items">
+            {% for slide in component.fields.slides %}
+                <div class="relative w-full h-[600px] md:h-[700px] flex items-center justify-center rounded-[3rem] overflow-hidden group">
+                    {# Background Image #}
+                    <img src="{{ slide['slides.image'] }}" alt="{{ slide['slides.title'] }}" class="absolute inset-0 w-full h-full object-cover mix-blend-normal transition-transform duration-1000 group-hover:scale-105" loading="lazy">
+                    
+                    {# Gradient Overlay for text readability #}
+                    <div class="absolute inset-0 bg-gradient-to-t from-ona-primary/80 via-ona-primary/40 to-transparent"></div>
+                    
+                    {# Content Glass Panel #}
+                    <div class="relative z-10 max-w-3xl text-center space-y-6 p-8 md:p-12 rounded-[2.5rem] bg-ona-glass-dark backdrop-blur-xl border border-white/10 shadow-ambient mx-4 md:mx-auto animate-fade-up">
+                        
+                        {% if slide['slides.title'] %}
+                            <h2 class="font-display-2xl text-[40px] md:text-display-2xl text-white leading-tight font-extrabold tracking-tighter">
+                                {{ slide['slides.title'] }}
+                            </h2>
+                        {% endif %}
+                        
+                        {% if slide['slides.description'] %}
+                            <p class="font-body-base text-lg md:text-xl text-white/90 max-w-xl mx-auto leading-relaxed delay-100 animate-fade-up" style="animation-fill-mode: both;">
+                                {{ slide['slides.description'] }}
+                            </p>
+                        {% endif %}
+                        
+                        {% if slide['slides.button_text'] %}
+                            <div class="pt-4 delay-200 animate-fade-up" style="animation-fill-mode: both;">
+                                <a href="{{ slide['slides.button_url'] }}" class="inline-block bg-ona-accent text-ona-primary font-title-base text-title-base px-10 py-4 rounded-full shadow-glow hover:shadow-[0_0_30px_rgba(204,255,0,0.6)] hover:scale-105 transition-all duration-300">
+                                    {{ slide['slides.button_text'] }}
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </salla-slider>
+</section>
+{% endif %}

@@ -1,0 +1,8 @@
+{
+  "name": "ثيم أونا - ONA Salla Theme",
+  "description": "نظام تصميم وتجربة تسوق متطورة لثيم أونا (سلة) بنسختين الاحترافية التجارية والمستقبلية المضيئة مع لوحة تخصيص المظهر الشاملة",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
