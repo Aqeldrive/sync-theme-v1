@@ -63,7 +63,28 @@
 </noscript>
 
 <!-- ONA Dynamic Mesh Background -->
-<div class="mesh-background"></div>
+<div class="mesh-background">
+    <div class="mouse-glow"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const glow = document.querySelector('.mouse-glow');
+        if (glow) {
+            document.addEventListener('mousemove', (e) => {
+                // Use requestAnimationFrame for smoother performance
+                window.requestAnimationFrame(() => {
+                    glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+                    glow.style.opacity = '1';
+                });
+            });
+            
+            document.addEventListener('mouseleave', () => {
+                glow.style.opacity = '0';
+            });
+        }
+    });
+</script>
 
 <div class="app-inner flex flex-col min-h-screen relative z-10">
     {% hook 'body:start' %}

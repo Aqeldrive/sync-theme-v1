@@ -8,17 +8,7 @@
         </div>
     {% endif %}
 
-    <div class="relative w-full overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar">
-        <div class="flex gap-6 w-max">
-            {% for product in component.fields.category.products %}
-                <div class="snap-start w-[280px] shrink-0">
-                    <salla-product-card 
-                        product="{{ product }}" 
-                        class="rounded-[{{ theme.settings.ui_options.border_radius }}] overflow-hidden block {% if theme.settings.ui_options.glassmorphism %}glass-panel border border-white/10{% endif %} transform transition-transform hover:scale-[1.02]"
-                        style="--primary-color: {{ theme.settings.colors.primary }}; --secondary-color: {{ theme.settings.colors.secondary }};">
-                    </salla-product-card>
-                </div>
-            {% endfor %}
-        </div>
+    <div class="relative w-full pb-8">
+        <salla-products-slider source="category" source-value="{{ component.fields.category.id }}"></salla-products-slider>
     </div>
 </section>
