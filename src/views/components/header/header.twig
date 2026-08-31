@@ -1,15 +1,15 @@
 {#| Variable         | Type    | Description                     |
-|------------------|---------|---------------------------------|
-| cart             | object  |                                 |
-| cart.items_count | int     |                                 |
-| cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |#}
+||------------------|---------|---------------------------------|
+|| cart             | object  |                                 |
+|| cart.items_count | int     |                                 |
+|| cart.total       | string  | Formatted total ex: "100 ر.س"   |#}
 {% set important_links = theme.settings.get('important_links') %}
 
-<!-- ONA Floating Glass Header -->
-<header class="floating-header mt-4 mb-8 glass-panel border border-white/20 shadow-ambient px-6 md:px-10 h-20 flex justify-between items-center z-50 transition-all duration-300">
+<!-- 2050 ONA Neural Floating Header -->
+<header class="neural-header neural-sticky-header mt-4 mb-8 glass-panel border border-white/20 shadow-ambient px-6 md:px-10 h-20 flex justify-between items-center z-50 transition-all duration-500" style="backdrop-filter: blur(20px); background: rgba(10, 10, 20, 0.6);">
     <div class="flex items-center gap-6">
         <!-- Mobile Menu Toggle -->
-        <a class="lg:hidden mburger mburger--collapse leading-none text-ona-primary" href="#mobile-menu" aria-label="Open-menu">
+        <a class="lg:hidden mburger mburger--collapse leading-none text-sync-primary" href="#mobile-menu" aria-label="Open-menu">
             <i class="sicon-menu text-2xl"></i>
         </a>
         
@@ -18,38 +18,44 @@
             {% if store.logo %}
                 <img fetchpriority="high" class="h-10 w-auto object-contain" loading="eager" src="{{ store.logo|cdn(175) }}" alt="{{ store.name }} logo">
             {% else %}
-                <span class="font-display-2xl text-[32px] font-extrabold text-ona-primary tracking-tighter">{{ store.name }}</span>
+                <span class="font-display-2xl text-[32px] font-extrabold text-sync-primary tracking-tighter">{{ store.name }}</span>
             {% endif %}
         </a>
         
-        <!-- Desktop Main Menu -->
-        <div class="hidden lg:flex items-center gap-8 ml-8">
-            <custom-main-menu></custom-main-menu>
-        </div>
-    </div>
-    
-    <div class="flex items-center gap-4">
-        <!-- Search -->
-        <div class="hidden md:block w-64">
-            <salla-search inline oval height="40" class="bg-white/50 backdrop-blur-md border border-white/20 rounded-full"></salla-search>
+        <!-- 2050 Smart Search with AI -->
+        <div class="hidden md:block w-64 search-container">
+            <salla-search inline oval height="40" class="bg-white/50 backdrop-blur-md border border-white/20 rounded-full focus:ring-2 focus:ring-sync-primary focus:outline-none"
+                placeholder="ابحث عن المنتجات والخدمات..." 
+                data-ai-search="true"
+                @input="debounce(searchInput, 300)"
+            ></salla-search>
         </div>
         
         <!-- Localization (Lang/Currency) -->
         {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
             <div class="hidden sm:block">
-                <salla-localization-modal show-trigger></salla-localization-modal>
+                <salla-localization-modal show-trigger class="ai-localization-modal"
+                    @select="onLocaleSelect"
+                ></salla-localization-modal>
             </div>
         {% endif %}
         
-        <!-- User Menu -->
+        <!-- User Menu with AI Insights -->
         <div class="hover:scale-105 transition-transform duration-300">
-            <salla-user-menu avatar-only show-header show-trigger></salla-user-menu>
+            <salla-user-menu avatar-only show-header show-trigger class="user-menu-2050"
+                @update:avatar="updateUserAvatar"
+            ></salla-user-menu>
         </div>
         
-        <!-- Cart Summary -->
+        <!-- Cart Summary with Analytics -->
         <div class="hover:scale-105 transition-transform duration-300 relative group">
-            <salla-cart-summary class="text-ona-primary hover:text-ona-accent transition-colors">
+            <salla-cart-summary class="text-sync-primary hover:text-sync-accent transition-colors"
+                @cart-update="onCartUpdate"
+            >
                 <i slot="icon" class="sicon-shopping-bag text-2xl"></i>
+                <span class="cart-badge bg-sync-accent text-white text-xs font-bold absolute -top-1 -right-1">
+                    {{ cart.items_count > 0 ? cart.items_count : 0 }}
+                </span>
             </salla-cart-summary>
         </div>
     </div>
