@@ -22,31 +22,100 @@
         "component-youtube"
     ],
     "settings": [
-        {
-            "type": "boolean",
-            "id": "glassmorphism",
-            "label": "تفعيل تأثير الزجاج المصنفر (Glassmorphism)",
-            "format": "switch",
-            "value": true,
-            "selected": true,
-            "description": null,
-            "labelHTML": null,
-            "icon": "sicon-cog",
-            "required": false
-        },
-        {
-            "type": "boolean",
-            "id": "dark_mode",
-            "label": "تفعيل الوضع الداكن (Dark Mode)",
-            "format": "switch",
-            "value": true,
-            "selected": true,
-            "description": null,
-            "labelHTML": null,
-            "icon": "sicon-cog",
-            "required": false
-        }
-    ],
+            {
+                "type": "boolean",
+                "id": "glassmorphism",
+                "label": "تفعيل تأثير الزجاج المصنفر (Glassmorphism)",
+                "format": "switch",
+                "value": true,
+                "selected": true,
+                "description": null,
+                "labelHTML": null,
+                "icon": "sicon-cog",
+                "required": false
+            },
+            {
+                "type": "boolean",
+                "id": "dark_mode",
+                "label": "تفعيل الوضع الداكن (Dark Mode)",
+                "format": "switch",
+                "value": true,
+                "selected": true,
+                "description": null,
+                "labelHTML": null,
+                "icon": "sicon-cog",
+                "required": false
+            },
+            {
+                "type": "boolean",
+                "id": "header_is_sticky",
+                "label": "تثبت القائمة الرئيسية أعلى الصفحة عند التمرير لأسفل",
+                "description": "يُنصح بالغاء تفعيلها في حالة وجود عناصر كثيرة في القائمة المنسدلة",
+                "type": "boolean",
+                "icon": "sicon-toggle-off",
+                "format": "switch",
+                "required": false,
+                "value": true,
+                "selected": true
+            },
+            {
+                "type": "boolean",
+                "id": "footer_is_dark",
+                "label": "شريط علوي داكن",
+                "description": null,
+                "type": "boolean",
+                "icon": "sicon-toggle-off",
+                "format": "switch",
+                "required": false,
+                "value": true,
+                "selected": false
+            },
+            {
+                "type": "boolean",
+                "id": "sticky_add_to_cart",
+                "label": "تثبيت زر الإضافة والكمية أسفل شاشة الجوال",
+                "description": null,
+                "type": "boolean",
+                "icon": "sicon-toggle-off",
+                "format": "switch",
+                "required": false,
+                "value": true,
+                "selected": true
+            },
+            {
+                "type": "boolean",
+                "id": "enable_more_menu",
+                "label": "اظهار روابط الصفحات الهامة في الشريط العلوي",
+                "description": "مثل صفحة الهبوط ، المدونة ، الصفحات التعرفية",
+                "type": "boolean",
+                "icon": "sicon-toggle-off",
+                "format": "switch",
+                "required": false,
+                "value": true,
+                "selected": true
+            },
+            {
+                "type": "boolean",
+                "id": "show_tags",
+                "label": "اظهار الوسوم",
+                "description": null,
+                "type": "boolean",
+                "icon": "sicon-toggle-off",
+                "format": "switch",
+                "required": false,
+                "value": true,
+                "selected": true
+            },
+            {
+                "type": "boolean",
+                "id": "is_more_button_enabled",
+                "label": "عرض (زر الكل) في الصفحة الرئيسية",
+                "format": "switch",
+                "required": false,
+                "value": true,
+                "selected": true
+            }
+        ],
     "components": [
         {
             "title": {
