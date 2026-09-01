@@ -24,7 +24,7 @@
     "animejs": "^4.5.0",
     "express": "^4.21.2",
     "fslightbox": "^3.7.5",
-    "lite-youtube-embed": "^0.2.0",
+    "lite-youtube-embed": "^0.3.4",
     "mmenu-light": "^3.0.9",
     "sweetalert2": "^11.26.25"
   },
