@@ -56,7 +56,7 @@
             "format": "switch",
             "required": false,
             "value": true,
-            "selected": true,
+            "selected": false,
             "public": true
         },
         {
