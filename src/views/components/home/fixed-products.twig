@@ -1,23 +1,54 @@
-<section class="ona-fixed-products container mx-auto px-4 my-16">
+<section class="container mx-auto px-4 md:px-8 xl:px-0 py-12 relative z-10">
     {% if component.fields.title %}
-        <div class="mb-10 text-right border-b border-white/10 pb-4">
-            <h2 class="{{ theme.settings.typography.heading_size }} font-bold" 
-                style="color: {{ theme.settings.colors.primary }}; font-family: '{{ theme.settings.typography.font_family }}', sans-serif;">
-                {{ component.fields.title }}
-            </h2>
+        <div class="mb-10 flex items-center justify-between border-b border-white/20 pb-6">
+            <div>
+                <h2 class="font-display-2xl text-[28px] md:text-[32px] text-ona-primary font-extrabold">{{ component.fields.title }}</h2>
+                <div class="w-16 h-1 bg-ona-accent rounded-full mt-3"></div>
+            </div>
+            {% if component.fields.products|length > 3 %}
+                <a href="{{ store.url }}/products" class="hidden md:flex items-center gap-2 text-sm font-bold text-ona-primary hover:text-ona-secondary transition-colors">
+                    {{ trans('blocks.home.view_all')|default('عرض الكل') }} <i class="sicon-arrow-left text-[12px]"></i>
+                </a>
+            {% endif %}
         </div>
     {% endif %}
     <div class="flex flex-col gap-4">
         {% for product in component.fields.products %}
-            <div class="flex items-center gap-4 p-4 rounded-[{{ theme.settings.ui_options.border_radius }}] {% if theme.settings.ui_options.glassmorphism %}glass-panel border border-white/10{% else %}bg-surface-container{% endif %}">
-                <img src="{{ product.image.url }}" class="w-24 h-24 object-cover rounded-lg">
-                <div class="flex-grow">
-                    <h3 class="font-bold text-lg" style="color: {{ theme.settings.colors.primary }};">{{ product.name }}</h3>
-                    <p class="text-sm opacity-80" style="color: {{ theme.settings.colors.text_color }};">{{ product.subtitle }}</p>
+            <a href="{{ product.url }}" class="group flex items-center gap-4 md:gap-6 p-4 md:p-5 rounded-[1.75rem] glass-panel border border-white/40 bg-white/50 hover:bg-white/80 hover:border-ona-accent/40 hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300">
+                <div class="shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-[1.25rem] overflow-hidden bg-ona-surface-container border border-white/50">
+                    {% if product.image.url %}
+                        <img src="{{ product.image.url }}" alt="{{ product.image.alt|default(product.name) }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                    {% else %}
+                        <img src="{{ 'images/placeholder.png'|asset }}" alt="{{ product.name }}" class="w-full h-full object-cover opacity-60">
+                    {% endif %}
                 </div>
-                <div class="text-left">
-                    <span class="font-bold text-xl" style="color: {{ theme.settings.colors.secondary }};">{{ product.price }} {{ trans('blocks.home.currency') }}</span>
+                <div class="flex-1 min-w-0 text-right">
+                    <h3 class="font-title-base text-[16px] md:text-[18px] text-ona-primary font-bold line-clamp-1 group-hover:text-ona-secondary transition-colors">{{ product.name }}</h3>
+                    {% if product.subtitle %}
+                        <p class="font-body-base text-[13px] text-gray-500 line-clamp-1 mt-1">{{ product.subtitle }}</p>
+                    {% endif %}
+                    {% if product.rating %}
+                        <div class="flex items-center gap-1 mt-2">
+                            <i class="sicon-star text-yellow-400 text-[12px]"></i>
+                            <span class="text-xs font-bold text-gray-600">{{ product.rating }}</span>
+                        </div>
+                    {% endif %}
                 </div>
+                <div class="shrink-0 text-left flex flex-col items-end gap-1">
+                    {% if product.has_special_price %}
+                        <span class="font-headline-lg text-[18px] md:text-[20px] text-ona-secondary font-extrabold">{{ product.price|money }}</span>
+                        <span class="text-xs text-gray-400 line-through">{{ product.regular_price|money }}</span>
+                    {% else %}
+                        <span class="font-headline-lg text-[18px] md:text-[20px] text-ona-primary font-extrabold">{{ product.price|money }}</span>
+                    {% endif %}
+                    <span class="hidden md:inline-flex mt-1 text-xs font-bold text-ona-primary bg-ona-accent/20 px-3 py-1 rounded-full group-hover:bg-ona-accent group-hover:text-ona-primary transition-colors">عرض المنتج</span>
+                </div>
+            </a>
+        {% else %}
+            <div class="text-center py-16 glass-panel rounded-[2rem] border border-dashed border-white/30 bg-white/30">
+                <i class="sicon-box text-[40px] text-gray-300 mb-3 block"></i>
+                <p class="text-gray-500 font-bold">لا توجد منتجات مضافة — اختر المنتجات من محرر الثيم</p>
+                <p class="text-xs text-gray-400 mt-1">Featured Products → اختر المنتجات (Component: fixed-products)</p>
             </div>
         {% endfor %}
     </div>

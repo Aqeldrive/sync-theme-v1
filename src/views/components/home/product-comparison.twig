@@ -1,35 +1,64 @@
-<section class="ona-product-comparison container mx-auto px-4 my-16 overflow-x-auto">
+<section class="container mx-auto px-4 md:px-8 xl:px-0 py-12 relative z-10">
     {% if component.fields.title %}
-        <div class="text-center mb-10">
-            <h2 class="{{ theme.settings.typography.heading_size }} font-bold" 
-                style="color: {{ theme.settings.colors.primary }}; font-family: '{{ theme.settings.typography.font_family }}', sans-serif;">
-                {{ component.fields.title }}
-            </h2>
+        <div class="mb-10 text-center">
+            <h2 class="font-display-2xl text-[28px] md:text-[32px] text-ona-primary font-extrabold">{{ component.fields.title }}</h2>
+            <div class="w-20 h-1 bg-ona-accent rounded-full mx-auto mt-3"></div>
         </div>
     {% endif %}
     
-    <table class="w-full text-center border-collapse min-w-[600px]">
-        <thead>
-            <tr>
-                <th class="p-4 border-b border-white/10"></th>
-                {% for product in component.fields.products %}
-                    <th class="p-4 border-b border-white/10 w-1/3">
-                        <img src="{{ product.image.url }}" class="w-32 h-32 object-cover mx-auto rounded-lg mb-4">
-                        <h3 class="font-bold text-lg" style="color: {{ theme.settings.colors.primary }};">{{ product.name }}</h3>
-                        <span class="font-bold block mt-2" style="color: {{ theme.settings.colors.secondary }};">{{ product.price }} {{ trans('blocks.home.currency') }}</span>
-                    </th>
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody style="color: {{ theme.settings.colors.text_color }};">
-            {% for feature in component.fields.features %}
-                <tr class="{% if loop.index % 2 == 0 %}bg-white/5{% endif %}">
-                    <td class="p-4 font-bold border-b border-white/5">{{ feature.name }}</td>
-                    <td class="p-4 border-b border-white/5">{{ feature.value_1 }}</td>
-                    <td class="p-4 border-b border-white/5">{{ feature.value_2 }}</td>
-                    <td class="p-4 border-b border-white/5">{{ feature.value_3 }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% if component.fields.products|length %}
+        <div class="overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0">
+            <table class="w-full text-center border-collapse min-w-[640px] glass-panel rounded-[2rem] overflow-hidden border border-white/30 bg-white/40 backdrop-blur-xl shadow-ambient">
+                <thead>
+                    <tr class="bg-ona-primary text-white">
+                        <th class="p-5 text-right font-bold text-sm">{{ trans('blocks.home.feature')|default('الميزة') }}</th>
+                        {% for product in component.fields.products %}
+                            <th class="p-5 w-1/3">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-28 h-28 md:w-36 md:h-36 rounded-[1.5rem] overflow-hidden bg-white border border-white/50 mb-4">
+                                        {% if product.image.url %}
+                                            <img src="{{ product.image.url }}" alt="{{ product.image.alt|default(product.name) }}" class="w-full h-full object-cover">
+                                        {% else %}
+                                            <img src="{{ 'images/placeholder.png'|asset }}" alt="{{ product.name }}" class="w-full h-full object-cover opacity-60">
+                                        {% endif %}
+                                    </div>
+                                    <h3 class="font-title-base text-[15px] font-bold line-clamp-2">{{ product.name }}</h3>
+                                    <span class="font-headline-lg text-[18px] font-extrabold text-ona-accent mt-2 block">
+                                        {% if product.has_special_price %}{{ product.price|money }}{% else %}{{ product.price|money }}{% endif %}
+                                    </span>
+                                    <a href="{{ product.url }}" class="mt-3 inline-flex items-center gap-1 text-xs font-bold bg-white text-ona-primary px-4 py-2 rounded-full hover:bg-ona-accent hover:text-ona-primary transition-colors">عرض المنتج <i class="sicon-arrow-left text-[10px]"></i></a>
+                                </div>
+                            </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for feature in component.fields.features %}
+                        <tr class="{% if loop.index % 2 == 0 %}bg-white/40{% else %}bg-white/20{% endif %} hover:bg-ona-accent/10 transition-colors">
+                            <td class="p-4 font-bold text-ona-primary text-right border-b border-white/20 text-sm">{{ feature.name }}</td>
+                            <td class="p-4 border-b border-white/20 text-sm text-gray-700">{{ feature.value_1|default('—') }}</td>
+                            <td class="p-4 border-b border-white/20 text-sm text-gray-700">{{ feature.value_2|default('—') }}</td>
+                            {% if component.fields.products|length > 2 %}
+                                <td class="p-4 border-b border-white/20 text-sm text-gray-700">{{ feature.value_3|default('—') }}</td>
+                            {% endif %}
+                        </tr>
+                    {% else %}
+                        {# No features defined - show price/comparison row #}
+                        <tr class="bg-white/30">
+                            <td class="p-4 font-bold text-ona-primary text-right text-sm">السعر</td>
+                            {% for product in component.fields.products %}
+                                <td class="p-4 text-sm font-extrabold text-ona-secondary">{{ product.price|money }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="text-center py-16 glass-panel rounded-[2rem] border border-dashed border-white/30 bg-white/30">
+            <i class="sicon-compare text-[40px] text-gray-300 mb-3 block"></i>
+            <p class="text-gray-500 font-bold">لا توجد منتجات للمقارنة — اختر المنتجات من محرر الثيم</p>
+            <p class="text-xs text-gray-400 mt-1">Component: product-comparison → اختر المنتجات</p>
+        </div>
+    {% endif %}
 </section>

@@ -92,7 +92,7 @@
                             <div class="md:flex rtl:space-x-reverse md:space-x-8 items-start justify-between">
                                 <div class="flex flex-1 rtl:space-x-reverse space-x-6 items-start">
                                     <a href="{{ item.url }}" class="shrink-0 rounded-[1.5rem] overflow-hidden glass-panel border border-white/50 bg-white shadow-sm w-24 h-24 md:w-32 md:h-32">
-                                        <img src="{{ item.thumbnail }}" alt="{{ item.name }}" class="w-full h-full object-cover">
+                                        {% if item.thumbnail %}<img src="{{ item.thumbnail }}" alt="{{ item.name }}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='{{ "images/placeholder.png"|asset }}'">{% else %}<img src="{{ "images/placeholder.png"|asset }}" alt="{{ item.name }}" class="w-full h-full object-cover opacity-60">{% endif %}
                                     </a>
                                     
                                     <div class="flex-1 space-y-3">

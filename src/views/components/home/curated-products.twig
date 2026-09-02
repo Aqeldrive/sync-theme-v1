@@ -18,7 +18,7 @@
             <div class="group relative flex flex-col glass-panel rounded-[2rem] p-4 border border-white/30 hover:border-ona-accent/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-ambient bg-white/40 h-full">
                 
                 <div class="relative aspect-square overflow-hidden rounded-[1.5rem] mb-4 bg-white/50">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+                    {% if product.image.url %}<img src="{{ product.image.url }}" alt="{{ product.image.alt|default(product.name) }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">{% else %}<img src="{{ "images/placeholder.png"|asset }}" alt="{{ product.name }}" class="w-full h-full object-cover opacity-60" loading="lazy">{% endif %}
                     
                     <salla-button type="favorite" product-id="{{ product.id }}" class="absolute top-3 left-3 w-10 h-10 glass-panel border border-white/50 rounded-full flex items-center justify-center text-ona-primary hover:text-danger hover:bg-white transition-all z-10 shadow-sm">
                         <i class="sicon-heart text-[18px]"></i>
