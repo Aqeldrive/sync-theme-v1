@@ -1,76 +1,35 @@
-<section class="ona-testimonials container mx-auto px-4 my-16 neural-section" style="border-radius: 2rem; border: 1px solid var(--border-color, var(--color-gray-200)); background: var(--bg-color, var(--color-surface));">
-    <div class="glass-panel border-t border-white/20 backdrop-blur-2xl rounded-t-[3rem] pt-10 pb-8 px-6 md:px-12 bg-white/50 shadow-ambient">
-        <div class="container mx-auto max-w-[1600px]">
-            
-            {% if component.fields.title %}
-                <div class="text-center mb-12">
-                    <h2 class="{{ theme.settings.typography.heading_size }} font-bold" 
-                        style="color: {{ theme.settings.colors.primary }}; font-family: '{{ theme.settings.typography.font_family }}', sans-serif;">
-                        {{ component.fields.title }}
-                    </h2>
-                    <p class="mt-2 text-sm text-gray-500" style="color: {{ theme.settings.colors.secondary }};">
-                        {{ component.fields.subtitle | raw }}
-                    </p>
-                </div>
-            {% endif %}
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {% for review in component.fields.reviews %}
-                    <div class="p-6 rounded-[2rem] {% if theme.settings.ui_options.glassmorphism %}glass-panel shadow-lg border border-white/10{% else %}bg-surface-container{% endif %} hover:scale-105 transition-transform hover:z-10"
-                        style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"
-                        onmouseenter="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)'"
-                        onmouseleave="this.style.transform='scale(1)'; this.style.boxShadow='none'">
-                        
-                        <div class="flex items-center gap-3 mb-4" style="color: {{ theme.settings.colors.secondary }};">
-                            {% for i in 1..review.rating %}
-                                <span class="material-symbols-outlined text-lg text-current star-icon">star</span>
-                            {% endfor %}
-                            <div class="flex-1">
-                                <p class="text-sm leading-relaxed" style="color: {{ theme.settings.colors.text_color }};">
-                                    "{{ review.content }}"
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center gap-3 border-t border-white/10 pt-4">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-gray-900" 
-                                style="background-color: {{ theme.settings.colors.primary }};">
-                                {{ review.author.firstinitial }}
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-sm" style="color: {{ theme.settings.colors.primary }};">
-                                    {{ review.author.name }}
-                                </h4>
-                                <span class="text-xs opacity-70" style="color: {{ theme.settings.colors.text_color }};">
-                                    {{ review.author.type | default('عميل موثق') }}
-                                </span>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-3 pt-3 border-t border-white/5" style="color: {{ theme.settings.colors.secondary }};">
-                            <div class="flex justify-between">
-                                <span class="text-[12px] opacity-60">{{ review.date | default('منذ 3 أيام') }}</span>
-                                <div class="rating-value" style="color: {{ theme.settings.colors.primary }};">
-                                    {{ review.rating.value | default('4.5') }}/5
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-            
-            {% if component.fields.show_cta %}
-                <div class="mt-8 text-center">
-                    <salla-button 
-                        color="primary" 
-                        class="px-8 py-3 rounded-full font-bold text-lg"
-                        @click="showReviewForm"
-                    >
-                        أضف تجربتك
-                    </salla-button>
-                </div>
-            {% endif %}
-            
+<section class="ona-testimonials container mx-auto px-4 my-16">
+    {% if component.fields.title %}
+        <div class="text-center mb-10">
+            <h2 class="{{ theme.settings.typography.heading_size }} font-bold" 
+                style="color: {{ theme.settings.colors.primary }}; font-family: '{{ theme.settings.typography.font_family }}', sans-serif;">
+                {{ component.fields.title }}
+            </h2>
         </div>
+    {% endif %}
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for review in component.fields.reviews %}
+            <div class="p-8 rounded-[{{ theme.settings.ui_options.border_radius }}] {% if theme.settings.ui_options.glassmorphism %}glass-panel shadow-lg border border-white/10{% else %}bg-surface-container{% endif %}">
+                <div class="flex items-center gap-1 mb-4" style="color: {{ theme.settings.colors.secondary }};">
+                    {% for i in 1..review.rating %}
+                        <span class="material-symbols-outlined text-lg text-current">star</span>
+                    {% endfor %}
+                </div>
+                <p class="text-sm leading-relaxed mb-6" style="color: {{ theme.settings.colors.text_color }};">
+                    "{{ review.content }}"
+                </p>
+                <div class="flex items-center gap-3 border-t border-white/10 pt-4">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-gray-900" 
+                         style="background-color: {{ theme.settings.colors.primary }};">
+                        {{ review.author|first }}
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm" style="color: {{ theme.settings.colors.primary }};">{{ review.author }}</h4>
+                        <span class="text-xs opacity-70" style="color: {{ theme.settings.colors.text_color }};">عميل موثق</span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </section>

@@ -1,46 +1,33 @@
-<section class="container mx-auto px-4 md:px-8 xl:px-0 py-12 relative z-10 neural-section" style="border-radius: 2rem;">
+<section class="container mx-auto px-4 md:px-8 xl:px-0 py-12 relative z-10">
     {% if component.fields.title %}
         <div class="mb-12 text-center">
-            <h2 class="font-display-2xl text-[36px] text-sync-primary font-extrabold mb-4"
-                style="font-family: '{{ theme.settings.typography.font_family }}', sans-serif;">
-                {{ component.fields.title }}
-            </h2>
-            <div class="w-24 h-1.5 bg-gradient-to-r from-transparent via-sync-accent to-transparent mx-auto rounded-full opacity-80 shadow-glow"></div>
+            <h2 class="font-display-2xl text-[36px] text-ona-primary font-extrabold mb-4">{{ component.fields.title }}</h2>
+            <div class="w-24 h-1.5 bg-gradient-to-r from-transparent via-ona-accent to-transparent mx-auto rounded-full opacity-80 shadow-glow"></div>
         </div>
     {% endif %}
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" 
-         style="animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);">
-        
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for product in component.fields.products %}
-            <div class="group relative flex flex-col glass-panel rounded-[2.5rem] p-5 border border-white/40 hover:border-sync-accent/50 transition-all duration-500 hover:translate-y-3 hover:shadow-elevated bg-white/40"
-                 style="transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);"
-                 onmouseenter="this.style.transform='scale(1.03)'; this.style.borderColor='var(--sync-accent)';"
-                 onmouseleave="this.style.transform='scale(1)'; this.style.borderColor='var(--border-color)';">
-                
-                <div class="relative aspect-[4/5] overflow-hidden rounded-[2rem] mb-6 bg-sync-surface-container">
-                    <img src="{{ product.image.url }}"
-                        alt="{{ product.name }}"
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-95 group-hover:opacity-100 loading='lazy'"
-                        style="cursor:pointer"
-                        @click="viewProductDetail(product.id)"
-                    >
-                    <div class="absolute inset-0 bg-gradient-to-t from-sync-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="group relative flex flex-col glass-panel rounded-[2.5rem] p-5 border border-white/40 hover:border-ona-accent/50 transition-all duration-500 hover:-translate-y-3 hover:shadow-elevated bg-white/40">
+                <div class="relative aspect-[4/5] overflow-hidden rounded-[2rem] mb-6 bg-ona-surface-container">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-95 group-hover:opacity-100" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-ona-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     
                     {% if product.is_new %}
-                        <div class="absolute top-4 right-4 bg-sync-accent text-sync-primary font-label-caps text-label-caps px-4 py-1.5 rounded-full font-bold shadow-glow">
-                            جديد
-                        </div>
+                        <div class="absolute top-4 right-4 bg-ona-accent text-ona-primary font-label-caps text-label-caps px-4 py-1.5 rounded-full font-bold shadow-glow">جديد</div>
                     {% endif %}
                     
+                    <salla-button 
+                        type="favorite" 
+                        product-id="{{ product.id }}" 
+                        class="absolute top-4 left-4 w-12 h-12 glass-panel rounded-full flex items-center justify-center text-ona-primary hover:text-danger hover:bg-white/80 hover:scale-110 transition-all z-10 border border-white/50">
+                        <i class="sicon-heart text-[22px]"></i>
+                    </salla-button>
+                    
                     <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[85%] translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 shadow-lg z-10">
-                        <salla-add-product-button 
-                            product-id="{{ product.id }}"
-                            class="w-full rounded-full"
-                            :class="['has-smart-recommendations']"
-                        >
-                            <span class="bg-sync-primary/90 hover:bg-sync-primary backdrop-blur-md text-white font-title-base text-[16px] font-bold py-3.5 px-6 rounded-full w-full flex justify-center shadow-ambient">
-                                {{ product.add_to_cart_label | default('إضافة للسلة') }}
+                        <salla-add-product-button product-id="{{ product.id }}" class="w-full rounded-full">
+                            <span class="bg-ona-primary/90 hover:bg-ona-primary backdrop-blur-md text-white font-title-base text-[16px] font-bold py-3.5 px-6 rounded-full w-full flex justify-center shadow-ambient">
+                                إضافة للسلة
                             </span>
                         </salla-add-product-button>
                     </div>
@@ -48,42 +35,30 @@
                 
                 <div class="px-2 flex flex-col flex-1">
                     <div class="flex justify-between items-start mb-3 gap-4">
-                        <h3 class="font-title-base text-[18px] text-sync-primary line-clamp-1 group-hover:text-sync-secondary transition-colors font-bold">
+                        <h3 class="font-title-base text-[18px] text-ona-primary line-clamp-1 group-hover:text-ona-secondary transition-colors font-bold">
                             <a href="{{ product.url }}">{{ product.name }}</a>
                         </h3>
                     </div>
                     
                     {% if product.subtitle %}
-                        <p class="font-body-base text-[14px] text-gray-500 mb-4 line-clamp-1"
-                            style="color: {{ theme.settings.colors.text_color }};">
-                            {{ product.subtitle }}
-                        </p>
+                        <p class="font-body-base text-[14px] text-gray-500 mb-4 line-clamp-1">{{ product.subtitle }}</p>
                     {% endif %}
                     
                     <div class="mt-auto flex items-end justify-between">
                         <div class="flex flex-col">
                             {% if product.has_special_price %}
-                                <span class="font-headline-lg text-[22px] text-sync-secondary font-extrabold"
-                                    style="color: {{ theme.settings.colors.secondary }};">
-                                    {{ product.price|money }}
-                                </span>
-                                <span class="font-label-caps text-sm text-gray-400 line-through"
-                                    style="color: {{ theme.settings.colors.secondary }};">
-                                    {{ product.regular_price|money }}
-                                </span>
+                                <span class="font-headline-lg text-[22px] text-ona-secondary font-extrabold">{{ product.price|money }}</span>
+                                <span class="font-label-caps text-sm text-gray-400 line-through">{{ product.regular_price|money }}</span>
                             {% else %}
-                                <span class="font-headline-lg text-[22px] text-sync-primary font-extrabold"
-                                    style="color: {{ theme.settings.colors.primary }};">
-                                    {{ product.price|money }}
-                                </span>
+                                <span class="font-headline-lg text-[22px] text-ona-primary font-extrabold">{{ product.price|money }}</span>
                             {% endif %}
                         </div>
                         
                         {# Rating stars #}
                         {% if product.rating %}
                             <div class="flex items-center gap-1 bg-white/50 px-2 py-1 rounded-full">
-                                <i class="sicon-star text-[12px]"></i>
-                                <span class="font-title-base text-[12px] text-gray-700 font-bold">{{ product.rating.value }}</span>
+                                <i class="sicon-star text-yellow-400 text-[12px]"></i>
+                                <span class="font-title-base text-[12px] text-gray-700 font-bold">{{ product.rating }}</span>
                             </div>
                         {% endif %}
                     </div>
