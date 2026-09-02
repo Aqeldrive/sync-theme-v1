@@ -1,11 +1,11 @@
 {
-  "name": "theme_ona",
+  "name": "sync-theme-v1",
   "version": "1.0.0",
-  "description": "Salla Theme",
+  "description": "Sync Theme V1 - Professional Salla E-commerce Theme based on ONA",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Aqeldrive/theme_ona.git"
+    "url": "git+https://github.com/Aqeldrive/sync-theme-v1.git"
   },
   "scripts": {
     "dev": "node server.js",
