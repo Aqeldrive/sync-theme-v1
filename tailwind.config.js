@@ -24,10 +24,12 @@ module.exports = {
             ],
             primary: "var(--font-main)",
             headline: ["Plus Jakarta Sans", "IBM Plex Sans Arabic"],
+            display: ["Plus Jakarta Sans", "IBM Plex Sans Arabic"],
         },
         extend: {
             transitionTimingFunction: {
               'elastic': 'cubic-bezier(0.55, 0, 0.1, 1)',
+              'atelier': 'cubic-bezier(0.16, 1, 0.3, 1)',
             },
             gridTemplateColumns: {
                 'auto-fill': 'repeat(auto-fill, 290px)',
@@ -38,14 +40,27 @@ module.exports = {
                 'danger': '#AE0A0A',
                 'primary-dark': 'var(--color-primary-dark)',
                 
-                /* ONA Custom Colors - Commercial Professional & Glassmorphism */
+                /* ONA — legacy, kept for compat */
                 'ona-surface': '#f8f9ff',
                 'ona-surface-container': '#e6eeff',
-                'ona-primary': '#00173b',
-                'ona-secondary': '#006c49',
-                'ona-accent': '#ccff00',
-                'ona-glass': 'rgba(255, 255, 255, 0.7)',
-                'ona-glass-dark': 'rgba(18, 19, 22, 0.4)',
+                'ona-primary': '#0A1834',
+                'ona-secondary': '#0D3B2E',
+                'ona-accent': '#D4FF00',
+                'ona-glass': 'rgba(255, 255, 255, 0.72)',
+                'ona-glass-dark': 'rgba(10, 24, 52, 0.45)',
+
+                /* ATELIER — Stitch DESIGN.md bridge (single source: DESIGN.md) */
+                'ink': '#0A1834',
+                'ink-hover': '#132A5C',
+                'forest': '#0D3B2E',
+                'lime': '#D4FF00',
+                'lime-hover': '#E0FF33',
+                'paper': '#F8F9FF',
+                'paper-container': '#EEF1FF',
+                'paper-variant': '#E6E9F2',
+                'outline': '#E6E9F2',
+                'outline-variant': '#F1F3FF',
+                'scrim': 'rgba(10, 24, 52, 0.45)',
             },
             spacing: {
               '3.75': '15px',
@@ -86,9 +101,10 @@ module.exports = {
                 'light'   : '0px 4px 15px rgba(1, 1, 1, 0.06)',
                 'huge'    : '0px 3px 6px #00000029',
                 'progress': '0 5px 15px rgba(92, 213, 196, 0.4)',
-                'ambient' : '0 8px 32px rgba(0, 0, 0, 0.08)',
-                'glow'    : '0 0 20px rgba(204, 255, 0, 0.4)',
-                'elevated': '0 20px 40px rgba(0, 0, 0, 0.1)',
+                /* Atelier — three depths only */
+                'ambient' : '0 8px 32px rgba(10, 24, 52, 0.06)',
+                'elevated': '0 20px 40px rgba(10, 24, 52, 0.10)',
+                'glow'    : '0 0 24px rgba(212, 255, 0, 0.35)',
                 'mobile'  : 'rgb(0 0 0 / 9%) 0px 2px 1px, rgb(0 0 0 / 9%) 0px 4px 2px, rgb(0 0 0 / 9%) 0px 8px 4px, rgb(0 0 0 / 9%) 0px 16px 18px, rgb(0 0 0 / 9%) -15px 10px 7px, rgb(0 0 0 / 9%) -20px 10px 20px, rgb(0 0 0 / 9%) -20px 10px 20px, rgb(0 0 0 / 9%) -25px 20px 20px',
             },
             width: {

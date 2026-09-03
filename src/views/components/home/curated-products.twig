@@ -1,50 +1,61 @@
-<section class="max-w-[1440px] mx-auto px-4 md:px-8 xl:px-0 w-full py-16 relative z-10">
+<section class="max-w-[1280px] mx-auto px-4 md:px-8 xl:px-0 w-full py-10 md:py-14 relative z-10">
     {% if component.fields.title %}
-        <div class="mb-12 flex flex-col md:flex-row justify-between items-end gap-6 border-b border-white/20 pb-6">
+        <div class="mb-8 md:mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-outline pb-6">
             <div>
-                <h2 class="font-display-2xl text-[32px] text-ona-primary font-extrabold mb-2">{{ component.fields.title }}</h2>
-                <div class="w-16 h-1 bg-ona-accent rounded-full"></div>
+                <h2 class="font-display text-[26px] md:text-[32px] font-extrabold tracking-[-0.03em] text-ink leading-none">{{ component.fields.title }}</h2>
+                <div class="w-12 h-1 bg-lime rounded-full mt-3"></div>
             </div>
             {% if component.fields.description %}
-                <p class="font-body-base text-[15px] text-gray-500 max-w-md">{{ component.fields.description }}</p>
+                <p class="text-[14px] leading-6 text-gray-500 max-w-md">{{ component.fields.description }}</p>
             {% else %}
-                <p class="font-body-base text-[15px] text-gray-500 max-w-md">{{ trans('blocks.home.curated_desc') }}</p>
+                <p class="text-[14px] leading-6 text-gray-500 max-w-md hidden md:block">اكتشف تشكيلتنا المختارة بعناية.</p>
             {% endif %}
         </div>
     {% endif %}
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {% for product in component.fields.products %}
-            <div class="group relative flex flex-col glass-panel rounded-[2rem] p-4 border border-white/30 hover:border-ona-accent/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-ambient bg-white/40 h-full">
+            <div class="group relative flex flex-col bg-white rounded-[24px] border border-outline p-3 md:p-4 hover:border-lime/40 hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 ease-atelier h-full">
                 
-                <div class="relative aspect-square overflow-hidden rounded-[1.5rem] mb-4 bg-white/50">
-                    {% if product.image.url %}<img src="{{ product.image.url }}" alt="{{ product.image.alt|default(product.name) }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">{% else %}<img src="{{ "images/placeholder.png"|asset }}" alt="{{ product.name }}" class="w-full h-full object-cover opacity-60" loading="lazy">{% endif %}
+                <div class="relative aspect-square overflow-hidden rounded-[16px] bg-paper-container">
+                    {% if product.image.url %}
+                        <img src="{{ product.image.url }}" alt="{{ product.image.alt|default(product.name) }}" class="w-full h-full object-cover transition-transform duration-[600ms] ease-atelier group-hover:scale-[1.04]" loading="lazy">
+                    {% else %}
+                        <img src="{{ 'images/placeholder.png'|asset }}" alt="{{ product.name }}" class="w-full h-full object-cover opacity-50">
+                    {% endif %}
                     
-                    <salla-button type="favorite" product-id="{{ product.id }}" class="absolute top-3 left-3 w-10 h-10 glass-panel border border-white/50 rounded-full flex items-center justify-center text-ona-primary hover:text-danger hover:bg-white transition-all z-10 shadow-sm">
-                        <i class="sicon-heart text-[18px]"></i>
+                    <salla-button type="favorite" product-id="{{ product.id }}" class="absolute top-2.5 left-2.5 w-9 h-9 bg-white/90 backdrop-blur-md border border-white/70 rounded-full flex items-center justify-center text-ink hover:text-red-600 hover:bg-white shadow-sm transition-all">
+                        <i class="sicon-heart text-[16px]"></i>
                     </salla-button>
+                    {% if product.is_new %}
+                        <span class="absolute top-2.5 right-2.5 bg-lime text-ink text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full">جديد</span>
+                    {% endif %}
                 </div>
                 
-                <div class="flex flex-col flex-grow">
-                    <h3 class="font-title-base text-[15px] text-ona-primary font-bold line-clamp-2 mb-2 group-hover:text-ona-secondary transition-colors leading-snug">
+                <div class="flex flex-col flex-grow pt-3">
+                    <h3 class="text-[14px] font-bold leading-snug text-ink line-clamp-2 group-hover:text-forest transition-colors min-h-[40px]">
                         <a href="{{ product.url }}">{{ product.name }}</a>
                     </h3>
                     
-                    <div class="mt-auto flex items-end justify-between pt-4 border-t border-white/20">
+                    <div class="mt-auto flex items-center justify-between pt-3 border-t border-outline/60">
                         <div class="flex flex-col">
                             {% if product.has_special_price %}
-                                <span class="font-headline-lg text-[18px] text-ona-secondary font-extrabold">{{ product.price|money }}</span>
-                                <span class="font-label-caps text-xs text-gray-400 line-through">{{ product.regular_price|money }}</span>
+                                <span class="text-[16px] font-extrabold tracking-[-0.02em] text-forest leading-none">{{ product.price|money }}</span>
+                                <span class="text-[11px] text-gray-400 line-through">{{ product.regular_price|money }}</span>
                             {% else %}
-                                <span class="font-headline-lg text-[18px] text-ona-primary font-extrabold">{{ product.price|money }}</span>
+                                <span class="text-[16px] font-extrabold tracking-[-0.02em] text-ink leading-none">{{ product.price|money }}</span>
                             {% endif %}
                         </div>
                         
-                        <salla-add-product-button product-id="{{ product.id }}" class="w-10 h-10 rounded-full bg-ona-primary text-white flex items-center justify-center hover:bg-ona-accent hover:text-ona-primary transition-all duration-300 shadow-sm hover:shadow-glow hover:-translate-y-1">
-                            <i class="sicon-add text-[20px]"></i>
+                        <salla-add-product-button product-id="{{ product.id }}" class="w-9 h-9 rounded-full bg-ink text-white flex items-center justify-center hover:bg-ink-hover hover:shadow-glow transition-all">
+                            <i class="sicon-add text-[18px]"></i>
                         </salla-add-product-button>
                     </div>
                 </div>
+            </div>
+        {% else %}
+            <div class="col-span-full text-center py-16 bg-white rounded-[24px] border border-dashed border-outline">
+                <p class="text-[14px] font-semibold text-gray-500">لا توجد منتجات — اختر من محرر الثيم</p>
             </div>
         {% endfor %}
     </div>

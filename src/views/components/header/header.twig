@@ -5,52 +5,41 @@
 | cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |#}
 {% set important_links = theme.settings.get('important_links') %}
 
-<!-- ONA Floating Glass Header -->
-<header class="floating-header mt-4 mb-8 glass-panel border border-white/20 shadow-ambient px-6 md:px-10 h-20 flex justify-between items-center z-50 transition-all duration-300">
-    <div class="flex items-center gap-6">
-        <!-- Mobile Menu Toggle -->
-        <a class="lg:hidden mburger mburger--collapse leading-none text-ona-primary" href="#mobile-menu" aria-label="Open-menu">
-            <i class="sicon-menu text-2xl"></i>
+<!-- ATELIER Header — Stitch DESIGN.md: header-glass (blur 20px, paper/ink, 1280 max) -->
+<header class="floating-header mt-4 mb-6 md:mb-8 px-5 md:px-8 h-[68px] md:h-[72px] flex justify-between items-center">
+    <div class="flex items-center gap-5 md:gap-6">
+        <a class="lg:hidden w-10 h-10 rounded-full bg-paper border border-outline flex items-center justify-center text-ink hover:bg-white hover:border-lime/40 hover:shadow-ambient transition-all duration-200 atelier" href="#mobile-menu" aria-label="Open navigation">
+            <i class="sicon-menu text-[20px]"></i>
         </a>
         
-        <!-- Brand Logo -->
-        <a class="navbar-brand flex items-center gap-2" href="{{ store.url }}">
+        <a class="navbar-brand flex items-center gap-3" href="{{ store.url }}">
             {% if store.logo %}
-                <img fetchpriority="high" class="h-10 w-auto object-contain" loading="eager" src="{{ store.logo|cdn(175) }}" alt="{{ store.name }} logo">
+                <img fetchpriority="high" class="h-8 md:h-9 w-auto object-contain" loading="eager" src="{{ store.logo|cdn(175) }}" alt="{{ store.name }} logo">
             {% else %}
-                <span class="font-display-2xl text-[32px] font-extrabold text-ona-primary tracking-tighter">{{ store.name }}</span>
+                <span class="font-display text-[26px] md:text-[28px] font-extrabold text-ink tracking-[-0.03em]">{{ store.name }}</span>
             {% endif %}
         </a>
         
-        <!-- Desktop Main Menu -->
-        <div class="hidden lg:flex items-center gap-8 ml-8">
-            <custom-main-menu></custom-main-menu>
+        <div class="hidden lg:flex items-center gap-7 ml-6">
+            <custom-main-menu class="text-[14px] font-semibold tracking-[-0.01em]"></custom-main-menu>
         </div>
     </div>
     
-    <div class="flex items-center gap-4">
-        <!-- Search -->
-        <div class="hidden md:block w-64">
-            <salla-search inline oval height="40" class="bg-white/50 backdrop-blur-md border border-white/20 rounded-full"></salla-search>
+    <div class="flex items-center gap-2.5 md:gap-3">
+        <div class="hidden md:block w-[288px]">
+            <salla-search inline oval height="44" class="bg-white/70 backdrop-blur-md border border-outline rounded-full focus-within:border-lime/50 focus-within:shadow-ambient transition-all"></salla-search>
         </div>
         
-        <!-- Localization (Lang/Currency) -->
         {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
             <div class="hidden sm:block">
-                <salla-localization-modal show-trigger></salla-localization-modal>
+                <salla-localization-modal show-trigger class="rounded-full"></salla-localization-modal>
             </div>
         {% endif %}
         
-        <!-- User Menu -->
-        <div class="hover:scale-105 transition-transform duration-300">
-            <salla-user-menu avatar-only show-header show-trigger></salla-user-menu>
-        </div>
+        <salla-user-menu avatar-only show-header show-trigger class="rounded-full hover:shadow-ambient transition-shadow"></salla-user-menu>
         
-        <!-- Cart Summary -->
-        <div class="hover:scale-105 transition-transform duration-300 relative group">
-            <salla-cart-summary class="text-ona-primary hover:text-ona-accent transition-colors">
-                <i slot="icon" class="sicon-shopping-bag text-2xl"></i>
-            </salla-cart-summary>
-        </div>
+        <salla-cart-summary class="relative text-ink hover:text-forest transition-colors duration-200">
+            <i slot="icon" class="sicon-shopping-bag text-[22px]"></i>
+        </salla-cart-summary>
     </div>
 </header>
