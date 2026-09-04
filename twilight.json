@@ -265,6 +265,53 @@
                     "key": "e5f6a7b8-c9d0-1234-ef01-567890123456-strong"
                 }
             ]
+        },
+        {
+            "type": "boolean",
+            "id": "enable_animations",
+            "label": "تفعيل الحركات الفاخرة — Enable Luxury Animations",
+            "description": "حركات سلسة spring + ظهور تدريجي + تأثيرات hover — تعطيلها يوقف كل الحركات لسرعة قصوى",
+            "labelHTML": null,
+            "icon": "sicon-magic-wand",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "items",
+            "id": "animation_intensity",
+            "format": "dropdown-list",
+            "label": "قوة الحركات — Motion Intensity",
+            "description": "خفيف / متوازن (مستحسن) / مكثف — يتحكم بمدة وارتفاع الحركات",
+            "labelHTML": null,
+            "icon": "sicon-star",
+            "source": "Manual",
+            "required": false,
+            "selected": [
+                {
+                    "label": "متوازن — Balanced (مستحسن)",
+                    "value": "balanced",
+                    "key": "f6a7b8c9-d0e1-2345-fa12-678901234567"
+                }
+            ],
+            "options": [
+                {
+                    "label": "خفيف — Soft (سريع وهادئ)",
+                    "value": "soft",
+                    "key": "f6a7b8c9-d0e1-2345-fa12-678901234567-soft"
+                },
+                {
+                    "label": "متوازن — Balanced (مستحسن)",
+                    "value": "balanced",
+                    "key": "f6a7b8c9-d0e1-2345-fa12-678901234567"
+                },
+                {
+                    "label": "مكثف — Intense (مسرحي)",
+                    "value": "intense",
+                    "key": "f6a7b8c9-d0e1-2345-fa12-678901234567-intense"
+                }
+            ]
         }
     ],
     "components": [
