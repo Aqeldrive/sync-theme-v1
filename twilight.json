@@ -120,20 +120,150 @@
             "selected": true
         },
         {
-            "type": "string",
             "id": "background_animation",
+            "type": "items",
+            "format": "dropdown-list",
             "label": "نمط الخلفية المتحركة — Animated Background",
-            "description": "اختر محرك الخلفية: كل خيار مستوى عالمي",
+            "description": "اختر محرك الخلفية المتحركة — كل خيار مستوى عالمي",
             "labelHTML": null,
             "icon": "sicon-magic-wand",
-            "format": "select",
+            "source": "Manual",
             "required": false,
-            "value": "aurora",
+            "selected": [
+                {
+                    "label": "Aurora Drift — أورورا (lime · forest · ink)",
+                    "value": "aurora",
+                    "key": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                }
+            ],
             "options": [
-                {"id": "aurora", "name": "Aurora Drift — أورورا (lime · forest · ink)"},
-                {"id": "silk", "name": "Silk Flow — حرير متدفق"},
-                {"id": "cosmic", "name": "Cosmic Orbs — كواكب عائمة"},
-                {"id": "prism", "name": "Prism Light — ضوء منشوري"}
+                {
+                    "label": "1 — Aurora Drift — أورورا (default, lime/forest/ink)",
+                    "value": "aurora",
+                    "key": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                },
+                {
+                    "label": "2 — Silk Flow — حرير متدفق",
+                    "value": "silk",
+                    "key": "b2c3d4e5-f6a7-8901-bcde-f23456789012"
+                },
+                {
+                    "label": "3 — Cosmic Orbs — كواكب عائمة",
+                    "value": "cosmic",
+                    "key": "c3d4e5f6-a7b8-9012-cdef-345678901234"
+                },
+                {
+                    "label": "4 — Prism Light — ضوء منشوري",
+                    "value": "prism",
+                    "key": "d4e5f6a7-b8c9-0123-def0-456789012345"
+                }
+            ]
+        },
+        {
+            "type": "boolean",
+            "id": "header_is_glassy",
+            "label": "تأثير الزجاج على الهيدر — Glass Header",
+            "description": "تفعيل الزجاج المصنفر للهيدر العلوي (floating glass pill)",
+            "labelHTML": null,
+            "icon": "sicon-layers",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "id": "product_is_glassy",
+            "label": "تأثير الزجاج على المنتجات — Glass Products",
+            "description": "بطاقات المنتجات زجاجية شفافة مع توهج lime عند التمرير",
+            "labelHTML": null,
+            "icon": "sicon-box",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "id": "cart_is_glassy",
+            "label": "تأثير الزجاج على السلة — Glass Cart",
+            "description": "صفحة السلة بخلفية زجاجية فاخرة",
+            "labelHTML": null,
+            "icon": "sicon-shopping-bag",
+            "format": "switch",
+            "required": false,
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "id": "enable_background_animation",
+            "label": "تفعيل الخلفية المتحركة — Enable Animated Background",
+            "description": "إظهار حركة الخلفية (Aurora/Silk/Cosmic/Prism) — إيقافها يجعل الخلفية ثابتة",
+            "labelHTML": null,
+            "icon": "sicon-star",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "id": "enable_header_shrink",
+            "label": "تصغير الهيدر عند التمرير — Shrink Header on Scroll",
+            "description": "الهيدر يتقلص بسلاسة عند التمرير لأسفل (pro, saves space)",
+            "labelHTML": null,
+            "icon": "sicon-arrow-down",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "id": "enable_product_glow",
+            "label": "توهج المنتجات — Product Glow on Hover",
+            "description": "توهج lime + رفع البطاقة عند تمرير الماوس",
+            "labelHTML": null,
+            "icon": "sicon-magic-wand",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "items",
+            "id": "glass_intensity",
+            "format": "dropdown-list",
+            "label": "قوة الزجاج — Glass Intensity",
+            "description": "اختر شفافية الزجاج: خفيف / متوسط / قوي",
+            "labelHTML": null,
+            "icon": "sicon-adjust",
+            "source": "Manual",
+            "required": false,
+            "selected": [
+                {
+                    "label": "متوسط — Medium (مستحسن)",
+                    "value": "medium",
+                    "key": "e5f6a7b8-c9d0-1234-ef01-567890123456"
+                }
+            ],
+            "options": [
+                {
+                    "label": "خفيف — Soft (شفاف جداً, blur 20)",
+                    "value": "soft",
+                    "key": "e5f6a7b8-c9d0-1234-ef01-567890123456-soft"
+                },
+                {
+                    "label": "متوسط — Medium (مستحسن, blur 28)",
+                    "value": "medium",
+                    "key": "e5f6a7b8-c9d0-1234-ef01-567890123456"
+                },
+                {
+                    "label": "قوي — Strong (ثقيل, blur 36)",
+                    "value": "strong",
+                    "key": "e5f6a7b8-c9d0-1234-ef01-567890123456-strong"
+                }
             ]
         }
     ],

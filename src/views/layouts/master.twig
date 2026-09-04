@@ -53,10 +53,20 @@
     {# tracking services, custom css feature. #}
     {% hook 'head:end' %}
 </head>
-<body id="app" class="theme-ona overflow-x-hidden font-sans bg-ona-surface text-gray-900 selection:bg-ona-accent selection:text-ona-primary bg-{{ theme.settings.get('background_animation', 'aurora') }} {{ theme.settings.get('glassmorphism', true) ? 'glass-on' : 'glass-off' }} {{ theme.settings.get('dark_mode', true) ? 'dark-mode-enabled' : '' }} {% hook 'body:classes' %}
+{% set _bgRaw = theme.settings.get('background_animation', 'aurora') %}
+{% set bg_animation = _bgRaw.value|default(_bgRaw[0].value|default(_bgRaw|default('aurora')))|default('aurora') %}
+{% if bg_animation is iterable and bg_animation.value is defined %}{% set bg_animation = bg_animation.value %}{% endif %}
+{% if bg_animation is iterable and bg_animation[0] is defined and bg_animation[0].value is defined %}{% set bg_animation = bg_animation[0].value %}{% endif %}
+{# Robust fallback — ensure string #}
+{% if bg_animation not in ['aurora','silk','cosmic','prism'] %}{% set bg_animation = 'aurora' %}{% endif %}
+{% set _glassRaw = theme.settings.get('glass_intensity', 'medium') %}
+{% set glass_intensity = _glassRaw.value|default(_glassRaw[0].value|default(_glassRaw|default('medium')))|default('medium') %}
+{% if glass_intensity is iterable and glass_intensity.value is defined %}{% set glass_intensity = glass_intensity.value %}{% endif %}
+<body id="app" class="theme-ona overflow-x-hidden font-sans bg-ona-surface text-gray-900 selection:bg-ona-accent selection:text-ona-primary bg-{{ theme.settings.get('enable_background_animation', true) ? bg_animation : 'none' }} glass-{{ glass_intensity }} {{ theme.settings.get('glassmorphism', true) ? 'glass-on' : 'glass-off' }} {{ theme.settings.get('dark_mode', true) ? 'dark-mode-enabled' : '' }} {{ theme.settings.get('header_is_glassy', true) ? 'header-glass' : 'header-solid' }} {{ theme.settings.get('product_is_glassy', true) ? 'product-glass' : 'product-solid' }} {{ theme.settings.get('cart_is_glassy', false) ? 'cart-glass' : 'cart-solid' }} {{ theme.settings.get('enable_product_glow', true) ? 'glow-on' : 'glow-off' }} {% hook 'body:classes' %}
   {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
   {{ theme.settings.get('topnav_is_dark') ? ' topnav-is-dark' : '' }}
   {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}
+  {{ theme.settings.get('enable_header_shrink', true) ? ' header-shrink-on' : ' header-shrink-off' }}
   ">
 <noscript>
     To get full functionality of this site you need to enable JavaScript. Here is how
@@ -64,7 +74,8 @@
        target="_blank">To enable JavaScript on webpage</a>.
 </noscript>
 
-<!-- ONA Dynamic Mesh Background -->
+<!-- ONA Dynamic Mesh Background — controlled by enable_background_animation -->
+{% if theme.settings.get('enable_background_animation', true) %}
 <div class="mesh-background">
     <div class="mesh-orb orb-a"></div>
     <div class="mesh-orb orb-b"></div>
@@ -72,6 +83,7 @@
     <div class="mesh-orb orb-d"></div>
     <div class="mouse-glow"></div>
 </div>
+{% endif %}
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {

@@ -8,7 +8,7 @@
         <h1 class="sr-only">{{ page.title }}</h1>
         <div class="flex flex-col lg:flex-row items-start gap-6 lg:gap-8 pb-24">
             
-            <div class="main-content flex-1 w-full bg-white rounded-[32px] border border-outline p-6 md:p-8 shadow-ambient">
+            <div class="cart-main main-content flex-1 w-full bg-white rounded-[32px] border border-outline p-6 md:p-8 shadow-ambient">
                 {% hook 'cart:items.start' %}
                 
                 <div class="flex justify-between items-center mb-6 border-b border-outline/60 pb-5">
@@ -31,12 +31,13 @@
                             
                             <div class="flex gap-4 md:gap-6 items-start">
                                 <a href="{{ item.url }}" class="shrink-0 rounded-[16px] overflow-hidden bg-white border border-outline w-24 h-24 md:w-28 md:h-28 block shadow-sm">
-                                    <img src="{{ item.thumbnail ? item.thumbnail|cdn(200,200) : 'images/placeholder.png'|asset }}" alt="{{ item.name }}" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null;this.src='{{ 'images/placeholder.png'|asset }}'">
+                                    {% set _thumb = item.product_image|default(item.image|default(item.thumbnail|default(item.thumb))) %}
+                                    <img src="{{ _thumb ? _thumb|cdn(240,240) : 'images/placeholder.png'|asset }}" alt="{{ item.product_name|default(item.name) }}" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null;this.src='{{ 'images/placeholder.png'|asset }}'">
                                 </a>
                                 
                                 <div class="flex-1 min-w-0 space-y-2">
                                     <h3 class="font-display text-[16px] md:text-[17px] text-ink font-bold leading-tight line-clamp-2">
-                                        <a href="{{ item.url }}" class="hover:text-forest transition-colors">{{ item.name }}</a>
+                                        <a href="{{ item.url }}" class="hover:text-forest transition-colors">{{ item.product_name|default(item.name) }}</a>
                                     </h3>
                                     
                                     {% if item.weight %}
@@ -133,8 +134,10 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="mt-4 bg-white rounded-full h-2.5 border border-outline overflow-hidden {{ is_free ? ' hidden' : '' }}" id="free-shipping-bar">
-                            <div class="h-full bg-lime rounded-full transition-all duration-700" style="width:{{ cart.free_shipping_bar.percent }}%"></div>
+                        <div class="mt-4 bg-white rounded-full h-2.5 border border-outline overflow-hidden {{ is_free ? ' hidden' : '' }} shadow-inner" id="free-shipping-bar">
+                            <div class="h-full bg-lime rounded-full transition-all duration-700 shadow-glow relative overflow-hidden" style="width:{{ cart.free_shipping_bar.percent }}%; box-shadow: 0 0 12px rgba(212,255,0,0.45)">
+                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_infinite]" style="background-size: 200% 100%"></div>
+                            </div>
                         </div>
                     </div>
                     
@@ -155,7 +158,8 @@
                     {% endif %}
                     
                     {% hook 'cart:summary-card.start' %}
-                    <div class="bg-white rounded-[32px] border border-outline shadow-elevated overflow-hidden">
+                    <div class="bg-white rounded-[32px] border border-outline shadow-elevated overflow-hidden relative">
+                        <div class="absolute top-0 inset-x-0 h-1 bg-lime"></div>
                         <div class="p-6">
                             <h3 class="font-display font-bold text-[16px] text-ink mb-1">ملخص الطلب</h3>
                             <p class="text-[12px] text-gray-500 mb-4">الدفع آمن ومشفّر</p>

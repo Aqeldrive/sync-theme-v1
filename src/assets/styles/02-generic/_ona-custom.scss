@@ -159,10 +159,10 @@
     margin-right: auto;
     max-width: 1280px;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    background: rgba(255, 255, 255, 0.68);
-    backdrop-filter: blur(32px) saturate(1.45) brightness(1.07);
-    -webkit-backdrop-filter: blur(32px) saturate(1.45) brightness(1.07);
-    border: 1px solid rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.56);
+    backdrop-filter: blur(32px) saturate(1.55) brightness(1.08);
+    -webkit-backdrop-filter: blur(32px) saturate(1.55) brightness(1.08);
+    border: 1.5px solid rgba(255, 255, 255, 0.72);
     box-shadow:
         0 12px 40px rgba(10, 24, 52, 0.10),
         0 2px 8px rgba(10, 24, 52, 0.06),
@@ -171,23 +171,29 @@
 }
 
 .floating-header:hover {
-    background: rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.68);
     box-shadow:
-        0 18px 56px rgba(10, 24, 52, 0.12),
-        0 4px 16px rgba(10, 24, 52, 0.07),
-        inset 0 1px 0 rgba(255,255,255,0.90);
-    border-color: rgba(255,255,255,0.80);
+        0 20px 60px rgba(10, 24, 52, 0.15),
+        0 4px 16px rgba(10, 24, 52, 0.08),
+        inset 0 1px 0 rgba(255,255,255,0.96);
+    border-color: rgba(255,255,255,0.88);
 }
 
 .floating-header.is-scrolled {
     top: 0.5rem;
-    background: rgba(255, 255, 255, 0.80);
-    backdrop-filter: blur(36px) saturate(1.5);
-    -webkit-backdrop-filter: blur(36px) saturate(1.5);
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(36px) saturate(1.6);
+    -webkit-backdrop-filter: blur(36px) saturate(1.6);
     box-shadow:
-        0 16px 48px rgba(10, 24, 52, 0.12),
-        inset 0 1px 0 rgba(255,255,255,0.85);
+        0 18px 52px rgba(10, 24, 52, 0.14),
+        inset 0 1px 0 rgba(255,255,255,0.90);
     transform: translateY(0) scale(0.985);
+}
+.header-shrink-off .floating-header.is-scrolled {
+    top: 0.75rem !important;
+    transform: none !important;
+    background: rgba(255, 255, 255, 0.56) !important;
+    backdrop-filter: blur(32px) saturate(1.55) brightness(1.08) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -280,7 +286,7 @@ salla-add-product-button {
    Liquid glass card — translucent, blurred, depth, lime aura on hover
    ═══════════════════════════════════════════════════════════════ */
 .product-card-atelier {
-    background: rgba(255, 255, 255, 0.64);
+    background: rgba(255, 255, 255, 0.58);
     backdrop-filter: blur(24px) saturate(1.28) brightness(1.04);
     -webkit-backdrop-filter: blur(24px) saturate(1.28) brightness(1.04);
     border: 1px solid rgba(255, 255, 255, 0.58);
@@ -372,8 +378,64 @@ salla-add-product-button {
     border-color: #E6E9F2 !important;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   DARK MODE — operational via Theme Settings > Dark Mode
+/* HEADER GLASS SWITCH — optional header glass */
+.header-solid .floating-header {
+    background: #FFFFFF !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-color: #E6E9F2 !important;
+    box-shadow: 0 4px 20px rgba(10,24,52,0.06), 0 1px 3px rgba(10,24,52,0.04) !important;
+}
+.header-solid .floating-header:hover,
+.header-solid .floating-header.is-scrolled {
+    background: #FFFFFF !important;
+    backdrop-filter: none !important;
+    transform: none !important;
+}
+
+/* PRODUCT GLASS SWITCH — optional */
+.product-solid .product-card-atelier {
+    background: #FFFFFF !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-color: #E6E9F2 !important;
+    box-shadow: 0 1px 3px rgba(10,24,52,0.04) !important;
+}
+.product-solid .product-card-atelier:hover {
+    transform: translateY(-3px) !important;
+    border-color: rgba(212,255,0,0.22) !important;
+    box-shadow: 0 10px 28px rgba(10,24,52,0.08) !important;
+}
+.product-solid .product-card-atelier::before { display: none !important; }
+.product-solid .product-card-atelier::after { opacity: 0.4 !important; }
+
+/* GLOW SWITCH */
+.glow-off .product-card-atelier:hover {
+    transform: translateY(-2px) scale(1) !important;
+    border-color: #E6E9F2 !important;
+    box-shadow: 0 2px 8px rgba(10,24,52,0.05) !important;
+}
+.glow-off .product-card-atelier:hover::before { opacity: 0 !important; }
+.glow-off .product-card-atelier .scrim { opacity: 0 !important; }
+
+/* GLASS INTENSITY */
+.glass-soft .glass-panel { background: rgba(255,255,255,0.54) !important; backdrop-filter: blur(20px) saturate(1.22) brightness(1.04) !important; -webkit-backdrop-filter: blur(20px) saturate(1.22) brightness(1.04) !important; }
+.glass-soft .floating-header { background: rgba(255,255,255,0.42) !important; backdrop-filter: blur(22px) saturate(1.32) brightness(1.05) !important; -webkit-backdrop-filter: blur(22px) saturate(1.32) brightness(1.05) !important; }
+.glass-soft .product-card-atelier { background: rgba(255,255,255,0.50) !important; backdrop-filter: blur(18px) saturate(1.18) !important; -webkit-backdrop-filter: blur(18px) saturate(1.18) !important; }
+.glass-strong .glass-panel { background: rgba(255,255,255,0.84) !important; backdrop-filter: blur(36px) saturate(1.48) brightness(1.08) !important; -webkit-backdrop-filter: blur(36px) saturate(1.48) brightness(1.08) !important; }
+.glass-strong .floating-header { background: rgba(255,255,255,0.72) !important; backdrop-filter: blur(38px) saturate(1.62) brightness(1.10) !important; -webkit-backdrop-filter: blur(38px) saturate(1.62) brightness(1.10) !important; }
+.glass-strong .product-card-atelier { background: rgba(255,255,255,0.78) !important; backdrop-filter: blur(30px) saturate(1.40) !important; -webkit-backdrop-filter: blur(30px) saturate(1.40) !important; }
+
+/* CART GLASS vs SOLID */
+.cart-solid .cart-main { background: #FFFFFF !important; border: 1px solid #E6E9F2 !important; backdrop-filter: none !important; }
+.cart-glass .cart-main { background: rgba(255,255,255,0.68) !important; backdrop-filter: blur(28px) saturate(1.35) !important; -webkit-backdrop-filter: blur(28px) saturate(1.35) !important; border: 1px solid rgba(255,255,255,0.62) !important; }
+.cart-glass .cart-item { background: rgba(248,249,255,0.72) !important; backdrop-filter: blur(14px) !important; }
+
+/* BG NONE — when enabled_background_animation false */
+.bg-none .mesh-background { display: none !important; }
+.bg-none { background: #F8F9FF !important; }
+
+/* DARK MODE — operational via Theme Settings > Dark Mode
    Respects system preference + manual .dark toggle
    ═══════════════════════════════════════════════════════════════ */
 @media (prefers-color-scheme: dark) {
