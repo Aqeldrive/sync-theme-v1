@@ -435,47 +435,142 @@ salla-add-product-button {
 .bg-none .mesh-background { display: none !important; }
 .bg-none { background: #F8F9FF !important; }
 
-/* DARK MODE — operational via Theme Settings > Dark Mode
-   Respects system preference + manual .dark toggle
+/* ═══════════════════════════════════════════════════════════════
+   DARK MODE — PERFECT LUXURY — ATELIER NUIT  // 2026-09-05
+   Operational via Theme Settings > Dark Mode (class .dark-mode-enabled)
+   Covers: body, mesh (all 4 engines), glass, header, product, cart, search, product-single, slider, footer, pills, forms
+   Luxury dark: ink deep #070F24, card #111E3A, glass rgba(16,28,58,0.78), lime glow amplified
    ═══════════════════════════════════════════════════════════════ */
-@media (prefers-color-scheme: dark) {
-  .dark-mode-enabled {
+.dark-mode-enabled,
+.dark-mode-enabled.dark,
+.dark {
     color-scheme: dark;
-  }
-  .dark-mode-enabled .mesh-background { background: #070F24 !important; }
-  .dark-mode-enabled .mesh-background::before {
+}
+.dark-mode-enabled {
+    background: #070F24 !important;
+    color: #F8F9FF !important;
+}
+.dark-mode-enabled .app-inner { background: transparent; }
+
+/* Mesh — deep ink + lime still breathes (all engines) */
+.dark-mode-enabled .mesh-background { background: #070F24 !important; }
+.dark-mode-enabled .mesh-background::before {
     background:
-        radial-gradient(ellipse 820px 620px at 18% 22%, rgba(212,255,0,0.12) 0%, transparent 72%),
-        radial-gradient(ellipse 780px 560px at 84% 18%, rgba(255,255,255,0.06) 0%, transparent 62%),
-        radial-gradient(ellipse 900px 680px at 52% 88%, rgba(212,255,0,0.06) 0%, transparent 68%) !important;
-  }
-  .dark-mode-enabled .glass-panel {
+        radial-gradient(ellipse 820px 620px at 18% 22%, rgba(212,255,0,0.14) 0%, rgba(212,255,0,0.04) 38%, transparent 72%),
+        radial-gradient(ellipse 780px 560px at 84% 18%, rgba(255,255,255,0.07) 0%, transparent 62%),
+        radial-gradient(ellipse 900px 680px at 52% 88%, rgba(13,59,46,0.22) 0%, transparent 68%),
+        radial-gradient(ellipse 640px 520px at 88% 82%, rgba(212,255,0,0.09) 0%, transparent 64%) !important;
+}
+.dark-mode-enabled .mesh-background::after {
+    background:
+        radial-gradient(ellipse 700px 520px at 72% 48%, rgba(212,255,0,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 620px 480px at 30% 70%, rgba(255,255,255,0.04) 0%, transparent 65%) !important;
+}
+/* Silk / Cosmic / Prism orbs stay visible on dark */
+.dark-mode-enabled.bg-silk .orb-a { background: linear-gradient(100deg, rgba(212,255,0,0.16) 0%, rgba(22,32,68,0.72) 42%, rgba(13,59,46,0.14) 100%) !important; }
+.dark-mode-enabled.bg-silk .orb-b { background: linear-gradient(98deg, transparent 10%, rgba(255,255,255,0.06) 50%, rgba(212,255,0,0.10) 90%) !important; }
+.dark-mode-enabled.bg-cosmic .orb-a { background: radial-gradient(circle, rgba(212,255,0,0.22) 0%, rgba(212,255,0,0.06) 45%, transparent 72%) !important; }
+.dark-mode-enabled.bg-cosmic .orb-c { background: radial-gradient(circle, rgba(13,59,46,0.18) 0%, transparent 70%) !important; }
+.dark-mode-enabled .mouse-glow { background: radial-gradient(circle, rgba(212,255,0,0.20) 0%, rgba(212,255,0,0.09) 28%, rgba(212,255,0,0.03) 48%, transparent 72%) !important; }
+
+/* Glass — dark translucent, lime rim on hover */
+.dark-mode-enabled .glass-panel {
     background: rgba(16, 28, 58, 0.78) !important;
+    backdrop-filter: blur(28px) saturate(1.35) brightness(0.98) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(1.35) brightness(0.98) !important;
     border-color: rgba(255,255,255,0.10) !important;
     color: #F8F9FF !important;
-  }
-  .dark-mode-enabled .glass-panel h1,
-  .dark-mode-enabled .glass-panel h2,
-  .dark-mode-enabled .glass-panel h3 { color: #FFFFFF !important; }
-  .dark-mode-enabled .floating-header {
-    background: rgba(16, 28, 58, 0.88) !important;
-    border-color: rgba(255,255,255,0.10) !important;
-  }
-  .dark-mode-enabled .product-card-atelier {
-    background: #111E3A !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 1px 2px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.08) !important;
+}
+.dark-mode-enabled .glass-panel:hover {
+    background: rgba(22, 36, 71, 0.88) !important;
+    border-color: rgba(255,255,255,0.14) !important;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.10) !important;
+}
+.dark-mode-enabled .glass-panel h1,
+.dark-mode-enabled .glass-panel h2,
+.dark-mode-enabled .glass-panel h3,
+.dark-mode-enabled .glass-panel h4 { color: #FFFFFF !important; }
+.dark-mode-enabled .glass-panel .text-gray-500,
+.dark-mode-enabled .glass-panel .text-gray-400 { color: #A0AEC0 !important; }
+.dark-mode-enabled .glass-panel .text-ink { color: #F8F9FF !important; }
+
+/* Header — dark glass pill, search inner more contrast */
+.dark-mode-enabled .floating-header {
+    background: rgba(16, 28, 58, 0.84) !important;
+    backdrop-filter: blur(32px) saturate(1.45) brightness(0.99) !important;
+    -webkit-backdrop-filter: blur(32px) saturate(1.45) brightness(0.99) !important;
+    border-color: rgba(255,255,255,0.12) !important;
+    box-shadow: 0 14px 44px rgba(0,0,0,0.38), 0 2px 8px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.10) !important;
+}
+.dark-mode-enabled .floating-header:hover { background: rgba(22,36,71,0.90) !important; border-color: rgba(255,255,255,0.16) !important; }
+.dark-mode-enabled .floating-header.is-scrolled { background: rgba(16,28,58,0.92) !important; border-color: rgba(255,255,255,0.14) !important; }
+.dark-mode-enabled .floating-header .text-ink { color: #F8F9FF !important; }
+.dark-mode-enabled salla-search { --color-primary: #F8F9FF !important; }
+.dark-mode-enabled salla-search input,
+.dark-mode-enabled salla-search [class*="bg-white"] { background: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.14) !important; color: #F8F9FF !important; }
+.dark-mode-enabled salla-search input::placeholder { color: #8B9AB8 !important; }
+
+/* Product cards — dark card, lime glow stronger, scrim subtler */
+.dark-mode-enabled .product-card-atelier {
+    background: rgba(17, 30, 58, 0.82) !important;
+    backdrop-filter: blur(24px) saturate(1.28) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(1.28) !important;
     border-color: rgba(255,255,255,0.08) !important;
     color: #F8F9FF !important;
-  }
-  .dark-mode-enabled .btn-atelier-ghost {
-    background: rgba(255,255,255,0.08) !important;
-    border-color: rgba(255,255,255,0.12) !important;
-    color: #FFFFFF !important;
-  }
+    box-shadow: 0 8px 32px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.06) !important;
 }
-.dark-mode-enabled.dark {
-    color-scheme: dark;
-    background: #0A1834 !important;
-    color: #F8F9FF !important;
+.dark-mode-enabled .product-card-atelier::after { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent) !important; }
+.dark-mode-enabled .product-card-atelier:hover {
+    background: rgba(22, 36, 71, 0.92) !important;
+    border-color: rgba(212,255,0,0.22) !important;
+    box-shadow: 0 24px 56px rgba(0,0,0,0.44), 0 0 0 1px rgba(212,255,0,0.14), inset 0 1px 0 rgba(255,255,255,0.10) !important;
+}
+.dark-mode-enabled .product-card-atelier .text-ink { color: #F8F9FF !important; }
+.dark-mode-enabled .product-card-atelier .text-gray-500 { color: #A0AEC0 !important; }
+.dark-mode-enabled .product-card-atelier .bg-white { background: #0F1F3A !important; border-color: rgba(255,255,255,0.08) !important; }
+
+/* Cart — dark editorial */
+.dark-mode-enabled .cart-main { background: rgba(17,30,58,0.88) !important; border-color: rgba(255,255,255,0.10) !important; color: #F8F9FF !important; box-shadow: 0 12px 40px rgba(0,0,0,0.36) !important; }
+.dark-mode-enabled .cart-item { background: rgba(22,36,71,0.72) !important; border-color: rgba(255,255,255,0.08) !important; }
+.dark-mode-enabled .cart-item .bg-white { background: #0F1F3A !important; border-color: rgba(255,255,255,0.08) !important; }
+.dark-mode-enabled .cart-main .border-outline,
+.dark-mode-enabled .cart-item { border-color: rgba(255,255,255,0.08) !important; }
+.dark-mode-enabled .cart-main .text-ink { color: #F8F9FF !important; }
+.dark-mode-enabled #free-shipping { background: rgba(22,36,71,0.72) !important; border-color: rgba(255,255,255,0.08) !important; }
+.dark-mode-enabled #free-shipping-bar { background: #0F1F3A !important; border-color: rgba(255,255,255,0.08) !important; }
+
+/* Product page — gallery, price, options */
+.dark-mode-enabled .salla-product-options label,
+.dark-mode-enabled .product-options label { background: #0F1F3A !important; border-color: rgba(255,255,255,0.12) !important; color: #F8F9FF !important; }
+.dark-mode-enabled .salla-product-options input:checked + label { background: #D4FF00 !important; border-color: #D4FF00 !important; color: #0A1834 !important; }
+.dark-mode-enabled .salla-product-options .option-title { color: #A0AEC0 !important; }
+
+/* Pills, buttons, inputs */
+.dark-mode-enabled .pill-pill { background: #0F1F3A !important; border-color: rgba(255,255,255,0.10) !important; color: #F8F9FF !important; }
+.dark-mode-enabled .pill-pill:hover { border-color: rgba(212,255,0,0.28) !important; }
+.dark-mode-enabled .pill-pill.is-active { background: #D4FF00 !important; color: #0A1834 !important; border-color: #D4FF00 !important; }
+.dark-mode-enabled .btn-atelier-ghost { background: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.14) !important; color: #FFFFFF !important; }
+.dark-mode-enabled .btn-atelier-primary { background: #F8F9FF !important; color: #0A1834 !important; border-color: rgba(255,255,255,0.12) !important; }
+.dark-mode-enabled .btn-atelier-primary:hover { background: #FFFFFF !important; box-shadow: 0 8px 28px rgba(0,0,0,0.28) !important; }
+
+/* Footer — deep ink */
+.dark-mode-enabled footer,
+.dark-mode-enabled .footer-is-dark,
+.dark-mode-enabled .footer-is-light { background: #070F24 !important; border-color: #1E2A4A !important; color: #A0AEC0 !important; }
+
+/* Slider / hero — ensure lime CTA still glows, text stays white on dark scrim */
+.dark-mode-enabled .bg-paper { background: #0F1F3A !important; }
+.dark-mode-enabled .bg-white { background: #111E3A !important; }
+.dark-mode-enabled .bg-ona-surface { background: #070F24 !important; }
+.dark-mode-enabled .border-outline { border-color: rgba(255,255,255,0.08) !important; }
+.dark-mode-enabled .text-ink { color: #F8F9FF !important; }
+.dark-mode-enabled .text-gray-900 { color: #F8F9FF !important; }
+
+/* System preference fallback — same rules when OS is dark and toggle is on */
+@media (prefers-color-scheme: dark) {
+  .dark-mode-enabled { background: #070F24 !important; color: #F8F9FF !important; }
+  .dark-mode-enabled .mesh-background { background: #070F24 !important; }
 }
 
 /* PRODUCT OPTIONS — pill swatches, luxury */
