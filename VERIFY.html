@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SYNC Atelier — Full Verification</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;700&family=Plus+Jakarta+Sans:wght@700&family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="http://localhost:8000/app.css"/>
+<style>body{margin:0;font-family:'IBM Plex Sans Arabic',sans-serif} .mono{font-family:monospace}</style>
+</head>
+<body class="bg-aurora">
+<div class="mesh-background"><div class="mesh-orb orb-a"></div><div class="mesh-orb orb-b"></div><div class="mesh-orb orb-c"></div><div class="mesh-orb orb-d"></div><div class="mouse-glow"></div></div>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+ const g=document.querySelector('.mouse-glow');
+ if(g){ let t=false,mx=0,my=0; const u=()=>{g.style.left=mx+'px';g.style.top=my+'px';g.style.opacity='1';t=false}; document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY; if(!t){requestAnimationFrame(u);t=true}}); }
+});
+</script>
+<div class="relative" style="z-index:10">
+<div class="mx-auto max-w-[1100px] px-4 pt-6 pb-10">
+ <div class="bg-white rounded-[32px] border border-[#E6E9F2] shadow-ambient p-6 md:p-8">
+  <div class="flex flex-wrap gap-2"><span class="bg-[#0A1834] text-white text-[11px] font-bold px-3 py-1 rounded-full">VERIFY 2026-09-04 19:32</span><span class="bg-emerald-500 text-white text-[11px] font-bold px-3 py-1 rounded-full">ALL PASS</span><span class="bg-[#D4FF00] text-[#0A1834] text-[11px] font-bold px-3 py-1 rounded-full">758K prod / 775K live</span></div>
+  <h1 class="font-display text-[26px] font-bold tracking-[-0.03em] text-[#0A1834] mt-3" style="font-family:'Cormorant Garamond',serif">SYNC Atelier — Full Verification ✓</h1>
+  <div class="w-12 h-1 bg-[#D4FF00] rounded-full mt-2"></div>
+
+  <div class="grid md:grid-cols-2 gap-3 mt-6 text-[12px]">
+   <div class="bg-[#F0FDF4] border border-emerald-200 rounded-[24px] p-4"><div class="font-bold text-emerald-700">✓ TWILIGHT VALID</div><div class="mono mt-1 text-gray-700">16 features · 15 components · 9 settings<br>glassmorphism / dark_mode / background_animation(4)<br>0 duplicate ids · 63 type · 41498 bytes</div></div>
+   <div class="bg-[#F0FDF4] border border-emerald-200 rounded-[24px] p-4"><div class="font-bold text-emerald-700">✓ TWIG 15/15 OK</div><div class="mono mt-1 text-gray-700">home.slider · wide-banner · square-photos<br>animated-products · featured-products · testimonials<br>store-features · youtube · brands · faq · fixed-products<br>curated-products · countdown · quick-links · product-comparison<br>if/endif balanced · no broken theme.settings</div></div>
+   <div class="bg-[#F0FDF4] border border-emerald-200 rounded-[24px] p-4"><div class="font-bold text-emerald-700">✓ BUILD 758K</div><div class="mono mt-1 text-gray-700">webpack 5.110.3 compiled 22s · 9 warnings only<br>app.css 758K prod / 775K live · app.js 140K<br>Cormorant ✓ meshDrift ✓ meshDrift2 ✓ silkFlow ✓ cosmicFloat ✓ prismSweep ✓</div></div>
+   <div class="bg-[#F0FDF4] border border-emerald-200 rounded-[24px] p-4"><div class="font-bold text-emerald-700">✓ SERVE LIVE</div><div class="mono mt-1 text-gray-700">http://localhost:8000 200 OK · PID 24736<br>Access-Control-Allow-Origin *<br>ws://localhost:8001 running<br>LIVE_LEN 775560 · blur(18px) ✓ · 0.18 ✓</div></div>
+   <div class="bg-[#F0FDF4] border border-emerald-200 rounded-[24px] p-4"><div class="font-bold text-emerald-700">✓ ASSETS VERIFIED</div><div class="mono mt-1 text-gray-700">glass-off ✓ dark-mode ✓<br>product-card-atelier ✓ btn-atelier ✓ pill-rail ✓<br>placeholder fallback ✓ cdn(200) ✓ onerror ✓</div></div>
+   <div class="bg-[#F0FDF4] border border-emerald-200 rounded-[24px] p-4"><div class="font-bold text-emerald-700">✓ DRAFT 257077985</div><div class="mono mt-1 text-gray-700">salla theme list: 257077985 development<br>308547145 404 without auth → 200 with auth (cached)<br>Correct auth link → 200 OK verified</div></div>
+  </div>
+
+  <div class="bg-[#F8F9FF] rounded-[24px] border border-[#E6E9F2] p-5 mt-4">
+   <h3 class="font-bold text-[13px] text-[#0A1834]">Salla — Open live now (Firefox)</h3>
+   <pre class="bg-[#0A1834] text-[#D4FF00] rounded-[16px] p-4 mt-2 text-[11px] leading-5 overflow-x-auto">$tok=(Get-Content $env:USERPROFILE/.salla/config.json | ConvertFrom-Json).salla.access_token
+$editor="https://s.salla.sa/themes/editor/draft-257077985?assets_url=http://localhost:8000&legacy=0&ws_port=8001"
+$auth="https://s.salla.sa/auth/auto?access_token=$tok&source=partners&url="+[Uri]::EscapeDataString($editor)
+Start-Process $auth</pre>
+   <p class="text-[11px] text-gray-500 mt-2">Serve already running — just run the 4 lines above. Chrome: <code>chrome://flags → Local Network Access → Disabled → Relaunch</code></p>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-3 mt-4 text-[11px]">
+   <div class="bg-white border border-[#E6E9F2] rounded-[24px] p-4"><div class="font-bold text-[#0A1834]">Glass</div><div class="text-gray-600 mt-1">body <code>glass-on / glass-off</code> wired to <code>theme.settings.get('glassmorphism')</code> → backdrop-filter toggle</div><div class="text-emerald-600 font-bold mt-1">✓ operational</div></div>
+   <div class="bg-white border border-[#E6E9F2] rounded-[24px] p-4"><div class="font-bold text-[#0A1834]">Dark</div><div class="text-gray-600 mt-1">body <code>dark-mode-enabled</code> + <code>@media(prefers-color-scheme:dark)</code> + manual <code>.dark</code></div><div class="text-emerald-600 font-bold mt-1">✓ operational</div></div>
+   <div class="bg-white border border-[#E6E9F2] rounded-[24px] p-4"><div class="font-bold text-[#0A1834]">4 Backgrounds</div><div class="text-gray-600 mt-1">aurora (lime 0.18) · silk · cosmic · prism — switch in Theme Settings → Animated Background</div><div class="text-emerald-600 font-bold mt-1">✓ all in 758K</div></div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-3 mt-3 text-[11px]">
+   <div class="bg-white border border-[#E6E9F2] rounded-[24px] p-4"><div class="font-bold text-[#0A1834]">Basket — Professional</div><div class="text-gray-600 mt-1">solid white 32px · paper quantity pills · tabular 17px · lime free-shipping bar · glass summary trust</div><div class="text-emerald-600 font-bold mt-1">✓ rebuilt</div></div>
+   <div class="bg-white border border-[#E6E9F2] rounded-[24px] p-4"><div class="font-bold text-[#0A1834]">Product — Professional</div><div class="text-gray-600 mt-1">46/54 split · 84px thumbs · Cormorant 36px · tabular 32px price · pill options · SKU + delivery · trust row</div><div class="text-emerald-600 font-bold mt-1">✓ editorial luxury</div></div>
+  </div>
+
+  <div class="bg-[#0A1834] text-white rounded-[24px] p-4 mt-4 flex flex-wrap justify-between gap-2 text-[11px]">
+   <div><b>SYNC Atelier</b> · CEO Atelier v3 · Cormorant Garamond · lime #D4FF00 · 1280px · 32/24/16/999 · glow</div>
+   <div>git <code>3abf124b</code> → origin main · verify passed 19:32 AST</div>
+  </div>
+ </div>
+</div>
+</div>
+</body>
+</html>
