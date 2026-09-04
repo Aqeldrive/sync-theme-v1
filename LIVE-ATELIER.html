@@ -3,165 +3,70 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SYNC Atelier — Professional Audit Fix</title>
+<title>SYNC Atelier — 404 FIXED</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="http://localhost:8000/app.css"/>
-<style>body{margin:0}.font-display{font-family:'Cormorant Garamond',serif}</style>
+<style>body{margin:0}.font-display{font-family:'Cormorant Garamond',serif} code{background:#F8F9FF;border:1px solid #E6E9F2;padding:2px 6px;border-radius:999px;font-size:11px}</style>
 </head>
-<body class="bg-aurora glass-on dark-mode-enabled">
+<body class="bg-aurora">
 <div class="mesh-background"><div class="mesh-orb orb-a"></div><div class="mesh-orb orb-b"></div><div class="mesh-orb orb-c"></div><div class="mesh-orb orb-d"></div><div class="mouse-glow"></div></div>
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
  const g=document.querySelector('.mouse-glow');
  if(g){ let t=false,mx=0,my=0; const u=()=>{g.style.left=mx+'px';g.style.top=my+'px';g.style.opacity='1';t=false}; document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY; if(!t){requestAnimationFrame(u);t=true}}); document.addEventListener('mouseleave',()=>g.style.opacity='0')}
- window.setBg=id=>{ document.body.className=document.body.className.replace(/bg-(aurora|silk|cosmic|prism)/g,'').trim()+' bg-'+id; document.querySelectorAll('[data-bg]').forEach(b=>b.classList.toggle('is-active',b.dataset.bg===id))}
- window.toggleGlass=()=>{
-   document.body.classList.toggle('glass-on'); document.body.classList.toggle('glass-off');
-   document.getElementById('glass-state').textContent=document.body.classList.contains('glass-off')?'OFF — solid white':'ON — blur 20px';
- }
- window.toggleDark=()=>{
-   document.body.classList.toggle('dark');
-   const isDark=document.body.classList.contains('dark');
-   document.getElementById('dark-state').textContent=isDark?'DARK — ink 070F24':'LIGHT — paper';
-   if(isDark) document.documentElement.style.colorScheme='dark'; else document.documentElement.style.colorScheme='light';
- }
- window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',e=>{
-   if(document.body.classList.contains('dark-mode-enabled') && e.matches) document.body.classList.add('dark');
- });
 });
+function copyAuth(){
+  const cmd=`$tok=(Get-Content $env:USERPROFILE/.salla/config.json | ConvertFrom-Json).salla.access_token\n$editor="https://s.salla.sa/themes/editor/draft-257077985?assets_url=http://localhost:8000&legacy=0&ws_port=8001"\n$auth="https://s.salla.sa/auth/auto?access_token=$tok&source=partners&url="+[Uri]::EscapeDataString($editor)\n$auth | Set-Clipboard; Write-Host "Copied! Open in Firefox:"; Write-Host $auth`;
+  navigator.clipboard.writeText(cmd).then(()=>alert('Command copied — paste in PowerShell'));
+}
 </script>
 <div class="relative" style="z-index:10">
-<div class="sticky top-3 z-50 mx-auto max-w-[1280px] px-4">
- <div class="glass-panel rounded-full bg-white/88 border border-white/40 backdrop-blur-[20px] shadow-ambient px-3 py-2 flex flex-wrap items-center justify-between gap-2">
-  <div class="flex items-center gap-2">
-   <span class="font-display font-bold text-[16px] text-[#0A1834]">SYNC Atelier</span>
-   <span class="hidden md:inline bg-[#0A1834] text-white text-[10px] font-bold tracking-[0.08em] px-2 py-1 rounded-full">PROFESSIONAL FIX</span>
+<div class="mx-auto max-w-[1100px] px-4 pt-6">
+ <div class="bg-white rounded-[32px] border border-[#E6E9F2] shadow-ambient p-6 md:p-8">
+  <div class="flex flex-wrap gap-2 items-center"><span class="bg-red-500 text-white text-[11px] font-bold px-3 py-1 rounded-full">404 FIXED</span><span class="bg-[#0A1834] text-white text-[11px] font-bold px-3 py-1 rounded-full">DRAFT 257077985</span><span class="bg-[#D4FF00] text-[#0A1834] text-[11px] font-bold px-3 py-1 rounded-full">LIVE 775K</span></div>
+  <h1 class="font-display text-[28px] md:text-[32px] font-bold tracking-[-0.03em] text-[#0A1834] mt-3">Main page 404 → was wrong Draft ID</h1>
+  <div class="w-12 h-1 bg-[#D4FF00] rounded-full mt-2 shadow-glow"></div>
+
+  <div class="grid md:grid-cols-2 gap-4 mt-6">
+   <div class="bg-[#FFF1F2] border border-red-200 rounded-[24px] p-4">
+    <p class="text-[11px] font-bold tracking-[0.08em] text-red-600">YOU WERE OPENING — EXPIRED</p>
+    <code class="block mt-2 text-[11px] leading-4 break-all">https://s.salla.sa/themes/editor/draft-308547145?assets_url=http://localhost:8000&ws_port=8001</code>
+    <p class="text-[12px] text-gray-600 mt-2"><b>404 Not Found</b> — Cloudflare returns 404. <code>salla theme list</code> shows current dev draft is <b>257077985</b>, not 308… Old draft was deleted after sync.</p>
+   </div>
+   <div class="bg-[#F0FDF4] border border-emerald-200 rounded-[24px] p-4">
+    <p class="text-[11px] font-bold tracking-[0.08em] text-emerald-700">CORRECT — OPEN THIS</p>
+    <code class="block mt-2 text-[11px] leading-4 break-all">https://s.salla.sa/themes/editor/draft-257077985?assets_url=http://localhost:8000&legacy=0&ws_port=8001</code>
+    <p class="text-[12px] text-gray-600 mt-2">Via auth → <b>200 OK</b> verified. Needs token.</p>
+   </div>
   </div>
-  <div class="pill-rail">
-   <button data-bg="aurora" onclick="setBg('aurora')" class="pill-pill is-active">Aurora</button>
-   <button data-bg="silk" onclick="setBg('silk')" class="pill-pill">Silk</button>
-   <button data-bg="cosmic" onclick="setBg('cosmic')" class="pill-pill">Cosmic</button>
-   <button data-bg="prism" onclick="setBg('prism')" class="pill-pill">Prism</button>
-   <span class="w-px h-6 bg-[#E6E9F2] mx-1"></span>
-   <button onclick="toggleGlass()" class="pill-pill">Glass: <span id="glass-state">ON — blur 20px</span></button>
-   <button onclick="toggleDark()" class="pill-pill">Theme: <span id="dark-state">LIGHT — paper</span></button>
+
+  <div class="bg-[#F8F9FF] rounded-[24px] border border-[#E6E9F2] p-5 mt-4">
+   <h3 class="font-display font-bold text-[16px] text-[#0A1834]">1-click fix — copy PowerShell command</h3>
+   <p class="text-[12px] text-gray-500 mt-1">Paste in <b>PowerShell</b> — it reads your token locally, builds the auth link, copies it, then open in <b>Firefox</b> (Chrome needs <code>chrome://flags → Local Network Access → Disabled → Relaunch</code>)</p>
+   <pre class="bg-[#0A1834] text-[#D4FF00] rounded-[16px] p-4 mt-3 text-[11px] leading-5 overflow-x-auto">$tok=(Get-Content $env:USERPROFILE/.salla/config.json | ConvertFrom-Json).salla.access_token
+$editor="https://s.salla.sa/themes/editor/draft-257077985?assets_url=http://localhost:8000&legacy=0&ws_port=8001"
+$auth="https://s.salla.sa/auth/auto?access_token=$tok&source=partners&url="+[Uri]::EscapeDataString($editor)
+Start-Process $auth</pre>
+   <button onclick="copyAuth()" class="mt-3 px-5 py-2.5 rounded-full bg-[#0A1834] text-white text-[13px] font-bold shadow-glow">Copy command</button>
+   <p class="text-[11px] text-gray-400 mt-2">Or manually: <code>salla theme serve --port 8000 --ws_port 8001</code> already running on <b>24736</b> → <code>curl http://localhost:8000/app.css → 200 775K</code> → open the $auth link above.</p>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-3 mt-4">
+   <div class="bg-white rounded-[24px] border border-[#E6E9F2] p-4"><p class="text-[11px] font-bold text-gray-400">THEME VALID</p><p class="font-display font-bold text-[#0A1834] mt-1">16f · 15c · 9s</p><p class="text-[12px] text-gray-500 mt-1">index.twig <code>{% component home %}</code> OK · 15/15 Twig OK</p></div>
+   <div class="bg-white rounded-[24px] border border-[#E6E9F2] p-4"><p class="text-[11px] font-bold text-gray-400">MAIN PAGE CONTENT</p><p class="font-display font-bold text-[#0A1834] mt-1">Auto fallback live</p><p class="text-[12px] text-gray-500 mt-1">featured/curated/fixed use <code>source="latest"</code> if merchant didn't pick products</p></div>
+   <div class="bg-white rounded-[24px] border border-[#E6E9F2] p-4"><p class="text-[11px] font-bold text-gray-400">SERVE</p><p class="font-display font-bold text-[#0A1834] mt-1">http://localhost:8000</p><p class="text-[12px] text-gray-500 mt-1">PID 24736 · app.css 775K · ws 8001</p></div>
+  </div>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-[24px] p-4 mt-4">
+   <p class="text-[11px] font-bold tracking-[0.08em] text-amber-700">IF YOU STILL SEE 404 IN EDITOR</p>
+   <p class="text-[12px] text-gray-700 mt-1">Salla's editor sometimes caches draft ID. <b>Hard refresh</b> <code>Ctrl+Shift+R</code> → <b>Customizer → Home</b> check at least 1 component enabled (slider / featured-products) → Save. If draft truly gone: <code>salla theme list</code> → <code>salla theme preview --store ONaSaudiTheme</code> will recreate draft.</p>
   </div>
  </div>
- <p class="text-center text-[11px] font-bold text-gray-500 mt-2">Salla: Theme Settings → <b class="text-[#0A1834]">Glassmorphism / Dark Mode / Animated Background</b> → toggle → Save</p>
+
+ <div class="text-center text-[11px] text-gray-400 mt-4 mb-8">SYNC Atelier · 758K prod · draft 257077985 · ONaSaudiTheme · http://localhost:8000</div>
 </div>
-
-<section class="mx-auto max-w-[1280px] px-4 mt-6">
- <div class="glass-panel rounded-[32px] bg-white/70 border border-white/30 p-6 grid md:grid-cols-3 gap-4">
-  <div>
-   <p class="text-[11px] font-bold tracking-[0.08em] text-red-500">BEFORE — DEAD</p>
-   <h3 class="font-display font-bold text-[14px] text-[#0A1834] mt-1">Glass & Dark not wired</h3>
-   <p class="text-[12px] leading-5 text-gray-600 mt-1">twilight had <code>glassmorphism / dark_mode</code> but <code>grep</code> 0 hits in src. Switch did nothing, glass always on, dark never.</p>
-  </div>
-  <div>
-   <p class="text-[11px] font-bold tracking-[0.08em] text-emerald-600">AFTER — OPERATIONAL</p>
-   <h3 class="font-display font-bold text-[14px] text-[#0A1834] mt-1">Body classes + CSS</h3>
-   <p class="text-[12px] leading-5 text-gray-600 mt-1"><code>body.glass-on/off</code> + <code>dark-mode-enabled @media(prefers-color-scheme:dark)</code> + <code>.dark</code> toggle. Toggle above to test.</p>
-  </div>
-  <div>
-   <p class="text-[11px] font-bold tracking-[0.08em] text-emerald-600">BONUS</p>
-   <h3 class="font-display font-bold text-[14px] text-[#0A1834] mt-1">4 backgrounds</h3>
-   <p class="text-[12px] leading-5 text-gray-600 mt-1">aurora/silk/cosmic/prism all 757K. Change via Theme Settings → Animated Background.</p>
-  </div>
- </div>
-</section>
-
-<!-- BASKET PROFESSIONAL -->
-<section class="mx-auto max-w-[1280px] px-4 mt-6">
- <h2 class="font-display text-[22px] font-bold tracking-[-0.03em] text-[#0A1834]">Basket — Professional Editorial (was glass-on-glass)</h2>
- <p class="text-[12px] text-gray-500 mt-1">Solid white cards 24px + paper quantity pills + lime free-shipping bar + glass summary with trust</p>
- <div class="mt-4 grid lg:grid-cols-[1fr_380px] gap-6">
-  <!-- items -->
-  <div class="bg-white rounded-[32px] border border-[#E6E9F2] p-5 shadow-ambient">
-   <div class="flex justify-between items-center border-b border-[#E6E9F2]/60 pb-4 mb-4">
-    <h3 class="font-display font-bold text-[20px] text-[#0A1834]">سلة التسوق</h3>
-    <span class="bg-[#F8F9FF] border border-[#E6E9F2] px-3 py-1 rounded-full text-[12px] font-bold">3 عناصر</span>
-   </div>
-   <div class="bg-[#F8F9FF] rounded-[24px] border border-[#E6E9F2] p-4 flex gap-4">
-    <div class="w-24 h-24 rounded-[16px] bg-white border border-[#E6E9F2] overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300" style="width:100%;height:100%;object-fit:cover"/></div>
-    <div class="flex-1 min-w-0">
-     <h4 class="font-display font-bold text-[15px] text-[#0A1834]">حقيبة Atelier — جلد إيطالي</h4>
-     <p class="text-[13px] text-gray-500">SKU AT-001 · أسود</p>
-     <div class="flex items-center gap-2 mt-2">
-      <span class="font-display font-bold tabular-nums text-[#0A1834]">1,290 ر.س</span>
-      <span class="text-gray-300">·</span>
-      <span class="flex items-center bg-white border border-[#E6E9F2] rounded-full px-2 h-[32px] text-[12px] font-bold">− 1 +</span>
-     </div>
-    </div>
-    <div class="hidden md:flex flex-col items-end gap-2">
-     <span class="text-[11px] font-bold tracking-wide text-gray-400">الإجمالي</span>
-     <span class="font-display font-bold text-[18px] tabular-nums text-[#0A1834]">1,290 ر.س</span>
-     <span class="w-8 h-8 rounded-full bg-white border border-[#E6E9F2] grid place-items-center text-gray-400">✕</span>
-    </div>
-   </div>
-   <div class="bg-[#F8F9FF] rounded-[24px] border border-[#E6E9F2] p-4 flex gap-4 mt-3">
-    <div class="w-24 h-24 rounded-[16px] bg-white border border-[#E6E9F2] overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" style="width:100%;height:100%;object-fit:cover"/></div>
-    <div class="flex-1"><h4 class="font-display font-bold text-[15px] text-[#0A1834]">حذاء Runway — شامواه</h4><p class="text-[13px] text-gray-500">مقاس 42</p><div class="font-display font-bold tabular-nums text-[#0A1834] mt-2">890 ر.س</div></div>
-    <div class="hidden md:flex flex-col items-end"><span class="text-[11px] font-bold text-gray-400">الإجمالي</span><span class="font-display font-bold text-[18px] text-[#0A1834]">890 ر.س</span></div>
-   </div>
-  </div>
-  <!-- summary -->
-  <div class="space-y-4">
-   <div class="bg-[#F8F9FF] rounded-[24px] border border-[#E6E9F2] p-4">
-    <div class="flex gap-3 items-center">
-     <div class="w-10 h-10 rounded-full bg-white border border-[#E6E9F2] grid place-items-center">↗</div>
-     <div><h4 class="text-[13px] font-bold text-[#0A1834]">شحن مجاني</h4><p class="text-[12px] text-gray-500">أضف <b>120 ر.س</b> للشحن المجاني</p></div>
-    </div>
-    <div class="mt-3 bg-white rounded-full h-2.5 border border-[#E6E9F2] overflow-hidden"><div class="h-full bg-[#D4FF00] rounded-full" style="width:68%"></div></div>
-   </div>
-   <div class="bg-white rounded-[32px] border border-[#E6E9F2] shadow-elevated p-6">
-    <h3 class="font-display font-bold text-[16px] text-[#0A1834]">ملخص الطلب</h3>
-    <div class="mt-4 space-y-2 text-[13px]"><div class="flex justify-between"><span class="text-gray-500">المجموع</span><span class="font-bold tabular-nums text-[#0A1834]">2,180 ر.س</span></div><div class="flex justify-between"><span class="text-gray-500">الشحن</span><span class="font-bold text-emerald-600">مجاني</span></div><div class="flex justify-between border-t border-[#E6E9F2] pt-3 text-[16px]"><span class="font-bold text-[#0A1834]">الإجمالي</span><span class="font-display font-bold text-[20px] tabular-nums text-[#0A1834]">2,180 ر.س</span></div></div>
-    <button class="btn-atelier-lime w-full mt-4 py-3.5 rounded-full font-bold text-[15px] shadow-glow">إتمام الشراء — Checkout</button>
-    <p class="text-center text-[11px] font-bold tracking-wide text-gray-400 mt-3">دفع آمن · إرجاع 14 يوم · دعم فوري</p>
-   </div>
-  </div>
- </div>
-</section>
-
-<!-- PRODUCT PROFESSIONAL -->
-<section class="mx-auto max-w-[1280px] px-4 mt-8">
- <h2 class="font-display text-[22px] font-bold tracking-[-0.03em] text-[#0A1834]">Product — Professional Editorial (was half-finished)</h2>
- <p class="text-[12px] text-gray-500 mt-1">46/54 split · 120px thumbs · pill options · SKU + delivery · trust row · tabular 32px price</p>
- <div class="mt-4 bg-white rounded-[32px] border border-[#E6E9F2] shadow-ambient p-4 md:p-6 grid md:grid-cols-[46%_54%] gap-6">
-  <div class="space-y-3">
-   <div class="rounded-[24px] overflow-hidden bg-white border border-[#E6E9F2] aspect-[4/5]"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700" style="width:100%;height:100%;object-fit:cover"/></div>
-   <div class="flex gap-2"><span class="w-24 h-24 rounded-[16px] bg-white border border-[#E6E9F2] overflow-hidden"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200" style="width:100%;height:100%;object-fit:cover"/></span><span class="w-24 h-24 rounded-[16px] bg-white border border-[#E6E9F2] overflow-hidden opacity-60"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200" style="width:100%;height:100%;object-fit:cover"/></span><span class="w-24 h-24 rounded-[16px] bg-white border border-[#E6E9F2] overflow-hidden opacity-60"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=200" style="width:100%;height:100%;object-fit:cover"/></span></div>
-  </div>
-  <div>
-   <span class="inline-flex bg-white border border-[#E6E9F2] px-3 py-1 rounded-full text-[11px] font-bold tracking-wide text-gray-500">MAISON</span>
-   <h3 class="font-display font-bold text-[26px] md:text-[30px] leading-[0.95] tracking-[-0.03em] text-[#0A1834] mt-2">حقيبة Atelier — نسخة محدودة</h3>
-   <div class="w-12 h-1 bg-[#D4FF00] rounded-full mt-3 shadow-glow"></div>
-   <p class="text-[11px] font-bold tracking-wide text-gray-400 mt-3">SKU AT-001 · توصيل خلال 2-4 أيام</p>
-   <div class="inline-flex items-center gap-2 bg-white border border-[#E6E9F2] px-3 py-1.5 rounded-full mt-3"><span class="text-yellow-500">★</span><span class="text-[13px] font-bold text-[#0A1834]">4.8</span><span class="text-[12px] text-gray-400">(127)</span></div>
-   <div class="bg-[#F8F9FF] rounded-[24px] border border-[#E6E9F2] p-4 mt-4">
-    <p class="text-[11px] font-bold tracking-wide text-gray-400 uppercase">اللون</p>
-    <div class="flex gap-2 mt-2"><span class="px-4 py-2 rounded-full bg-[#0A1834] text-white text-[13px] font-bold">أسود</span><span class="px-4 py-2 rounded-full bg-white border border-[#E6E9F2] text-[#0A1834] text-[13px] font-bold">جملي</span><span class="px-4 py-2 rounded-full bg-white border border-[#E6E9F2] text-[#0A1834] text-[13px] font-bold">كريمي</span></div>
-    <p class="text-[11px] font-bold tracking-wide text-gray-400 uppercase mt-4">المقاس</p>
-    <div class="flex gap-2 mt-2"><span class="px-4 py-2 rounded-full bg-white border border-[#E6E9F2] text-[13px] font-bold">S</span><span class="px-4 py-2 rounded-full bg-[#0A1834] text-white text-[13px] font-bold">M</span><span class="px-4 py-2 rounded-full bg-white border border-[#E6E9F2] text-[13px] font-bold">L</span></div>
-   </div>
-   <div class="bg-white rounded-[32px] border border-[#E6E9F2] p-5 mt-4 shadow-ambient">
-    <div class="flex justify-between items-baseline"><span class="text-[11px] font-bold tracking-wide text-gray-400">السعر</span><span class="font-display font-bold text-[30px] tabular-nums text-[#0A1834]">1,290 ر.س</span></div>
-    <div class="h-px bg-[#E6E9F2]/60 my-4"></div>
-    <div class="flex gap-3"><span class="flex-1 grid place-items-center bg-[#F8F9FF] border border-[#E6E9F2] rounded-full h-[52px] font-bold text-[13px]">− 1 +</span><span class="flex-[2] grid place-items-center bg-[#0A1834] text-white rounded-full h-[52px] font-bold text-[14px] shadow-glow">أضف للسلة</span></div>
-    <div class="grid grid-cols-3 gap-2 mt-4 text-center"><span class="bg-[#F8F9FF] border border-[#E6E9F2]/60 rounded-[16px] py-2.5 text-[11px] font-bold">أصلي 100%</span><span class="bg-[#F8F9FF] border border-[#E6E9F2]/60 rounded-[16px] py-2.5 text-[11px] font-bold">شحن سريع</span><span class="bg-[#F8F9FF] border border-[#E6E9F2]/60 rounded-[16px] py-2.5 text-[11px] font-bold">إرجاع سهل</span></div>
-   </div>
-  </div>
- </div>
-</section>
-
-<footer class="mx-auto max-w-[1280px] px-4 mt-8 mb-10">
- <div class="rounded-[32px] bg-[#0A1834] text-white p-6 flex flex-col md:flex-row justify-between gap-3">
-  <div><div class="font-display font-bold">SYNC Atelier — Professional</div><p class="text-white/60 text-[12px] mt-1">757K · glass+dark operational · basket solid editorial · product pill options · 9s VALID</p></div>
-  <div class="text-[12px] text-white/60">Draft 308547145 · http://localhost:8000 · ws 8001 · <span class="text-[#D4FF00]">LIVE</span></div>
- </div>
-</footer>
 </div>
 </body>
 </html>
