@@ -234,6 +234,49 @@
         
         <div class="s-blocks-wrapper s-after-related">{% hook 'product.single.after_product_recommendations' %}</div>
     </div>
+
+{# ——— Hover preview: touch/hover thumbnail -> main slider changes without clicking arrows ——— #}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const thumbId = 'details-slider-thumb-{{ product.id }}';
+  const mainId = 'details-slider-{{ product.id }}';
+  function bindHover(){
+    const thumb = document.getElementById(thumbId);
+    if(!thumb) return;
+    const slides = thumb.querySelectorAll('.swiper-slide');
+    slides.forEach((el, idx)=>{
+      const activate = () => {
+        // Try Salla slider API first
+        const main = document.getElementById(mainId);
+        if(main && main.swiper) { try { main.swiper.slideTo(idx); return; } catch(e){} }
+        // Fallback: click
+        el.click();
+        // Also dispatch for salla-slider thumbs
+        el.dispatchEvent(new MouseEvent('click', {bubbles:true}));
+      };
+      el.addEventListener('mouseenter', activate, {passive:true});
+      el.addEventListener('touchstart', activate, {passive:true});
+      el.addEventListener('focus', activate);
+    });
+    // active thumb styling via observer
+    const obs = new MutationObserver(()=>{
+      slides.forEach(s=> s.classList.remove('thumb-active'));
+      const active = thumb.querySelector('.swiper-slide-thumb-active, .swiper-slide-active');
+      if(active) active.classList.add('thumb-active');
+    });
+    obs.observe(thumb, {attributes:true, subtree:true, attributeFilter:['class']});
+  }
+  // Salla slider renders async, retry a few times
+  let tries=0; const iv=setInterval(()=>{ bindHover(); if(document.getElementById(thumbId)?.querySelector('.swiper-slide') || tries++>20) clearInterval(iv); }, 400);
+});
+</script>
+<style>
+#details-slider-thumb-{{ product.id }} .swiper-slide{ transition: all 0.25s cubic-bezier(0.16,1,0.3,1); }
+#details-slider-thumb-{{ product.id }} .swiper-slide:hover{ opacity:1 !important; border-color: rgba(212,255,0,0.45) !important; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(10,24,52,0.10); }
+#details-slider-thumb-{{ product.id }} .swiper-slide.thumb-active, #details-slider-thumb-{{ product.id }} .swiper-slide.swiper-slide-thumb-active{ opacity:1 !important; border-color: #D4FF00 !important; box-shadow: 0 0 0 2px rgba(212,255,0,0.22), 0 8px 20px rgba(212,255,0,0.18) !important; transform: translateY(-1px); }
+.dark-mode-enabled #details-slider-thumb-{{ product.id }} .swiper-slide{ border-color: rgba(255,255,255,0.14) !important; }
+</style>
+
 {% endblock %}
 
 {% block scripts %}

@@ -1,5 +1,5 @@
 {% if component.fields.slides|length %}
-<section class="home-slider container mx-auto px-4 md:px-6 xl:px-0 mt-4 md:mt-6 mb-8 md:mb-12 z-10 relative">
+<section class="reveal" class="home-slider container mx-auto px-4 md:px-6 xl:px-0 mt-4 md:mt-6 mb-8 md:mb-12 z-10 relative">
     <salla-slider type="carousel" controls="outer" class="rounded-[24px] md:rounded-[32px] overflow-hidden shadow-ambient">
         <div slot="items">
             {% for slide in component.fields.slides %}

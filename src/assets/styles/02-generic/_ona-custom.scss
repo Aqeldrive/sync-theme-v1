@@ -38,7 +38,7 @@
         radial-gradient(ellipse 640px 520px at 88% 82%, rgba(212,255,0,0.11) 0%, transparent 64%),
         radial-gradient(ellipse 560px 460px at 38% 52%, rgba(238,241,255,0.85) 0%, transparent 70%);
     filter: blur(18px);
-    animation: meshDrift 18s ease-in-out infinite alternate;
+    animation: meshDrift 14s ease-in-out infinite alternate;
 }
 .bg-aurora .mesh-background::after, .mesh-background::after {
     content: "";
@@ -48,7 +48,7 @@
         radial-gradient(ellipse 700px 520px at 72% 48%, rgba(212,255,0,0.09) 0%, transparent 60%),
         radial-gradient(ellipse 620px 480px at 30% 70%, rgba(10,24,52,0.06) 0%, transparent 65%);
     filter: blur(28px);
-    animation: meshDrift2 22s ease-in-out infinite alternate-reverse;
+    animation: meshDrift2 16s ease-in-out infinite alternate-reverse;
 }
 .bg-aurora .mesh-orb { display: none !important; }
 @keyframes meshDrift {
@@ -286,18 +286,18 @@ salla-add-product-button {
    Liquid glass card — translucent, blurred, depth, lime aura on hover
    ═══════════════════════════════════════════════════════════════ */
 .product-card-atelier {
-    background: rgba(255, 255, 255, 0.58);
-    backdrop-filter: blur(24px) saturate(1.28) brightness(1.04);
-    -webkit-backdrop-filter: blur(24px) saturate(1.28) brightness(1.04);
-    border: 1px solid rgba(255, 255, 255, 0.58);
+    background: rgba(255, 255, 255, 0.52);
+    backdrop-filter: blur(24px) saturate(1.32) brightness(1.05);
+    -webkit-backdrop-filter: blur(24px) saturate(1.32) brightness(1.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.68);
     border-radius: 32px;
     transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
     box-shadow:
-        0 8px 32px rgba(10, 24, 52, 0.06),
-        0 1px 3px rgba(10, 24, 52, 0.04),
-        inset 0 1px 0 rgba(255,255,255,0.70);
+        0 10px 36px rgba(10, 24, 52, 0.08),
+        0 2px 8px rgba(10, 24, 52, 0.05),
+        inset 0 1px 0 rgba(255,255,255,0.82);
 }
 
 .product-card-atelier::before {
@@ -328,9 +328,9 @@ salla-add-product-button {
     background: rgba(255, 255, 255, 0.82);
     border-color: rgba(255, 255, 255, 0.82);
     box-shadow:
-        0 24px 56px rgba(10, 24, 52, 0.11),
-        0 8px 28px rgba(10, 24, 52, 0.07),
-        0 0 0 1px rgba(212,255,0,0.10),
+        0 24px 56px rgba(10, 24, 52, 0.13),
+        0 8px 28px rgba(10, 24, 52, 0.09),
+        0 0 0 1px rgba(212,255,0,0.14),
         inset 0 1px 0 rgba(255,255,255,0.92);
     transform: translateY(-5px) scale(1.008);
 }
@@ -492,7 +492,7 @@ salla-add-product-button {
 .dark-mode-enabled .glass-panel h3,
 .dark-mode-enabled .glass-panel h4 { color: #FFFFFF !important; }
 .dark-mode-enabled .glass-panel .text-gray-500,
-.dark-mode-enabled .glass-panel .text-gray-400 { color: #A0AEC0 !important; }
+.dark-mode-enabled .glass-panel .text-gray-400 { color: #B8C6D8 !important; }
 .dark-mode-enabled .glass-panel .text-ink { color: #F8F9FF !important; }
 
 /* Header — dark glass pill, search inner more contrast */
@@ -527,7 +527,7 @@ salla-add-product-button {
     box-shadow: 0 24px 56px rgba(0,0,0,0.44), 0 0 0 1px rgba(212,255,0,0.14), inset 0 1px 0 rgba(255,255,255,0.10) !important;
 }
 .dark-mode-enabled .product-card-atelier .text-ink { color: #F8F9FF !important; }
-.dark-mode-enabled .product-card-atelier .text-gray-500 { color: #A0AEC0 !important; }
+.dark-mode-enabled .product-card-atelier .text-gray-500 { color: #B8C6D8 !important; }
 .dark-mode-enabled .product-card-atelier .bg-white { background: #0F1F3A !important; border-color: rgba(255,255,255,0.08) !important; }
 
 /* Cart — dark editorial */
@@ -544,7 +544,7 @@ salla-add-product-button {
 .dark-mode-enabled .salla-product-options label,
 .dark-mode-enabled .product-options label { background: #0F1F3A !important; border-color: rgba(255,255,255,0.12) !important; color: #F8F9FF !important; }
 .dark-mode-enabled .salla-product-options input:checked + label { background: #D4FF00 !important; border-color: #D4FF00 !important; color: #0A1834 !important; }
-.dark-mode-enabled .salla-product-options .option-title { color: #A0AEC0 !important; }
+.dark-mode-enabled .salla-product-options .option-title { color: #B8C6D8 !important; }
 
 /* Pills, buttons, inputs */
 .dark-mode-enabled .pill-pill { background: #0F1F3A !important; border-color: rgba(255,255,255,0.10) !important; color: #F8F9FF !important; }
@@ -557,7 +557,7 @@ salla-add-product-button {
 /* Footer — deep ink */
 .dark-mode-enabled footer,
 .dark-mode-enabled .footer-is-dark,
-.dark-mode-enabled .footer-is-light { background: #070F24 !important; border-color: #1E2A4A !important; color: #A0AEC0 !important; }
+.dark-mode-enabled .footer-is-light { background: #070F24 !important; border-color: #1E2A4A !important; color: #B8C6D8 !important; }
 
 /* Slider / hero — ensure lime CTA still glows, text stays white on dark scrim */
 .dark-mode-enabled .bg-paper { background: #0F1F3A !important; }
@@ -566,6 +566,16 @@ salla-add-product-button {
 .dark-mode-enabled .border-outline { border-color: rgba(255,255,255,0.08) !important; }
 .dark-mode-enabled .text-ink { color: #F8F9FF !important; }
 .dark-mode-enabled .text-gray-900 { color: #F8F9FF !important; }
+
+
+/* DARK — typography polish — Cormorant luminous */
+.dark-mode-enabled .font-display { color: #FFFFFF !important; letter-spacing: -0.02em !important; }
+.dark-mode-enabled h1.font-display, .dark-mode-enabled h2.font-display { text-shadow: 0 1px 12px rgba(0,0,0,0.22) !important; }
+.dark-mode-enabled .text-gray-600 { color: #CBD5E0 !important; }
+.dark-mode-enabled .text-gray-500 { color: #B8C6D8 !important; }
+.dark-mode-enabled .product-card-atelier .text-forest { color: #D4FF00 !important; }
+.dark-mode-enabled .product-card-atelier .price, .dark-mode-enabled .total-price { color: #FFFFFF !important; }
+.dark-mode-enabled .bg-paper { background: #0E1E3B !important; border-color: rgba(255,255,255,0.09) !important; }
 
 /* System preference fallback — same rules when OS is dark and toggle is on */
 @media (prefers-color-scheme: dark) {
@@ -604,8 +614,32 @@ salla-add-product-button {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SALLA SEARCH — Atelier ink
+   SEARCH ATELIER — rectangular 14px flat inside glass header — no double glass pill
+   Header glass is hero, search is paper flat 14px
    ═══════════════════════════════════════════════════════════════ */
+.salla-search-atelier { --color-primary: #0A1834; display: block; }
+.salla-search-atelier input {
+    background: #F8F9FF !important;
+    border-radius: 14px !important;
+    border: 1px solid #E6E9F2 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #0A1834 !important;
+    height: 40px !important;
+}
+.salla-search-atelier input:focus {
+    background: #FFFFFF !important;
+    border-color: rgba(212,255,0,0.35) !important;
+    box-shadow: 0 0 0 3px rgba(212,255,0,0.12) !important;
+}
+.salla-search-atelier input::placeholder { color: #9AA8C0 !important; }
+.dark-mode-enabled .salla-search-atelier input {
+    background: rgba(255,255,255,0.08) !important;
+    border-color: rgba(255,255,255,0.14) !important;
+    color: #F8F9FF !important;
+}
+
+/* SALLA SEARCH — Atelier ink fallback */
 salla-search {
     --color-primary: #0A1834;
 }
@@ -614,7 +648,7 @@ salla-search {
    MOTION — Apple spring
    ═══════════════════════════════════════════════════════════════ */
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
+    from { opacity: 0; transform: translateY(22px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -726,7 +760,7 @@ salla-search {
 /* Reveal — intersection observer adds .is-visible */
 .reveal {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(22px);
     transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
     will-change: opacity, transform;
 }
@@ -736,7 +770,7 @@ salla-search {
 }
 .reveal-stagger > * {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(20px);
     transition: opacity 0.60s cubic-bezier(0.16,1,0.3,1), transform 0.60s cubic-bezier(0.16,1,0.3,1);
 }
 .reveal-stagger.is-visible > *, .reveal-stagger > *.is-visible {
@@ -768,7 +802,7 @@ salla-search {
 
 /* Header entrance */
 .floating-header {
-    animation: headerIn 0.70s cubic-bezier(0.16,1,0.3,1) both;
+    animation: headerIn 0.65s cubic-bezier(0.16,1,0.3,1) both;
 }
 @keyframes headerIn {
     from { opacity: 0; transform: translateY(-10px) scale(0.98); }

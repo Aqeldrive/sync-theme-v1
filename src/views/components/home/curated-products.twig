@@ -1,6 +1,6 @@
 <section class="max-w-[1280px] mx-auto px-4 md:px-8 xl:px-0 w-full py-10 md:py-14 relative z-10">
     {% if component.fields.title %}
-        <div class="mb-8 md:mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-outline/60 pb-6">
+        <div class="reveal mb-8 md:mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-outline/60 pb-6">
             <div>
                 <h2 class="font-display text-[26px] md:text-[32px] font-extrabold tracking-[-0.03em] text-ink leading-none">{{ component.fields.title }}</h2>
                 <div class="w-12 h-1 bg-lime rounded-full mt-3 shadow-glow"></div>
@@ -11,7 +11,7 @@
     {% endif %}
 
     {% if component.fields.products|length %}
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 reveal-stagger">
             {% for product in component.fields.products %}
                 <div class="product-card-atelier group flex flex-col p-3 md:p-4 h-full">
                     <div class="relative aspect-square overflow-hidden rounded-[16px] bg-paper-container">

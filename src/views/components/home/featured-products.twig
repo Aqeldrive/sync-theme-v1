@@ -1,6 +1,6 @@
 <section class="container mx-auto px-4 md:px-8 xl:px-0 py-10 md:py-14 relative z-10">
     {% if component.fields.title %}
-        <div class="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-outline/60 pb-6">
+        <div class="reveal mb-8 md:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-outline/60 pb-6">
             <div>
                 <h2 class="font-display text-[28px] md:text-[36px] font-extrabold tracking-[-0.03em] text-ink leading-none">{{ component.fields.title }}</h2>
                 <div class="w-12 h-1 bg-lime rounded-full mt-3 shadow-glow"></div>
@@ -11,7 +11,7 @@
 
     {# ——— FIX #4: If merchant hasn't selected products, auto-show latest products so page is NEVER empty ——— #}
     {% if component.fields.products|length %}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 reveal-stagger">
             {% for product in component.fields.products %}
                 <div class="product-card-atelier group flex flex-col p-4 md:p-5">
                     <div class="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-paper-container">
