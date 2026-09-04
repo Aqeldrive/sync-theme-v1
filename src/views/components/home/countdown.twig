@@ -1,33 +1,20 @@
-<section class="ona-countdown container mx-auto px-4 my-16 text-center">
-    <div class="p-8 rounded-[{{ theme.settings.ui_options.border_radius }}] {% if theme.settings.ui_options.glassmorphism %}glass-panel border border-white/10{% else %}bg-surface-container{% endif %}">
+<section class="container mx-auto px-4 md:px-8 xl:px-0 py-10 md:py-14 text-center relative z-10">
+    <div class="glass-panel rounded-[32px] p-8 md:p-10 bg-white/70">
         {% if component.fields.title %}
-            <h2 class="{{ theme.settings.typography.heading_size }} font-bold mb-4" 
-                style="color: {{ theme.settings.colors.primary }}; font-family: '{{ theme.settings.typography.font_family }}', sans-serif;">
-                {{ component.fields.title }}
-            </h2>
+            <h2 class="font-display text-[26px] md:text-[32px] font-extrabold tracking-[-0.03em] text-ink mb-3">{{ component.fields.title }}</h2>
+            <div class="w-12 h-1 bg-lime rounded-full mx-auto shadow-glow"></div>
         {% endif %}
-        <p class="mb-8" style="color: {{ theme.settings.colors.text_color }};">{{ component.fields.description }}</p>
+        {% if component.fields.description %}<p class="text-[14px] leading-6 text-gray-500 mt-4 max-w-xl mx-auto">{{ component.fields.description }}</p>{% endif %}
         
-        <div class="flex justify-center gap-4 text-2xl md:text-4xl font-bold" style="color: {{ theme.settings.colors.secondary }};" data-countdown="{{ component.fields.end_date }}">
-            <div class="flex flex-col items-center">
-                <span class="days">00</span>
-                <span class="text-xs mt-1" style="color: {{ theme.settings.colors.text_color }};">يوم</span>
-            </div>
-            <span>:</span>
-            <div class="flex flex-col items-center">
-                <span class="hours">00</span>
-                <span class="text-xs mt-1" style="color: {{ theme.settings.colors.text_color }};">ساعة</span>
-            </div>
-            <span>:</span>
-            <div class="flex flex-col items-center">
-                <span class="minutes">00</span>
-                <span class="text-xs mt-1" style="color: {{ theme.settings.colors.text_color }};">دقيقة</span>
-            </div>
-            <span>:</span>
-            <div class="flex flex-col items-center">
-                <span class="seconds">00</span>
-                <span class="text-xs mt-1" style="color: {{ theme.settings.colors.text_color }};">ثانية</span>
-            </div>
+        <div class="flex justify-center gap-3 md:gap-4 mt-8 text-ink" data-countdown="{{ component.fields.end_date }}">
+            {% set units = [['days','يوم'],['hours','ساعة'],['minutes','دقيقة'],['seconds','ثانية']] %}
+            {% for u in units %}
+                <div class="flex flex-col items-center bg-white rounded-[16px] border border-outline px-5 md:px-7 py-4 min-w-[72px] md:min-w-[84px] shadow-sm">
+                    <span class="{{ u[0] }} text-[28px] md:text-[36px] font-extrabold tracking-[-0.03em] text-ink leading-none">00</span>
+                    <span class="text-[11px] font-bold tracking-widest uppercase text-gray-400 mt-1.5">{{ u[1] }}</span>
+                </div>
+                {% if not loop.last %}<span class="text-[20px] font-bold text-gray-300 self-center">:</span>{% endif %}
+            {% endfor %}
         </div>
     </div>
 </section>

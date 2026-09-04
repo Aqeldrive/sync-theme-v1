@@ -1,11 +1,12 @@
-<section class="ona-quick-links container mx-auto px-4 my-16">
-    <div class="flex flex-wrap justify-center gap-4">
+<section class="container mx-auto px-4 md:px-8 xl:px-0 py-8 relative z-10">
+    <div class="flex flex-wrap justify-center gap-3">
         {% for link in component.fields.links %}
-            <a href="{{ link.url }}" class="flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-transform hover:scale-105 {% if theme.settings.ui_options.glassmorphism %}glass-panel border border-white/10{% endif %}"
-               style="color: {{ theme.settings.colors.primary }}; background-color: {{ theme.settings.colors.primary }}10;">
-                <span class="material-symbols-outlined text-sm">{{ link.icon }}</span>
+            <a href="{{ link.url }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-[13px] bg-white border border-outline text-ink hover:border-lime/40 hover:shadow-ambient hover:-translate-y-0.5 transition-all">
+                {% if link.icon %}<i class="{{ link.icon }} text-[14px]"></i>{% endif %}
                 <span>{{ link.title }}</span>
             </a>
+        {% else %}
+            <span class="text-sm text-gray-400">أضف الروابط السريعة من محرر الثيم</span>
         {% endfor %}
     </div>
 </section>

@@ -1,14 +1,16 @@
-<section class="ona-animated-products container mx-auto px-4 my-16 overflow-hidden relative">
+<section class="container mx-auto px-4 md:px-8 xl:px-0 py-10 md:py-14 relative z-10">
     {% if component.fields.title %}
-        <div class="text-center mb-10">
-            <h2 class="{{ theme.settings.typography.heading_size }} font-bold" 
-                style="color: {{ theme.settings.colors.primary }}; font-family: '{{ theme.settings.typography.font_family }}', sans-serif;">
-                {{ component.fields.title }}
-            </h2>
+        <div class="text-center mb-8">
+            <h2 class="font-display text-[26px] md:text-[32px] font-extrabold tracking-[-0.03em] text-ink">{{ component.fields.title }}</h2>
+            <div class="w-12 h-1 bg-lime rounded-full mx-auto mt-3 shadow-glow"></div>
         </div>
     {% endif %}
-
-    <div class="relative w-full pb-8">
-        <salla-products-slider source="category" source-value="{{ component.fields.category.id }}"></salla-products-slider>
+    <div class="relative">
+        {% if component.fields.category.id %}
+            <salla-products-slider source="category" source-value="{{ component.fields.category.id }}" limit="8"></salla-products-slider>
+        {% else %}
+            <salla-products-slider source="latest" limit="8"></salla-products-slider>
+            <p class="text-center text-[12px] text-gray-400 mt-3">اختر تصنيفاً من محرر الثيم أو يعرض أحدث المنتجات</p>
+        {% endif %}
     </div>
 </section>

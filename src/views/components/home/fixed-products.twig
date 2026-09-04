@@ -45,11 +45,8 @@
                 </div>
             </a>
         {% else %}
-            <div class="text-center py-16 glass-panel rounded-[2rem] border border-dashed border-white/30 bg-white/30">
-                <i class="sicon-box text-[40px] text-gray-300 mb-3 block"></i>
-                <p class="text-gray-500 font-bold">لا توجد منتجات مضافة — اختر المنتجات من محرر الثيم</p>
-                <p class="text-xs text-gray-400 mt-1">Featured Products → اختر المنتجات (Component: fixed-products)</p>
-            </div>
+            <salla-products-slider source="latest" limit="4" class="fixed-auto-fallback"></salla-products-slider>
+            <p class="text-center text-xs text-gray-400 mt-3">يعرض أحدث المنتجات تلقائياً — خصّص من محرر الثيم</p>
         {% endfor %}
     </div>
 </section>

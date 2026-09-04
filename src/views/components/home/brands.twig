@@ -1,18 +1,20 @@
-<section class="ona-brands container mx-auto px-4 my-16">
+<section class="container mx-auto px-4 md:px-8 xl:px-0 py-10 md:py-14 relative z-10">
     {% if component.fields.title %}
-        <div class="text-center mb-10">
-            <h2 class="{{ theme.settings.typography.heading_size }} font-bold" 
-                style="color: {{ theme.settings.colors.primary }}; font-family: '{{ theme.settings.typography.font_family }}', sans-serif;">
-                {{ component.fields.title }}
-            </h2>
+        <div class="text-center mb-8">
+            <h2 class="font-display text-[22px] md:text-[26px] font-extrabold tracking-[-0.03em] text-ink">{{ component.fields.title }}</h2>
+            <div class="w-10 h-1 bg-lime rounded-full mx-auto mt-3"></div>
         </div>
     {% endif %}
-    
-    <div class="flex flex-wrap justify-center gap-6 md:gap-12 items-center opacity-80 hover:opacity-100 transition-opacity">
-        {% for brand in component.fields.brands_list %}
-            <a href="{{ brand.url }}" class="block w-24 md:w-32 hover:scale-110 transition-transform filter grayscale hover:grayscale-0">
-                <img src="{{ brand.image.url }}" alt="Brand Logo" class="w-full h-auto object-contain">
-            </a>
-        {% endfor %}
+    <div class="glass-panel rounded-[24px] bg-white/60 py-6 md:py-8 px-6">
+        <div class="flex flex-wrap justify-center gap-6 md:gap-10 items-center">
+            {% for brand in component.fields.brands_list %}
+                <a href="{{ brand.url }}" class="block w-20 md:w-28 opacity-60 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-105 transition-all">
+                    {% if brand.image.url %}<img src="{{ brand.image.url|cdn(200,80) }}" alt="{{ brand.image.alt|default('Brand') }}" class="w-full h-auto object-contain" loading="lazy">
+                    {% else %}<span class="text-sm font-bold text-gray-400">{{ brand.title|default('Brand') }}</span>{% endif %}
+                </a>
+            {% else %}
+                <span class="text-sm text-gray-400">أضف البراندات من محرر الثيم</span>
+            {% endfor %}
+        </div>
     </div>
 </section>

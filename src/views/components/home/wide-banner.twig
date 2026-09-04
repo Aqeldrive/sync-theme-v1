@@ -1,8 +1,14 @@
-<section class="ona-wide-banner container mx-auto px-4 my-12 relative overflow-hidden rounded-[{{ theme.settings.ui_options.border_radius }}]">
-    <a href="{{ component.fields.url }}" class="block w-full h-auto group">
-        <div class="relative w-full aspect-[21/9] md:aspect-[32/9] overflow-hidden">
-            <img src="{{ component.fields.image.url }}" alt="Banner" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300"></div>
+<section class="container mx-auto px-4 md:px-8 xl:px-0 my-10 relative z-10">
+    {% if component.fields.image.url %}
+        <a href="{{ component.fields.url|default('#') }}" class="block w-full group">
+            <div class="relative w-full aspect-[21/9] md:aspect-[32/9] overflow-hidden rounded-[24px] border border-outline shadow-ambient">
+                <img src="{{ component.fields.image.url|cdn(1400,420) }}" alt="{{ component.fields.image.alt|default('Banner') }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" loading="lazy">
+                <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.03] transition-colors duration-300"></div>
+            </div>
+        </a>
+    {% else %}
+        <div class="w-full aspect-[21/9] md:aspect-[32/9] rounded-[24px] border border-dashed border-outline bg-white/50 flex items-center justify-center">
+            <span class="text-sm text-gray-400">أضف صورة البنر من محرر الثيم</span>
         </div>
-    </a>
+    {% endif %}
 </section>

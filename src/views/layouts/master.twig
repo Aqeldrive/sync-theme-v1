@@ -71,17 +71,26 @@
     document.addEventListener('DOMContentLoaded', () => {
         const glow = document.querySelector('.mouse-glow');
         if (glow) {
+            let ticking = false;
+            let mx = 0, my = 0;
+            function updateGlow() {
+                glow.style.left = mx + 'px';
+                glow.style.top = my + 'px';
+                glow.style.opacity = '1';
+                ticking = false;
+            }
             document.addEventListener('mousemove', (e) => {
-                // Use requestAnimationFrame for smoother performance
-                window.requestAnimationFrame(() => {
-                    glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-                    glow.style.opacity = '1';
-                });
+                mx = e.clientX; my = e.clientY;
+                if (!ticking) {
+                    window.requestAnimationFrame(updateGlow);
+                    ticking = true;
+                }
             });
-            
-            document.addEventListener('mouseleave', () => {
-                glow.style.opacity = '0';
-            });
+            document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+            // Respect reduced motion
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                glow.style.display = 'none';
+            }
         }
     });
 </script>

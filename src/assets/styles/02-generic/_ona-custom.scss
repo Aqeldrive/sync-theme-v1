@@ -1,94 +1,277 @@
-/* ATELIER — Stitch DESIGN.md bridge
- * Single source: DESIGN.md
- * Three layers only: paper / glass / ink. No mesh gradients, no aura.
+/* ATELIER v2 — Stitch DESIGN.md bridge
+ * CEO DIRECTIVE: Premium animated mesh + glowing system + bulletproof storefront
+ * Three layers: paper / glass / ink — but paper is now ALIVE
  */
 
-/* Glass — the only material */
-.glass-panel {
-    background: rgba(255, 255, 255, 0.82);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.40);
-    box-shadow: 0 8px 32px rgba(10, 24, 52, 0.06);
-}
-
-.glass-panel:hover {
-    border-color: rgba(212, 255, 0, 0.35);
-}
-
-/* Legacy alias — keep .glass-panel everywhere */
-.ink { color: #0A1834; }
-.bg-ink { background: #0A1834; }
-
-/* Atelier header — sticky, full pill, centered */
-.floating-header {
-    position: sticky;
-    top: 1rem;
-    z-index: 100;
-    border-radius: 9999px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1280px;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    background: rgba(255, 255, 255, 0.82);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.40);
-    box-shadow: 0 8px 32px rgba(10, 24, 52, 0.06);
-}
-
-/* Paper background — warm, not grey */
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATED MESH BACKGROUND — Subtle, premium, not tacky
+   Soft gradient orbs that drift slowly. Low opacity, high taste.
+   ═══════════════════════════════════════════════════════════════ */
 .mesh-background {
     position: fixed;
     inset: 0;
     z-index: -1;
     background: #F8F9FF;
+    overflow: hidden;
     pointer-events: none;
 }
 
-/* Remove mouse aura — Atelier is still */
-.mouse-glow { display: none; }
-
-/* Product card — Atelier motion */
-.group:hover {
-    /* handled via Tailwind translate + shadow, not here */
+.mesh-background::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    background:
+        radial-gradient(ellipse 700px 500px at 15% 20%, rgba(212,255,0,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 600px 400px at 85% 15%, rgba(10,24,52,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 800px 600px at 50% 85%, rgba(13,59,46,0.05) 0%, transparent 65%),
+        radial-gradient(ellipse 500px 500px at 90% 85%, rgba(212,255,0,0.05) 0%, transparent 60%);
+    animation: meshDrift 28s ease-in-out infinite alternate;
 }
 
-/* Salla search — Atelier ink */
+.mesh-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 900px 700px at 30% 50%, rgba(238,241,255,0.6) 0%, transparent 70%);
+    animation: meshPulse 16s ease-in-out infinite alternate;
+}
+
+@keyframes meshDrift {
+    0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+    33%  { transform: translate(-2%, 1%) scale(1.02) rotate(0.3deg); }
+    66%  { transform: translate(1.5%, -1.5%) scale(0.98) rotate(-0.2deg); }
+    100% { transform: translate(0, 1%) scale(1.01) rotate(0.2deg); }
+}
+
+@keyframes meshPulse {
+    0%   { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Mouse aura — soft lime glow that follows cursor elegantly */
+.mouse-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,255,0,0.09) 0%, rgba(212,255,0,0.03) 30%, transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 1;
+    will-change: transform;
+    filter: blur(1px);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GLASS — The signature material
+   ═══════════════════════════════════════════════════════════════ */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.84);
+    backdrop-filter: blur(20px) saturate(1.15);
+    -webkit-backdrop-filter: blur(20px) saturate(1.15);
+    border: 1px solid rgba(255, 255, 255, 0.50);
+    box-shadow: 0 8px 32px rgba(10, 24, 52, 0.07), 0 1px 3px rgba(10, 24, 52, 0.04);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+    border-color: rgba(212, 255, 0, 0.30);
+    box-shadow: 0 16px 48px rgba(10, 24, 52, 0.10), 0 4px 16px rgba(10, 24, 52, 0.06);
+}
+
+/* Atelier header — floating pill */
+.floating-header {
+    position: sticky;
+    top: 0.75rem;
+    z-index: 100;
+    border-radius: 9999px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(20px) saturate(1.15);
+    -webkit-backdrop-filter: blur(20px) saturate(1.15);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 8px 32px rgba(10, 24, 52, 0.07), 0 1px 3px rgba(10, 24, 52, 0.04);
+}
+
+.floating-header:hover {
+    box-shadow: 0 16px 48px rgba(10, 24, 52, 0.10);
+    border-color: rgba(255,255,255,0.75);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BUTTON SYSTEM — Pill, lime, glowing
+   ═══════════════════════════════════════════════════════════════ */
+.btn-atelier-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #0A1834;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    padding: 13px 24px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 16px rgba(10, 24, 52, 0.12), 0 1px 3px rgba(10, 24, 52, 0.08);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-atelier-primary:hover {
+    background: #132A5C;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(10, 24, 52, 0.16), 0 2px 8px rgba(10, 24, 52, 0.08);
+}
+
+.btn-atelier-lime {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #D4FF00;
+    color: #0A1834;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    padding: 13px 28px;
+    border-radius: 9999px;
+    border: 1px solid rgba(10,24,52,0.06);
+    box-shadow: 0 4px 16px rgba(212,255,0,0.25), 0 1px 3px rgba(10, 24, 52, 0.06);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-atelier-lime:hover {
+    background: #E0FF33;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(212,255,0,0.38), 0 4px 16px rgba(212,255,0,0.18);
+}
+
+.btn-atelier-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.75);
+    color: #0A1834;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 9999px;
+    border: 1px solid #E6E9F2;
+    backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.btn-atelier-ghost:hover {
+    background: #FFFFFF;
+    border-color: rgba(212,255,0,0.35);
+    box-shadow: 0 4px 16px rgba(10, 24, 52, 0.08);
+}
+
+/* Salla component overrides — make native buttons Atelier */
+salla-button[type="favorite"] {
+    --salla-btn-bg: rgba(255,255,255,0.88);
+}
+
+salla-add-product-button {
+    display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRODUCT CARD GLOW — The premium hover
+   ═══════════════════════════════════════════════════════════════ */
+.product-card-atelier {
+    background: #FFFFFF;
+    border: 1px solid #E6E9F2;
+    border-radius: 32px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card-atelier::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 32px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(212,255,0,0.0) 0%, rgba(212,255,0,0.0) 50%, rgba(212,255,0,0.15) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.product-card-atelier:hover {
+    border-color: rgba(212,255,0,0.28);
+    box-shadow: 0 20px 48px rgba(10, 24, 52, 0.10), 0 8px 24px rgba(10, 24, 52, 0.06), 0 0 0 1px rgba(212,255,0,0.08);
+    transform: translateY(-4px);
+}
+
+.product-card-atelier:hover::before {
+    opacity: 1;
+}
+
+.product-card-atelier .thumb-zoom {
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card-atelier:hover .thumb-zoom {
+    transform: scale(1.05);
+}
+
+/* Scrim gradient over product image on hover */
+.product-card-atelier .scrim {
+    background: linear-gradient(to top, rgba(10,24,52,0.08) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.product-card-atelier:hover .scrim {
+    opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SALLA SEARCH — Atelier ink
+   ═══════════════════════════════════════════════════════════════ */
 salla-search {
     --color-primary: #0A1834;
 }
 
-/* Pills and buttons — Atelier radii */
-.btn--rounded-gray {
-    background: rgba(255, 255, 255, 0.60);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(230, 233, 242, 1);
-    border-radius: 9999px;
-    padding: 10px 18px;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.btn--rounded-gray:hover {
-    background: #FFFFFF;
-    box-shadow: 0 8px 32px rgba(10, 24, 52, 0.06);
-    border-color: rgba(212, 255, 0, 0.35);
-}
-
-/* Motion — Apple spring */
+/* ═══════════════════════════════════════════════════════════════
+   MOTION — Apple spring
+   ═══════════════════════════════════════════════════════════════ */
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+
+@keyframes floatSubtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
 .animate-fade-up {
     animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
 .delay-100 { animation-delay: 80ms; }
 .delay-200 { animation-delay: 160ms; }
 .delay-300 { animation-delay: 240ms; }
-
-/* Atelier super-ellipse retired — true radius only */
-.super-ellipse { border-radius: 32px; }
-.glowing-text { text-shadow: none; }
 
 /* Focus — accessible lime ring */
 *:focus-visible {
@@ -96,6 +279,14 @@ salla-search {
     outline-offset: 2px;
 }
 
-/* Line clamp fallback */
+/* Line clamp */
 .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
 .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Remove old helpers */
+.super-ellipse { border-radius: 32px; }
+
+/* RTL polish */
+[dir="rtl"] .floating-header {
+    /* pill stays centered either way */
+}
