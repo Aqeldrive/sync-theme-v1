@@ -23,8 +23,8 @@ module.exports = {
                 'BlinkMacSystemFont',
             ],
             primary: "var(--font-main)",
-            headline: ["Plus Jakarta Sans", "IBM Plex Sans Arabic"],
-            display: ["Plus Jakarta Sans", "IBM Plex Sans Arabic"],
+            headline: ["Cormorant Garamond", "Plus Jakarta Sans", "IBM Plex Sans Arabic"],
+            display: ["Cormorant Garamond", "IBM Plex Sans Arabic"],
         },
         extend: {
             transitionTimingFunction: {

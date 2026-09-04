@@ -1,97 +1,21 @@
-{#| Variable                               | Type                        | Description                                                            |
-|----------------------------------------|-----------------------------|------------------------------------------------------------------------|
-| page                                   | object                      |                                                                        |
-| page.title                             | string                      | *could be html                                                         |
-| page.slug                              | string                      | ex: "product.show"                                                     |
-| product                                | Product                     |                                                                        |
-| product.id                             | int                         |                                                                        |
-| product.name                           | string                      |                                                                        |
-| product.description                    | string                      | HTML                                                                   |
-| product.url                            | string                      |                                                                        |
-| product.promotion_title                | string                      |                                                                        |
-| product.subtitle                       | string                      |                                                                        |
-| product.type                           | string                      | product, service, group_products, codes, digital, food, donating       |
-| product.status                         | string                      | sale, out, out_and_notify                                              |
-| product.weight                         | ?string                     |                                                                        |
-| product.calories                       | ?float                      |                                                                        |
-| product.sku                            | ?string                     |                                                                        |
-| product.rating                         | ?object                     |                                                                        |
-| product.rating.count                   | int                         |                                                                        |
-| product.rating.stars                   | int                         |                                                                        |
-| product.price                          | float                       | Formatted price with currency                                          |
-| product.regular_price                  | float                       | Formatted price with currency                                          |
-| product.sale_price                     | float                       | Formatted price with currency                                          |
-| product.starting_price                 | ?float                      | Formatted price with currency                                          |
-| product.quantity                       | ?int                        |                                                                        |
-| product.max_quantity                   | int                         |                                                                        |
-| product.discount_ends                  | ?date                       |                                                                        |
-| product.is_taxable                     | bool                        | Is the tax included in the price                                       |
-| product.category                       | ?Category                   |                                                                        |
-| product.category.name                  | string                      |                                                                        |
-| product.category.url                   | string                      |                                                                        |
-| product.image                          | object                      |                                                                        |
-| product.image.url                      | string                      |                                                                        |
-| product.image.alt                      | ?string                     |                                                                        |
-| product.images                         | array                       |                                                                        |
-| product.images[].id                    | int                         |                                                                        |
-| product.images[].url                   | string                      |                                                                        |
-| product.images[].alt                   | ?string                     |                                                                        |
-| product.images[].video_url             | ?string                     |                                                                        |
-| product.images[].type                  | string                      | `image` `video`                                                        |
-| product.brand                          | ?object                     |                                                                        |
-| product.brand.id                       | int                         |                                                                        |
-| product.brand.url                      | ?string                     |                                                                        |
-| product.brand.name                     | ?string                     |                                                                        |
-| product.brand.logo                     | ?string                     |                                                                        |
-| product.tags                           | ?Tags[]                     |                                                                        |
-| product.tags[].name                    | string                      |                                                                        |
-| product.tags[].url                     | string                      |                                                                        |
-| product.options                        | ProductOption[]             |                                                                        |
-| product.notify_availability            | ?object                     |                                                                        |
-| product.notify_availability.channels   | array                       | ['sms', 'email']                                                       |
-| product.notify_availability.subscribed | bool                        | Does user subscribed before                                            |
-| product.donate                         | ?object                     |                                                                        |
-| product.donate.target_message          | ?string                     |                                                                        |
-| product.donate.collected_amount        | float                       |                                                                        |
-| product.donate.target_amount           | float                       |                                                                        |
-| product.donate.target_percent          | float                       |                                                                        |
-| product.donate.can_donate              | bool                        | true                                                                   |
-| product.has_read_more                  | bool                        |                                                                        |
-| product.can_add_note                   | bool                        |                                                                        |
-| product.can_show_remains_quantity      | bool                        |                                                                        |
-| product.can_upload_file                | bool                        |                                                                        |
-| product.has_custom_form                | bool                        | Is it for  `Food` or `Custom Service` product                          |
-| product.has_metadata                   | bool                        |                                                                        |
-| product.has_options                    | bool                        |                                                                        |
-| product.is_on_sale                     | bool                        | Product has discounted price                                           |
-| product.is_hidden_quantity             | bool                        |                                                                        |
-| product.is_available                   | bool                        |                                                                        |
-| product.is_in_wishlist                 | bool                        |                                                                        |
-| product.is_out_of_stock                | bool                        |                                                                        |
-| product.is_require_shipping            | bool                        |                                                                        |
-| product.base_currency_price            | float                       | product.price with base currency (SAR)                                 |
-| product.has_3d_image                   | bool                        |                                                                        |
-| product.has_size_guide                 | bool                        |                                                                        |
-| product.is_giftable                    | bool                        |                                                                        |
-| product.add_to_cart_label              | string                      |                                                                        |
-| product.currency                       | string                      |                                                                        |#}
 {% extends "layouts.master" %}
 
 {% block content %}
     <div class="container relative z-10">
-        <nav class="breadcrumbs w-full py-5 bg-white/40 glass-panel backdrop-blur-xl border border-white/20 rounded-[2rem] px-6 shadow-ambient mb-8">
+        <nav class="breadcrumbs w-full py-4 bg-white/60 glass-panel backdrop-blur-xl border border-white/20 rounded-[1.5rem] px-5 shadow-ambient mb-6">
             <salla-breadcrumb></salla-breadcrumb>
         </nav>
         
-        <div class="flex flex-col items-start md:flex-row gap-8 lg:gap-12">
+        <div class="flex flex-col items-start lg:flex-row gap-6 lg:gap-10">
             
-            <div class="sidebar w-full md:w-2/5 lg:w-[45%] sticky top-24">
+            {# ——— Gallery — 45% — sticky, editorial ——— #}
+            <div class="sidebar w-full lg:w-[46%] lg:sticky lg:top-24">
                 {% hook 'product:single.description.start' %}
                 
-                <div class="glass-panel p-4 rounded-[3rem] border border-white/30 bg-white/50 shadow-ambient">
+                <div class="glass-panel p-3 rounded-[32px] border border-white/30 bg-white/50 shadow-ambient">
                     <salla-slider
                             id="details-slider-{{ product.id }}"
-                            class="details-slider rounded-[2rem] overflow-hidden"
+                            class="details-slider rounded-[24px] overflow-hidden block"
                             type="thumbs"
                             listen-to-thumbnails-id="details-slider-thumb-{{ product.id }}">
                         {% hook 'product:single.image.start' %}
@@ -99,26 +23,26 @@
                         <div slot="items">
                             {% for image in product.images %}
                                 {% if image.three_d_image_url %}
-                                    <model-viewer style="min-height: 500px;" class="swiper-slide model-entry w-full h-full"
+                                    <model-viewer style="min-height: 520px;" class="swiper-slide model-entry w-full h-full"
                                                   src="{{ image.three_d_image_url }}" alt="{{ image.alt }}"
                                                   ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral"
                                                   auto-rotate camera-controls></model-viewer>
                                 {% elseif image.video_url %}
                                     <div class="swiper-slide video-entry">
                                         <a data-fslightbox="product_{{ product.id }}" data-type="youtube" href="{{ image.video_url }}">
-                                            <div class="product-video__bg">
+                                            <div class="product-video__bg relative">
                                                 <img src="{{ image.url }}" alt="{{ image.alt }}" class="w-full h-full object-cover">
-                                                <i class="sicon-play-video font-bold text-6xl text-white"></i>
+                                                <i class="sicon-play-video absolute inset-0 flex items-center justify-center font-bold text-6xl text-white drop-shadow-lg"></i>
                                             </div>
                                         </a>
                                     </div>
                                 {% else %}
                                     <a data-fslightbox="product_{{ product.id }}" data-img-id="{{ image.id }}" data-slid-index="{{ loop.index -1 }}"
                                        {% if image.alt %}data-caption="{{ image.alt }}"{% endif %}
-                                       class="swiper-slide magnify-wrapper cursor-zoom-in group" href="{{ image.url }}"
+                                       class="swiper-slide magnify-wrapper cursor-zoom-in group block" href="{{ image.url }}"
                                        aria-label="{{ product.name }}">
                                         <img src="{{ image.url }}" alt="{{ image.alt }}"
-                                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]">
                                     </a>
                                 {% endif %}
                             {% endfor %}
@@ -127,22 +51,22 @@
                 </div>
 
                 {% if product.images|length > 1 %}
-                    <div class="mt-4">
+                    <div class="mt-3">
                         <salla-slider
                                 type="thumbnails"
                                 id="details-slider-thumb-{{ product.id }}"
                                 data-id="details-slider-{{ product.id }}"
                                 class="details-slider-thumb"
-                                slides-per-view="4"
-                                space-between="16"
+                                slides-per-view="5"
+                                space-between="10"
                                 listen-to-thumbnails-id="details-slider-thumb-{{ product.id }}">
                             <div slot="items">
                                 {% for image in product.images %}
-                                    <div class="swiper-slide !h-[90px] !w-[90px] rounded-2xl overflow-hidden glass-panel border border-white/40 cursor-pointer opacity-70 transition-opacity hover:opacity-100 hover:border-ona-accent">
+                                    <div class="swiper-slide !h-[84px] !w-[84px] rounded-[16px] overflow-hidden glass-panel border border-white/40 cursor-pointer opacity-60 transition-all hover:opacity-100 hover:border-lime/40 hover:shadow-ambient">
                                         {% if image.video_url %}
                                             <div class="product-video__bg w-full h-full relative">
                                                 <img src="{{ image.url }}" alt="{{ image.alt }}" class="w-full h-full object-cover">
-                                                <i class="sicon-play-video absolute inset-0 flex items-center justify-center font-bold text-2xl text-white"></i>
+                                                <i class="sicon-play-video absolute inset-0 flex items-center justify-center font-bold text-xl text-white"></i>
                                             </div>
                                         {% else %}
                                             <img src="{{ image.url }}" alt="{{ image.alt }}" class="w-full h-full object-cover">
@@ -157,91 +81,93 @@
                 {% hook 'product:single.image.end' %}
             </div>
 
-            <div class="main-content w-full md:w-3/5 lg:w-[55%] glass-panel rounded-[3rem] border border-white/20 backdrop-blur-xl p-8 md:p-12 shadow-ambient bg-white/40">
-                <div class="flex justify-between items-start mb-6">
-                    <div>
-                        <h1 class="font-display-2xl text-[36px] text-ona-primary font-extrabold mb-2 leading-tight">
+            {# ——— Info — 55% — editorial, tabular pricing, luxury ATC ——— #}
+            <div class="main-content w-full lg:w-[54%] glass-panel rounded-[32px] border border-white/20 backdrop-blur-xl p-6 md:p-8 lg:p-10 shadow-ambient bg-white/60">
+                <div class="flex justify-between items-start gap-4 mb-5">
+                    <div class="flex-1 min-w-0">
+                        {% if product.brand.name %}
+                            <a href="{{ product.brand.url }}" class="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.12em] uppercase text-gray-500 bg-white border border-outline px-3 py-1 rounded-full hover:border-ink/20 hover:text-ink transition-colors">
+                                {{ product.brand.name }}
+                            </a>
+                        {% endif %}
+                        <h1 class="font-display text-[30px] md:text-[36px] font-bold tracking-[-0.03em] leading-[0.95] text-ink mt-3">
                             {{ product.name }}
                         </h1>
-                        <div class="w-16 h-1 bg-ona-accent rounded-full mb-4"></div>
+                        <div class="w-12 h-1 bg-lime rounded-full mt-4 shadow-glow"></div>
                     </div>
                     
-                    <salla-button type="favorite" product-id="{{ product.id }}" class="w-12 h-12 glass-panel border border-white/50 rounded-full flex items-center justify-center text-ona-primary hover:text-danger hover:bg-white transition-all shadow-sm">
-                        <i class="sicon-heart text-[22px]"></i>
+                    <salla-button type="favorite" product-id="{{ product.id }}" class="shrink-0 w-11 h-11 glass-panel border border-white/50 rounded-full flex items-center justify-center text-ink hover:text-red-500 hover:bg-white transition-all shadow-sm">
+                        <i class="sicon-heart text-[20px]"></i>
                     </salla-button>
                 </div>
                 
                 {% if product.subtitle %}
-                    <p class="font-body-base text-[16px] text-gray-600 mb-6">{{ product.subtitle }}</p>
+                    <p class="text-[14px] leading-6 text-gray-600 mb-4">{{ product.subtitle }}</p>
                 {% endif %}
 
                 {% if product.rating %}
-                    <div class="flex items-center gap-2 mb-8 bg-white/50 inline-flex px-4 py-2 rounded-full border border-white/40">
-                        <i class="sicon-star text-yellow-400 text-[16px]"></i>
-                        <span class="font-title-base text-[14px] text-gray-700 font-bold">{{ product.rating.stars }}</span>
-                        <span class="text-gray-400 text-[14px]">({{ product.rating.count }})</span>
+                    <div class="inline-flex items-center gap-2 bg-white border border-outline px-3 py-1.5 rounded-full mb-5">
+                        <i class="sicon-star text-yellow-400 text-[14px]"></i>
+                        <span class="text-[13px] font-bold text-ink tabular-nums">{{ product.rating.stars }}</span>
+                        <span class="text-[12px] text-gray-400">({{ product.rating.count }})</span>
                     </div>
                 {% endif %}
 
                 {% if product.description %}
-                    <div class="prose prose-sm md:prose-base text-gray-600 mb-8 font-body-base max-w-none">
+                    <div class="prose prose-sm max-w-none text-[14px] leading-7 text-gray-600 mb-6 prose-a:text-ink prose-a:underline">
                         {{ product.description|raw }}
                     </div>
                 {% endif %}
 
-                <form class="form product-form space-y-8" enctype="multipart/form-data" method="post"
-                      onsubmit="return salla.form.onSubmit('cart.addItem', event)" >
+                <form class="form product-form space-y-6" enctype="multipart/form-data" method="post"
+                      onsubmit="return salla.form.onSubmit('cart.addItem', event)">
                     <input type="hidden" name="id" value="{{ product.id }}">
                     
                     {% hook 'product:single.form.start' %}
                     
-                    <div class="bg-white/40 rounded-[2rem] p-6 border border-white/30">
+                    <div class="bg-white rounded-[24px] p-5 border border-outline">
                         {% include 'pages.partials.product.options' %}
                     </div>
                     
                     {% hook 'product:single.form.end' %}
                     
-                    <section class="flex flex-col gap-6 bg-white/60 p-8 rounded-[2.5rem] border border-white/50 shadow-sm relative overflow-hidden">
+                    <section class="bg-white rounded-[32px] p-6 md:p-7 border border-outline shadow-ambient space-y-5">
                         
                         <div class="flex justify-between items-end">
-                            <label class="form-label mb-0">
-                                <b class="block font-title-base text-[16px] text-gray-500">{{ trans('pages.products.price') }}</b>
-                            </label>
-                            
-                            <div class="flex whitespace-nowrap price-wrapper gap-4 items-center">
-                              <div class="{{ product.is_on_sale ? '' : 'hidden' }} price_is_on_sale space-x-2 rtl:space-x-reverse whitespace-nowrap">
-                                <h2 class="total-price text-ona-secondary font-display-2xl text-[32px] font-extrabold inline-block">{{product.sale_price|money}}</h2>
-                                <span class="before-price text-gray-400 font-label-caps text-sm line-through">{{product.regular_price|money}}</span>
+                            <span class="text-[11px] font-bold tracking-[0.1em] uppercase text-gray-400">{{ trans('pages.products.price') }}</span>
+                            <div class="flex whitespace-nowrap price-wrapper gap-3 items-baseline">
+                              <div class="{{ product.is_on_sale ? '' : 'hidden' }} price_is_on_sale flex items-baseline gap-3">
+                                <span class="total-price text-forest font-display text-[32px] font-bold tabular-nums leading-none">{{product.sale_price|money}}</span>
+                                <span class="before-price text-gray-400 text-[13px] line-through tabular-nums">{{product.regular_price|money}}</span>
                               </div>
-                              <div class="starting-or-normal-price gap-4 {{ product.is_on_sale ? 'hidden' : 'flex' }}">
+                              <div class="starting-or-normal-price gap-2 {{ product.is_on_sale ? 'hidden' : 'flex' }} items-baseline">
                                 {% if product.starting_price %}
-                                   <span class="starting-price-title">{{ trans('pages.products.starting_price') }}</span>
+                                   <span class="starting-price-title text-[12px] text-gray-400">{{ trans('pages.products.starting_price') }}</span>
                                 {% endif %}
-                                 <h2 class="total-price font-display-2xl text-[32px] text-ona-primary font-extrabold inline-block"> {{product.starting_price ? product.starting_price|money : product.price|money }}</h2>
+                                 <span class="total-price font-display text-[32px] text-ink font-bold tabular-nums leading-none"> {{product.starting_price ? product.starting_price|money : product.price|money }}</span>
                               </div>
                             </div>
                         </div>
                         
-                        <div class="w-full h-px bg-white/50"></div>
+                        <div class="h-px bg-outline/60"></div>
                         
-                        <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="flex flex-col sm:flex-row gap-3">
                             {% if product.is_hidden_quantity or product.type == 'booking' %}
                                 <input type="hidden" value="1" name="quantity" aria-label="Quantity"/>
                             {% else %}
-                                <div class="w-full sm:w-1/3 flex items-center bg-white/70 rounded-full px-2 border border-white">
+                                <div class="w-full sm:w-[132px] flex items-center bg-paper border border-outline rounded-full px-1 h-[52px]">
                                     <salla-quantity-input max="{{ product.max_quantity }}" value="1" name="quantity" aria-label="Quantity"
                                       class="w-full bg-transparent flex justify-center"></salla-quantity-input>
                                 </div>
                             {% endif %}
                             
-                            <div class="w-full sm:w-2/3">
+                            <div class="flex-1">
                                 <salla-add-product-button
                                         {{product.can_quick_buy ? 'quick-buy' : ''}}
                                         {{theme.settings.get('sticky_add_to_cart') ? ' support-sticky-bar' : ''}}
                                         {{product.is_require_shipping ? 'required-shipping' : ''}}
-                                        {{product.has_preorder_campaign ? 'has-pre-order' : ''}}
                                         amount="{{ product.base_currency_price }}"
-                                        class="w-full rounded-full shadow-glow"
+                                        class="w-full h-[52px] rounded-full"
                                         product-status="{{ product.status }}"
                                         product-type="{{ product.type }}"
                                         product-id="{{ product.id }}"
@@ -254,10 +180,29 @@
                                             subscribed-options="{{ product.notify_availability.subscribed_options|json_encode }}"
                                             {{ product.notify_availability.options ? 'notify-options-availability' : '' }}
                                         {% endif %}>
-                                    <span class="bg-ona-primary hover:bg-ona-accent hover:text-ona-primary text-white font-title-base text-[18px] font-bold py-4 rounded-full w-full flex justify-center transition-colors duration-300 shadow-ambient block h-full w-full px-6">
+                                    <span class="btn-atelier-primary w-full h-full text-[15px]">
                                         {{ product.add_to_cart_label }}
                                     </span>
                                 </salla-add-product-button>
+                            </div>
+                        </div>
+
+                        {# Trust row — luxury proof #}
+                        <div class="grid grid-cols-3 gap-3 pt-2">
+                            <div class="flex flex-col items-center gap-1.5 bg-paper rounded-[16px] border border-outline/60 py-3">
+                                <i class="sicon-shield text-ink text-[18px]"></i>
+                                <span class="text-[11px] font-bold tracking-wide text-ink">أصلي 100%</span>
+                                <span class="text-[10px] text-gray-400">Authentic</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1.5 bg-paper rounded-[16px] border border-outline/60 py-3">
+                                <i class="sicon-shipping-fast text-ink text-[18px]"></i>
+                                <span class="text-[11px] font-bold tracking-wide text-ink">شحن سريع</span>
+                                <span class="text-[10px] text-gray-400">Fast shipping</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1.5 bg-paper rounded-[16px] border border-outline/60 py-3">
+                                <i class="sicon-undo text-ink text-[18px]"></i>
+                                <span class="text-[11px] font-bold tracking-wide text-ink">إرجاع سهل</span>
+                                <span class="text-[10px] text-gray-400">Easy returns</span>
                             </div>
                         </div>
                     </section>
@@ -267,16 +212,19 @@
             </div>
         </div>
         
-        <div class="s-blocks-wrapper s-before-reviews mt-16">{% hook 'product.single.before_customer_reviews' %}</div>
+        <div class="s-blocks-wrapper s-before-reviews mt-12">{% hook 'product.single.before_customer_reviews' %}</div>
         
         {% if store.settings.rating.show_on_product %}
-            <salla-comments item-id="{{product.id}}" type="product" class="glass-panel p-8 rounded-[3rem] border border-white/20 shadow-ambient mt-8 bg-white/40"></salla-comments>
+            <salla-comments item-id="{{product.id}}" type="product" class="glass-panel p-6 md:p-8 rounded-[32px] border border-white/20 shadow-ambient mt-6 bg-white/50 block"></salla-comments>
         {% endif %}
         
-        <div class="s-blocks-wrapper s-before-related mt-16">{% hook 'product.single.before_product_recommendations' %}</div>
+        <div class="s-blocks-wrapper s-before-related mt-12">{% hook 'product.single.before_product_recommendations' %}</div>
         
-        <div class="mb-5 sm:mb-8 mt-16">
-            <h2 class="font-display-2xl text-[32px] text-ona-primary font-extrabold mb-8 text-center">{{trans('pages.products.similar_products')}}</h2>
+        <div class="mt-12">
+            <div class="text-center mb-8">
+                <h2 class="font-display text-[26px] md:text-[32px] font-bold tracking-[-0.03em] text-ink">{{trans('pages.products.similar_products')}}</h2>
+                <div class="w-12 h-1 bg-lime rounded-full mx-auto mt-3 shadow-glow"></div>
+            </div>
             <salla-products-slider source="related" source-value="{{product.id}}" display-all-url></salla-products-slider>
         </div>
         

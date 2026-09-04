@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SYNC Atelier v2 — LIVE (localhost:8000)</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="http://localhost:8000/app.css">
+<style>
+  body{font-family:'IBM Plex Sans Arabic','Plus Jakarta Sans',system-ui}
+  .font-display{font-family:'Plus Jakarta Sans','IBM Plex Sans Arabic',system-ui}
+</style>
+</head>
+<body class="theme-ona bg-paper text-ink relative">
+<div class="mesh-background"><div class="mouse-glow"></div></div>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const g=document.querySelector('.mouse-glow');
+  if(g){
+    let t=false,mx=0,my=0;
+    function upd(){g.style.left=mx+'px';g.style.top=my+'px';g.style.opacity='1';t=false}
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(!t){requestAnimationFrame(upd);t=true}});
+    document.addEventListener('mouseleave',()=>g.style.opacity='0');
+  }
+});
+</script>
+
+<div class="app-inner relative z-10">
+
+<!-- Header (floating pill) -->
+<header class="floating-header mt-4 mb-6 md:mb-8 px-5 md:px-8 h-[68px] md:h-[72px] flex justify-between items-center max-w-[1280px] mx-auto">
+  <div class="flex items-center gap-4">
+    <span class="font-display text-[22px] font-extrabold tracking-[-0.03em]">سِنك — Sync</span>
+    <nav class="hidden lg:flex gap-6 ms-6 text-[13px] font-bold"><a href="#">الرئيسية</a><a href="#">المجموعات</a><a href="#">جديدنا</a></nav>
+  </div>
+  <div class="flex items-center gap-2">
+    <div class="hidden md:flex w-[240px] h-9 bg-white/70 border border-outline rounded-full items-center px-3 text-sm text-gray-400">ابحث…</div>
+    <div class="w-9 h-9 rounded-full bg-white border border-outline grid place-items-center">🛍</div>
+    <div class="w-9 h-9 rounded-full bg-white border border-outline grid place-items-center">👤</div>
+  </div>
+</header>
+
+<main class="max-w-[1280px] mx-auto px-4 md:px-8 pb-16">
+
+<!-- Slider -->
+<section class="rounded-[32px] overflow-hidden shadow-ambient h-[420px] relative flex items-center justify-center text-center mb-10">
+  <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1280&q=80" class="absolute inset-0 w-full h-full object-cover"/>
+  <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent"></div>
+  <div class="relative z-10 p-8 max-w-xl">
+    <h2 class="font-display text-[32px] md:text-[40px] font-extrabold tracking-[-0.04em] leading-[0.95] text-white">صور متحركة — Slider</h2>
+    <p class="text-white/85 mt-3 text-[14px]">32px زوايا · scrim حبر · زر ليموني 999px · meshDrift خلفك</p>
+    <a href="#" class="btn-atelier-lime mt-5 inline-flex">تسوّق الآن ←</a>
+  </div>
+</section>
+
+<!-- Featured -->
+<section class="py-6">
+  <div class="flex justify-between items-end border-b border-outline/60 pb-6 mb-6">
+    <div><h2 class="font-display text-[28px] md:text-[32px] font-extrabold tracking-[-0.03em] text-ink leading-none">منتجات مميزة</h2><div class="w-12 h-1 bg-lime rounded-full mt-3 shadow-glow"></div></div>
+    <span class="text-sm text-gray-500 hidden md:block">شبكة 3 أعمدة · fallback تلقائي via salla-products-slider</span>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div class="product-card-atelier group flex flex-col bg-white p-4">
+      <div class="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-paper-container">
+        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&q=80" class="thumb-zoom w-full h-full object-cover"/>
+        <div class="scrim absolute inset-0"></div>
+        <span class="absolute top-3 right-3 bg-lime text-ink text-[11px] font-bold tracking-widest px-3 py-1.5 rounded-full shadow-glow">جديد</span>
+        <span class="absolute top-3 left-3 w-9 h-9 bg-white/90 backdrop-blur-md rounded-full grid place-items-center border border-white/60">♡</span>
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-[88%] translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400 ease-atelier"><span class="btn-atelier-primary w-full">إضافة للسلة 🛍</span></div>
+      </div>
+      <div class="px-1 pt-4"><h3 class="text-[15px] font-bold text-ink">قميص أوكسفورد — أبيض</h3><div class="flex justify-between items-end mt-2"><b class="text-[18px] font-extrabold text-forest">249 ر.س</b><span class="text-xs bg-paper border border-outline px-2 py-1 rounded-full">★ 4.9</span></div></div>
+    </div>
+    <div class="product-card-atelier group flex flex-col bg-white p-4">
+      <div class="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-paper-container">
+        <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?w=600&q=80" class="thumb-zoom w-full h-full object-cover"/>
+        <div class="scrim absolute inset-0"></div>
+        <span class="absolute top-3 left-3 w-9 h-9 bg-white/90 backdrop-blur-md rounded-full grid place-items-center border border-white/60">♡</span>
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-[88%] translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400"><span class="btn-atelier-primary w-full">إضافة للسلة 🛍</span></div>
+      </div>
+      <div class="px-1 pt-4"><h3 class="text-[15px] font-bold text-ink">فستان حرير — أسود</h3><div class="flex justify-between items-end mt-2"><b class="text-[18px] font-extrabold text-ink">520 ر.س</b><span class="text-xs bg-paper border border-outline px-2 py-1 rounded-full">★ 4.8</span></div></div>
+    </div>
+    <div class="product-card-atelier group flex flex-col bg-white p-4">
+      <div class="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-paper-container">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80" class="thumb-zoom w-full h-full object-cover"/>
+        <div class="scrim absolute inset-0"></div>
+        <span class="absolute top-3 right-3 bg-lime text-ink text-[11px] font-bold px-3 py-1.5 rounded-full shadow-glow">جديد</span>
+        <span class="absolute top-3 left-3 w-9 h-9 bg-white/90 backdrop-blur-md rounded-full grid place-items-center border border-white/60">♡</span>
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-[88%] translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400"><span class="btn-atelier-primary w-full">إضافة للسلة 🛍</span></div>
+      </div>
+      <div class="px-1 pt-4"><h3 class="text-[15px] font-bold text-ink">حذاء جلدي — بني</h3><div class="flex justify-between items-end mt-2"><b class="text-[18px] font-extrabold text-forest">389 ر.س</b><span class="text-xs bg-paper border border-outline px-2 py-1 rounded-full">★ 5.0</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Buttons showcase -->
+<section class="glass-panel rounded-[32px] p-8 mt-6 flex flex-wrap gap-3 items-center">
+  <span class="text-sm font-bold text-ink">الأزرار:</span>
+  <span class="btn-atelier-primary">Primary ink</span>
+  <span class="btn-atelier-lime">Lime glow</span>
+  <span class="btn-atelier-ghost">Ghost • ورق</span>
+  <span class="text-xs text-gray-500 ms-auto">hover = translateY(-1px) + glow</span>
+</section>
+
+<!-- Cart preview -->
+<section class="mt-8">
+  <h3 class="font-display text-[20px] font-extrabold text-ink mb-4">السلة — صور المنتجات</h3>
+  <div class="product-card-atelier p-6 flex gap-4 items-center">
+    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&q=80" class="w-24 h-24 rounded-[1.5rem] object-cover border border-outline"/>
+    <div><h4 class="font-bold text-ink">حذاء جلدي — بني</h4><p class="text-sm text-gray-500">cdn(200,200) + onerror placeholder</p><b class="text-forest">389 ر.س</b></div>
+    <span class="ms-auto btn-atelier-ghost text-xs">حذف ✕</span>
+  </div>
+</section>
+
+<div class="mt-8 text-center text-xs text-gray-400">LIVE CSS: http://localhost:8000/app.css — 1.02MB · meshDrift ✓ · product-card-atelier ✓ · serve running on :8000</div>
+
+</main>
+</div>
+</body>
+</html>

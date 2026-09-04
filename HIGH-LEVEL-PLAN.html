@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Atelier High Level — Design Tokens</title>
+<style>body{font-family:system-ui;padding:24px;max-width:900px;margin:0 auto;line-height:1.6}
+h1{font-size:28px} h2{font-size:18px;margin-top:28px;border-bottom:1px solid #eee;padding-bottom:8px}
+code{background:#f5f5f7;padding:2px 6px;border-radius:6px;font-size:13px}
+ul{padding-left:20px}</style>
+</head>
+<body>
+<h1>Atelier High-Level — Luxury Elevation Plan</h1>
+
+<h2>1. Typography — Editorial Luxury</h2>
+<ul>
+<li><code>font-display: Cormorant Garamond (serif) + IBM Plex Sans Arabic</code> — headings become editorial serif, UI stays sans. Luxury = serif.</li>
+<li>Title: 40px / -0.04em / 800 → 36px on mobile, tight leading 1.05</li>
+<li>Price: tabular-nums, forest/lime accent</li>
+</ul>
+
+<h2>2. Product Single — SSENSE / Aritzia Level</h2>
+<ul>
+<li>Gallery: 45% left, sticky, thumbs vertical 90px pill, zoom on hover, video lightbox</li>
+<li>Info: 55% right, glass 32px, but inside: editorial hierarchy — brand → title (serif) → rating pill → price (large tabular) → options as refined outline pills → ATC: full black pill with lime hover glow + qty stepper inside glass</li>
+<li>Trust row: 3 icons (authentic, shipping, returns) under ATC</li>
+<li>Description: accordion, not wall of text</li>
+<li>Related: full-width editorial slider with same card</li>
+</ul>
+
+<h2>3. Collection — Quiet Grid</h2>
+<ul>
+<li>Filters: sticky glass sidebar 280px, rounded 24px, subtle</li>
+<li>Grid: product cards same as homepage (32px, lift, glow)</li>
+<li>Sort: pill select, not native dropdown styling</li>
+</ul>
+
+<h2>4. Global — Micro Luxury</h2>
+<ul>
+<li>Mesh: even more subtle (lime 6% not 8%, ink 3%) — luxury whispers</li>
+<li>Scroll reveal: fadeUp 0.7s on cards entering viewport</li>
+<li>Header: on scroll, add shadow + shrink 72→64px</li>
+<li>All hovers: 400ms atelier ease, never 200ms</li>
+</ul>
+
+<p><b>Executing now — product/single.twig → product/index.twig → global styles</b></p>
+</body>
+</html>

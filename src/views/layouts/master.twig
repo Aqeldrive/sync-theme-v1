@@ -12,10 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ theme.settings.set('placeholder', 'images/placeholder.png') }}
     
-    <!-- ONA Custom Fonts -->
+    <!-- Atelier High-Level Fonts — Editorial Luxury -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script defer data-cfasync="false" crossorigin="anonymous" src="{{ 'product-card.js'|asset }}"></script>
     <script defer src="{{ 'main-menu.js'|asset }}"></script>
@@ -42,11 +42,13 @@
     <style>
         :root {
             --font-main: 'IBM Plex Sans Arabic', 'Plus Jakarta Sans', sans-serif;
+            --font-display: 'Cormorant Garamond', 'IBM Plex Sans Arabic', serif;
             --color-primary: {{ theme.color.primary }};
             --color-primary-dark: {{ theme.color.darker(0.15) }};
             --color-primary-light: {{ theme.color.lighter(0.15) }};
             --color-primary-reverse: {{ theme.color.reverse_text }};
         }
+        .font-display{font-family:var(--font-display)}
     </style>
     {# tracking services, custom css feature. #}
     {% hook 'head:end' %}
