@@ -290,3 +290,61 @@ salla-search {
 [dir="rtl"] .floating-header {
     /* pill stays centered either way */
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   PILL RAIL — Collection sorting / filtering (high-level)
+   ═══════════════════════════════════════════════════════════════ */
+.pill-rail {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+}
+.pill-rail::-webkit-scrollbar { display: none; }
+.pill-rail a, .pill-rail button, .pill-rail select {
+    white-space: nowrap;
+    flex: none;
+}
+.pill-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 700;
+    background: #FFFFFF;
+    border: 1px solid #E6E9F2;
+    color: #0A1834;
+    transition: all 0.22s ease;
+}
+.pill-pill:hover { border-color: rgba(212,255,0,0.35); box-shadow: 0 4px 16px rgba(10,24,52,0.06); }
+.pill-pill.is-active { background: #0A1834; color: #FFFFFF; border-color: #0A1834; box-shadow: 0 4px 16px rgba(10,24,52,0.14); }
+.pill-pill.is-lime { background: #D4FF00; color: #0A1834; border-color: rgba(10,24,52,0.06); }
+.pill-pill.is-lime:hover { background: #E0FF33; box-shadow: 0 8px 24px rgba(212,255,0,0.28); }
+
+/* Cart — sticky summary elevation */
+.cart-sticky-summary {
+    position: sticky;
+    top: 6rem;
+}
+
+/* Stagger entrance for product grids */
+.stagger > * { opacity: 0; animation: fadeUp 0.55s cubic-bezier(0.16,1,0.3,1) forwards; }
+.stagger > *:nth-child(1){ animation-delay: 40ms; }
+.stagger > *:nth-child(2){ animation-delay: 90ms; }
+.stagger > *:nth-child(3){ animation-delay: 140ms; }
+.stagger > *:nth-child(4){ animation-delay: 190ms; }
+.stagger > *:nth-child(5){ animation-delay: 240ms; }
+.stagger > *:nth-child(6){ animation-delay: 290ms; }
+.stagger > *:nth-child(7){ animation-delay: 340ms; }
+.stagger > *:nth-child(8){ animation-delay: 390ms; }
+
+@media (prefers-reduced-motion: reduce) {
+    .mesh-background::before, .mesh-background::after, .mouse-glow { animation: none !important; }
+    .product-card-atelier:hover { transform: none; }
+    .stagger > * { animation: none; opacity: 1; }
+}
+

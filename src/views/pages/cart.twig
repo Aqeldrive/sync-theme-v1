@@ -73,8 +73,8 @@
                 
                 <div class="flex justify-between items-center mb-8 border-b border-white/30 pb-6">
                     <div>
-                        <h2 class="font-display-2xl text-[32px] text-ona-primary font-extrabold mb-2">{{ trans('blocks.header.cart') }}</h2>
-                        <div class="w-16 h-1 bg-ona-accent rounded-full"></div>
+                        <h2 class="font-display text-[30px] font-bold tracking-[-0.03em] leading-none text-ink mb-2">{{ trans('blocks.header.cart') }}</h2>
+                        <div class="w-12 h-1 bg-lime rounded-full shadow-glow"></div>
                     </div>
                     {% if cart.items|length %}
                         <div class="glass-panel px-4 py-2 rounded-full border border-white/50 bg-white/50 shadow-sm flex items-center gap-2">
@@ -85,19 +85,19 @@
                 </div>
 
                 {% for item in cart.items %}
-                    <form onchange="salla.form.onChange('cart.updateItem', event)" id="item-{{ item.id }}" class="mb-6 last:mb-0">
-                        <section class="cart-item glass-panel bg-white/60 rounded-[2rem] border border-white/40 shadow-sm relative transition-all duration-300 hover:shadow-elevated hover:border-ona-accent/30 p-6 md:p-8">
+                    <form onchange="salla.form.onChange('cart.updateItem', event)" id="item-{{ item.id }}" class="mb-4 last:mb-0 stagger">
+                        <section class="cart-item glass-panel bg-white/70 rounded-[24px] border border-white/40 shadow-sm relative transition-all duration-300 hover:shadow-elevated hover:border-lime/25 p-6 md:p-6">
                             <input type="hidden" name="id" value="{{ item.id }}">
                             
                             <div class="md:flex rtl:space-x-reverse md:space-x-8 items-start justify-between">
                                 <div class="flex flex-1 rtl:space-x-reverse space-x-6 items-start">
-                                    <a href="{{ item.url }}" class="shrink-0 rounded-[1.5rem] overflow-hidden glass-panel border border-white/50 bg-white shadow-sm w-24 h-24 md:w-32 md:h-32 block">
-                                        <img src="{{ item.thumbnail ? item.thumbnail|cdn(200,200) : 'images/placeholder.png'|asset }}" alt="{{ item.name }}" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null;this.src='{{ 'images/placeholder.png'|asset }}'">
+                                    <a href="{{ item.url }}" class="shrink-0 rounded-[16px] overflow-hidden glass-panel border border-white/50 bg-white shadow-sm w-24 h-24 md:w-28 md:h-28 block">
+                                        <img src="{{ item.thumbnail ? item.thumbnail|cdn(200,200) : 'images/placeholder.png'|asset }}" alt="{{ item.name }}" class="w-full h-full object-cover thumb-zoom" loading="lazy" onerror="this.onerror=null;this.src='{{ 'images/placeholder.png'|asset }}'">
                                     </a>
                                     
-                                    <div class="flex-1 space-y-3">
-                                        <h3 class="font-title-base text-[18px] text-ona-primary font-bold leading-tight">
-                                            <a href="{{ item.url }}" class="hover:text-ona-secondary transition-colors">{{ item.name }}</a>
+                                    <div class="flex-1 space-y-2.5">
+                                        <h3 class="font-display text-[17px] text-ink font-bold leading-tight">
+                                            <a href="{{ item.url }}" class="hover:text-forest transition-colors">{{ item.name }}</a>
                                         </h3>
                                         
                                         {% if item.weight %}
@@ -111,7 +111,7 @@
                                             </div>
                                         {% endif %}
 
-                                        <span class="font-headline-lg text-[18px] text-ona-primary font-extrabold block mt-2">
+                                        <span class="font-display text-[17px] text-ink font-bold block mt-1 tabular-nums">
                                             {{ item.is_available ? item.product_price|money : trans('pages.cart.out_of_stock') }}
                                         </span>
                                         
@@ -142,8 +142,8 @@
                                     {% set item_total = item.detailed_offers|length > 0 ? item.total_special_price|money : item.total|money %}
                                     
                                     <div class="text-right">
-                                        <span class="block font-body-base text-sm text-gray-500 mb-1">{{ trans('pages.cart.total') }}</span>
-                                        <span class="inline-block item-total font-display-2xl text-[24px] text-ona-secondary font-extrabold">{{ item.is_available ? item_total : trans('pages.cart.out_of_stock') }}</span>
+                                        <span class="block text-[11px] tracking-[0.08em] font-bold text-gray-400 uppercase mb-1">{{ trans('pages.cart.total') }}</span>
+                                        <span class="inline-block item-total font-display text-[22px] text-ink font-bold tabular-nums">{{ item.is_available ? item_total : trans('pages.cart.out_of_stock') }}</span>
                                     </div>
                                 </div>
                             </div>
