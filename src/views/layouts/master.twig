@@ -137,6 +137,13 @@
         } else {
             document.querySelectorAll('.reveal, .reveal-stagger > *').forEach(el=>el.classList.add('is-visible'));
         }
+        // CEO: force above-fold visible after 500ms even if observer pending (prevents hidden products)
+        setTimeout(()=>{
+            document.querySelectorAll('.reveal, .reveal-stagger > *, .product-card-atelier').forEach(el=>{
+                const rect = el.getBoundingClientRect();
+                if(rect.top < window.innerHeight + 100) el.classList.add('is-visible');
+            });
+        }, 500);
         // Stagger enhancement — already CSS handles .stagger, but ensure is-visible triggers
         document.querySelectorAll('.stagger').forEach(g=>g.classList.add('reveal-stagger'));
     });

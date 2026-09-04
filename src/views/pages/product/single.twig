@@ -237,38 +237,39 @@
 
 {# ——— Hover preview: touch/hover thumbnail -> main slider changes without clicking arrows ——— #}
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+// CEO HOVER DELEGATION — touch/hover = preview instantly, no press needed
   const thumbId = 'details-slider-thumb-{{ product.id }}';
   const mainId = 'details-slider-{{ product.id }}';
   function bindHover(){
     const thumb = document.getElementById(thumbId);
+    const main = document.getElementById(mainId);
     if(!thumb) return;
-    const slides = thumb.querySelectorAll('.swiper-slide');
-    slides.forEach((el, idx)=>{
-      const activate = () => {
-        // Try Salla slider API first
-        const main = document.getElementById(mainId);
-        if(main && main.swiper) { try { main.swiper.slideTo(idx); return; } catch(e){} }
-        // Fallback: click
-        el.click();
-        // Also dispatch for salla-slider thumbs
-        el.dispatchEvent(new MouseEvent('click', {bubbles:true}));
-      };
-      el.addEventListener('mouseenter', activate, {passive:true});
-      el.addEventListener('touchstart', activate, {passive:true});
-      el.addEventListener('focus', activate);
-    });
-    // active thumb styling via observer
+    // delegation: any pointer over thumb slide triggers
+    thumb.addEventListener('pointerenter', (e)=>{
+      const slide = e.target.closest('.swiper-slide');
+      if(!slide) return;
+      const idx = Array.from(thumb.querySelectorAll('.swiper-slide')).indexOf(slide);
+      if(idx<0) return;
+      try{
+        if(main && main.swiper) { main.swiper.slideTo(idx); }
+        else if(window.salla && salla.event) { slide.click(); }
+        else slide.click();
+      }catch(err){ slide.click(); }
+      slide.dispatchEvent(new MouseEvent('click', {bubbles:true}));
+    }, true);
+    thumb.addEventListener('touchstart', (e)=>{
+      const slide = e.target.closest('.swiper-slide');
+      if(slide) slide.click();
+    }, {passive:true});
+    // keep active styling synced
     const obs = new MutationObserver(()=>{
-      slides.forEach(s=> s.classList.remove('thumb-active'));
+      thumb.querySelectorAll('.swiper-slide').forEach(s=> s.classList.remove('thumb-active'));
       const active = thumb.querySelector('.swiper-slide-thumb-active, .swiper-slide-active');
       if(active) active.classList.add('thumb-active');
     });
     obs.observe(thumb, {attributes:true, subtree:true, attributeFilter:['class']});
   }
-  // Salla slider renders async, retry a few times
-  let tries=0; const iv=setInterval(()=>{ bindHover(); if(document.getElementById(thumbId)?.querySelector('.swiper-slide') || tries++>20) clearInterval(iv); }, 400);
-});
+  let tries=0; const iv=setInterval(()=>{ bindHover(); const t=document.getElementById(thumbId); if(t && t.querySelector('.swiper-slide') || tries++>25) clearInterval(iv); }, 350);
 </script>
 <style>
 #details-slider-thumb-{{ product.id }} .swiper-slide{ transition: all 0.25s cubic-bezier(0.16,1,0.3,1); }

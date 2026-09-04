@@ -32,8 +32,8 @@
     position: absolute;
     inset: -22%;
     background:
-        radial-gradient(ellipse 820px 620px at 18% 22%, rgba(212,255,0,0.18) 0%, rgba(212,255,0,0.06) 42%, transparent 72%),
-        radial-gradient(ellipse 780px 560px at 84% 18%, rgba(10,24,52,0.10) 0%, transparent 62%),
+        radial-gradient(ellipse 820px 620px at 18% 22%, rgba(212,255,0,0.24) 0%, rgba(212,255,0,0.08) 42%, transparent 72%),
+        radial-gradient(ellipse 780px 560px at 84% 18%, rgba(10,24,52,0.13) 0%, transparent 62%),
         radial-gradient(ellipse 900px 680px at 52% 88%, rgba(13,59,46,0.13) 0%, transparent 68%),
         radial-gradient(ellipse 640px 520px at 88% 82%, rgba(212,255,0,0.11) 0%, transparent 64%),
         radial-gradient(ellipse 560px 460px at 38% 52%, rgba(238,241,255,0.85) 0%, transparent 70%);
@@ -91,7 +91,7 @@
 .bg-cosmic .mesh-background::before, .bg-cosmic .mesh-background::after { display: none !important; }
 .bg-cosmic .mesh-orb { display: block !important; filter: blur(24px); border-radius: 50%; }
 .bg-cosmic .orb-a { width: 420px; height: 420px; left: 6%; top: 10%; background: radial-gradient(circle, rgba(212,255,0,0.20) 0%, rgba(212,255,0,0.05) 45%, transparent 72%); animation: cosmicFloat 13s ease-in-out infinite alternate; }
-.bg-cosmic .orb-b { width: 360px; height: 360px; right: 8%; top: 18%; background: radial-gradient(circle, rgba(10,24,52,0.10) 0%, transparent 68%); animation: cosmicFloat2 16s ease-in-out infinite alternate-reverse; }
+.bg-cosmic .orb-b { width: 360px; height: 360px; right: 8%; top: 18%; background: radial-gradient(circle, rgba(10,24,52,0.13) 0%, transparent 68%); animation: cosmicFloat2 16s ease-in-out infinite alternate-reverse; }
 .bg-cosmic .orb-c { width: 520px; height: 520px; left: 32%; bottom: 6%; background: radial-gradient(circle, rgba(13,59,46,0.11) 0%, transparent 70%); animation: cosmicFloat 18s ease-in-out infinite alternate; }
 .bg-cosmic .orb-d { width: 280px; height: 280px; left: 68%; bottom: 18%; background: radial-gradient(circle, rgba(212,255,0,0.12) 0%, transparent 65%); animation: cosmicFloat2 14s ease-in-out infinite alternate; }
 @keyframes cosmicFloat { 0%{transform:translate(0,0) scale(1)} 33%{transform:translate(12px,-18px) scale(1.03)} 66%{transform:translate(-10px,14px) scale(0.98)} 100%{transform:translate(8px,-8px) scale(1.04)} }
@@ -159,7 +159,7 @@
     margin-right: auto;
     max-width: 1280px;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    background: rgba(255, 255, 255, 0.56);
+    background: rgba(255, 255, 255, 0.46);
     backdrop-filter: blur(32px) saturate(1.55) brightness(1.08);
     -webkit-backdrop-filter: blur(32px) saturate(1.55) brightness(1.08);
     border: 1.5px solid rgba(255, 255, 255, 0.72);
@@ -286,7 +286,7 @@ salla-add-product-button {
    Liquid glass card — translucent, blurred, depth, lime aura on hover
    ═══════════════════════════════════════════════════════════════ */
 .product-card-atelier {
-    background: rgba(255, 255, 255, 0.52);
+    background: rgba(255, 255, 255, 0.44);
     backdrop-filter: blur(24px) saturate(1.32) brightness(1.05);
     -webkit-backdrop-filter: blur(24px) saturate(1.32) brightness(1.05);
     border: 1.5px solid rgba(255, 255, 255, 0.68);
@@ -577,6 +577,14 @@ salla-add-product-button {
 .dark-mode-enabled .product-card-atelier .price, .dark-mode-enabled .total-price { color: #FFFFFF !important; }
 .dark-mode-enabled .bg-paper { background: #0E1E3B !important; border-color: rgba(255,255,255,0.09) !important; }
 
+
+/* CEO DARK REFINEMENT — editorial ink depth */
+.dark-mode-enabled { background: #050E25 !important; }
+.dark-mode-enabled .mesh-background { background: #050E25 !important; }
+.dark-mode-enabled .glass-panel { background: rgba(14,30,59,0.86) !important; border-color: rgba(212,255,0,0.10) !important; }
+.dark-mode-enabled .floating-header { background: rgba(12,26,54,0.88) !important; border-color: rgba(255,255,255,0.14) !important; backdrop-filter: blur(36px) saturate(1.55) !important; }
+.dark-mode-enabled .font-display { font-weight: 800 !important; letter-spacing: -0.025em !important; }
+
 /* System preference fallback — same rules when OS is dark and toggle is on */
 @media (prefers-color-scheme: dark) {
   .dark-mode-enabled { background: #070F24 !important; color: #F8F9FF !important; }
@@ -790,15 +798,14 @@ salla-search {
 .product-card-atelier {
     will-change: transform, box-shadow;
 }
-.product-card-atelier:not(.is-visible){
-    opacity: 0;
-    transform: translateY(12px) scale(0.98);
-}
-.product-card-atelier.is-visible{
+/* CEO: cards visible instantly, animate via reveal-stagger — never hidden */
+.product-card-atelier{
     opacity: 1;
     transform: translateY(0) scale(1);
     transition: opacity 0.60s cubic-bezier(0.16,1,0.3,1), transform 0.60s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s ease, border-color 0.35s ease, background 0.35s ease;
 }
+.reveal-stagger .product-card-atelier{ opacity:0; transform: translateY(20px) scale(0.98); }
+.reveal-stagger .product-card-atelier.is-visible{ opacity:1; transform: translateY(0) scale(1); }
 
 /* Header entrance */
 .floating-header {
@@ -827,6 +834,18 @@ salla-search {
 .btn-atelier-lime:hover::after, .btn-atelier-primary:hover::after {
     transform: translateX(120%);
 }
+
+
+/* CEO — undeniable motion: header aura pulse + product subtle float when animations-on */
+.animations-on .floating-header::after{
+    content:"";
+    position:absolute; inset:-2px; border-radius:9999px;
+    background: linear-gradient(90deg, transparent, rgba(212,255,0,0.18), transparent);
+    opacity:0; animation: headerAura 3.5s ease-in-out infinite; pointer-events:none;
+}
+@keyframes headerAura{ 0%,100%{opacity:0; transform:translateX(-20px)} 50%{opacity:1; transform:translateX(20px)} }
+.animations-on .product-card-atelier.is-visible:hover .thumb-zoom{ animation: thumbFloat 2.8s ease-in-out infinite; }
+@keyframes thumbFloat{ 0%,100%{transform:scale(1.05) translateY(0)} 50%{transform:scale(1.06) translateY(-2px)} }
 
 /* Shimmer for free shipping */
 @keyframes shimmer {

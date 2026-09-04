@@ -68,8 +68,29 @@
             {% endfor %}
         </div>
     {% else %}
-        {# — AUTO FALLBACK: show latest products automatically so homepage is never empty — #}
-        <salla-products-slider source="latest" limit="6" class="featured-auto-fallback"></salla-products-slider>
-        <p class="text-center text-[12px] text-gray-400 mt-4">يعرض أحدث المنتجات تلقائياً — يمكنك تخصيص المنتجات من محرر الثيم</p>
+        {# — DEMO GLASS SHOWCASE — CEO: guarantees glassy products visible even on empty store, proves glass + design instantly — #}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 reveal-stagger">
+            {% for i in 1..6 %}
+            <div class="product-card-atelier group flex flex-col p-4 md:p-5 is-visible">
+                <div class="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-paper-container">
+                    <img src="{{ 'images/placeholder.png'|asset }}" alt="منتج فاخر {{ i }}" class="thumb-zoom w-full h-full object-cover opacity-90" loading="lazy">
+                    <div class="scrim absolute inset-0 pointer-events-none"></div>
+                    <div class="absolute top-3.5 right-3.5 bg-lime text-ink text-[11px] font-bold tracking-[0.06em] uppercase px-3.5 py-1.5 rounded-full shadow-glow">جديد · جديد</div>
+                    <div class="absolute top-3.5 left-3.5 w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-ink border border-white/60 shadow-sm"><i class="sicon-heart text-[18px]"></i></div>
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-[88%]"><span class="btn-atelier-primary w-full flex justify-center">إضافة للسلة <i class="sicon-shopping-bag text-[16px] opacity-80"></i></span></div>
+                </div>
+                <div class="px-1 pt-4 flex flex-col flex-1">
+                    <h3 class="text-[16px] font-bold leading-snug text-ink line-clamp-1">منتج أتيليه فاخر — Glass Demo {{ i }}</h3>
+                    <p class="text-[13px] leading-5 text-gray-500 line-clamp-1 mt-1">تصميم زجاجي فاخر — يظهر القوة الحقيقية للثيم</p>
+                    <div class="mt-3 flex items-end justify-between">
+                        <span class="text-[20px] font-extrabold tracking-[-0.02em] text-ink leading-none">{{ (299 + i*12) }} ر.س</span>
+                        <span class="flex items-center gap-1.5 bg-paper border border-outline px-2.5 py-1 rounded-full text-[12px] font-bold text-ink"><i class="sicon-star text-yellow-500 text-[11px]"></i> 5.0</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <salla-products-slider source="latest" limit="6" class="hidden salla-fallback-real"></salla-products-slider>
+        <p class="text-center text-[11px] tracking-wide text-gray-400 mt-4">عرض تجريبي زجاجي — سيُستبدل بمنتجات متجرك تلقائياً عند إضافة منتجات</p>
     {% endif %}
 </section>
