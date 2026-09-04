@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container relative z-10">
-        <nav class="breadcrumbs w-full py-4 bg-white/60 glass-panel backdrop-blur-xl border border-white/20 rounded-[1.5rem] px-5 shadow-ambient mb-6">
+        <nav class="breadcrumbs w-full py-3 glass-panel border border-white/55 rounded-[1.5rem] px-5 shadow-ambient mb-6">
             <salla-breadcrumb></salla-breadcrumb>
         </nav>
         
@@ -12,7 +12,7 @@
             <div class="sidebar w-full lg:w-[46%] lg:sticky lg:top-24">
                 {% hook 'product:single.description.start' %}
                 
-                <div class="glass-panel p-3 rounded-[32px] border border-white/30 bg-white/50 shadow-ambient">
+                <div class="glass-panel p-3 rounded-[32px] border border-white/55 shadow-ambient">
                     <salla-slider
                             id="details-slider-{{ product.id }}"
                             class="details-slider rounded-[24px] overflow-hidden block"
@@ -82,7 +82,7 @@
             </div>
 
             {# ——— Info — 55% — editorial, tabular pricing, luxury ATC ——— #}
-            <div class="main-content w-full lg:w-[54%] glass-panel rounded-[32px] border border-white/20 backdrop-blur-xl p-6 md:p-8 lg:p-10 shadow-ambient bg-white/60">
+            <div class="main-content w-full lg:w-[54%] glass-panel rounded-[32px] border border-white/55 p-6 md:p-8 lg:p-10">
                 <div class="flex justify-between items-start gap-4 mb-5">
                     <div class="flex-1 min-w-0">
                         {% if product.brand.name %}
@@ -129,13 +129,13 @@
                     
                     {% hook 'product:single.form.start' %}
                     
-                    <div class="bg-white rounded-[24px] p-5 border border-outline">
+                    <div class="glass-panel rounded-[24px] p-5 border border-white/55">
                         {% include 'pages.partials.product.options' %}
                     </div>
                     
                     {% hook 'product:single.form.end' %}
                     
-                    <section class="bg-white rounded-[32px] p-6 md:p-7 border border-outline shadow-ambient space-y-5">
+                    <section class="glass-panel rounded-[32px] p-6 md:p-7 border border-white/55 space-y-5">
                         
                         <div class="flex justify-between items-end">
                             <span class="text-[11px] font-bold tracking-[0.1em] uppercase text-gray-400">{{ trans('pages.products.price') }}</span>
@@ -219,7 +219,7 @@
         <div class="s-blocks-wrapper s-before-reviews mt-12">{% hook 'product.single.before_customer_reviews' %}</div>
         
         {% if store.settings.rating.show_on_product %}
-            <salla-comments item-id="{{product.id}}" type="product" class="glass-panel p-6 md:p-8 rounded-[32px] border border-white/20 shadow-ambient mt-6 bg-white/50 block"></salla-comments>
+            <salla-comments item-id="{{product.id}}" type="product" class="glass-panel p-6 md:p-8 rounded-[32px] border border-white/55 mt-6 block"></salla-comments>
         {% endif %}
         
         <div class="s-blocks-wrapper s-before-related mt-12">{% hook 'product.single.before_product_recommendations' %}</div>

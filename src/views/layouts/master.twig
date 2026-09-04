@@ -98,6 +98,20 @@
                 glow.style.display = 'none';
             }
         }
+        // TOP PROFESSIONAL — header glass condenses on scroll
+        const header = document.querySelector('.floating-header');
+        if (header) {
+            let ticking = false;
+            const onScroll = () => {
+                if (window.scrollY > 16) header.classList.add('is-scrolled');
+                else header.classList.remove('is-scrolled');
+                ticking = false;
+            };
+            window.addEventListener('scroll', () => {
+                if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
+            }, {passive:true});
+            onScroll();
+        }
     });
 </script>
 

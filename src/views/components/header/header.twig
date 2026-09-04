@@ -5,7 +5,7 @@
 | cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |#}
 {% set important_links = theme.settings.get('important_links') %}
 
-<!-- ATELIER Header — Stitch DESIGN.md: header-glass (blur 20px, paper/ink, 1280 max) -->
+<!-- ATELIER Header — TOP PROFESSIONAL GLASS — liquid 32px blur, shrink on scroll, lime aura -->
 <header class="floating-header mt-4 mb-6 md:mb-8 px-5 md:px-8 h-[68px] md:h-[72px] flex justify-between items-center">
     <div class="flex items-center gap-5 md:gap-6">
         <a class="lg:hidden w-10 h-10 rounded-full bg-paper border border-outline flex items-center justify-center text-ink hover:bg-white hover:border-lime/40 hover:shadow-ambient transition-all duration-200 atelier" href="#mobile-menu" aria-label="Open navigation">
@@ -27,7 +27,7 @@
     
     <div class="flex items-center gap-2.5 md:gap-3">
         <div class="hidden md:block w-[288px]">
-            <salla-search inline oval height="44" class="bg-white/70 backdrop-blur-md border border-outline rounded-full focus-within:border-lime/50 focus-within:shadow-ambient transition-all"></salla-search>
+            <salla-search inline oval height="44" class="bg-white/55 backdrop-blur-[20px] border border-white/60 rounded-full focus-within:bg-white/78 focus-within:border-white/80 focus-within:shadow-ambient transition-all"></salla-search>
         </div>
         
         {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
