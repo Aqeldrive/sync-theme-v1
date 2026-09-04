@@ -3,106 +3,163 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SYNC Atelier — 4 Background Engines</title>
+<title>SYNC Atelier — Professional Audit Fix</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="http://localhost:8000/app.css"/>
 <style>body{margin:0}.font-display{font-family:'Cormorant Garamond',serif}</style>
 </head>
-<body class="bg-aurora">
+<body class="bg-aurora glass-on dark-mode-enabled">
 <div class="mesh-background"><div class="mesh-orb orb-a"></div><div class="mesh-orb orb-b"></div><div class="mesh-orb orb-c"></div><div class="mesh-orb orb-d"></div><div class="mouse-glow"></div></div>
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
  const g=document.querySelector('.mouse-glow');
  if(g){ let t=false,mx=0,my=0; const u=()=>{g.style.left=mx+'px';g.style.top=my+'px';g.style.opacity='1';t=false}; document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY; if(!t){requestAnimationFrame(u);t=true}}); document.addEventListener('mouseleave',()=>g.style.opacity='0')}
- window.setBg=(id)=>{
-   document.body.className=document.body.className.replace(/bg-(aurora|silk|cosmic|prism)/g,'').trim()+' bg-'+id;
-   document.querySelectorAll('[data-bg]').forEach(b=>b.classList.toggle('is-active', b.dataset.bg===id));
-   document.getElementById('bg-name').textContent=id.toUpperCase();
+ window.setBg=id=>{ document.body.className=document.body.className.replace(/bg-(aurora|silk|cosmic|prism)/g,'').trim()+' bg-'+id; document.querySelectorAll('[data-bg]').forEach(b=>b.classList.toggle('is-active',b.dataset.bg===id))}
+ window.toggleGlass=()=>{
+   document.body.classList.toggle('glass-on'); document.body.classList.toggle('glass-off');
+   document.getElementById('glass-state').textContent=document.body.classList.contains('glass-off')?'OFF — solid white':'ON — blur 20px';
  }
+ window.toggleDark=()=>{
+   document.body.classList.toggle('dark');
+   const isDark=document.body.classList.contains('dark');
+   document.getElementById('dark-state').textContent=isDark?'DARK — ink 070F24':'LIGHT — paper';
+   if(isDark) document.documentElement.style.colorScheme='dark'; else document.documentElement.style.colorScheme='light';
+ }
+ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',e=>{
+   if(document.body.classList.contains('dark-mode-enabled') && e.matches) document.body.classList.add('dark');
+ });
 });
 </script>
 <div class="relative" style="z-index:10">
-<!-- Top selector — Salla Theme Settings mirror -->
 <div class="sticky top-3 z-50 mx-auto max-w-[1280px] px-4">
- <div class="glass-panel rounded-full bg-white/88 border border-white/40 backdrop-blur-[20px] shadow-ambient px-3 py-2 flex flex-wrap items-center justify-between gap-3">
+ <div class="glass-panel rounded-full bg-white/88 border border-white/40 backdrop-blur-[20px] shadow-ambient px-3 py-2 flex flex-wrap items-center justify-between gap-2">
   <div class="flex items-center gap-2">
    <span class="font-display font-bold text-[16px] text-[#0A1834]">SYNC Atelier</span>
-   <span class="hidden md:inline text-[11px] tracking-[0.08em] font-bold text-gray-400 border border-[#E6E9F2] bg-white px-2 py-1 rounded-full">4 ENGINES</span>
-   <span id="bg-name" class="bg-[#0A1834] text-white text-[11px] font-bold tracking-[0.08em] px-3 py-1 rounded-full">AURORA</span>
+   <span class="hidden md:inline bg-[#0A1834] text-white text-[10px] font-bold tracking-[0.08em] px-2 py-1 rounded-full">PROFESSIONAL FIX</span>
   </div>
   <div class="pill-rail">
-   <button data-bg="aurora" onclick="setBg('aurora')" class="pill-pill is-active">1 Aurora Drift</button>
-   <button data-bg="silk" onclick="setBg('silk')" class="pill-pill">2 Silk Flow</button>
-   <button data-bg="cosmic" onclick="setBg('cosmic')" class="pill-pill">3 Cosmic Orbs</button>
-   <button data-bg="prism" onclick="setBg('prism')" class="pill-pill">4 Prism Light</button>
+   <button data-bg="aurora" onclick="setBg('aurora')" class="pill-pill is-active">Aurora</button>
+   <button data-bg="silk" onclick="setBg('silk')" class="pill-pill">Silk</button>
+   <button data-bg="cosmic" onclick="setBg('cosmic')" class="pill-pill">Cosmic</button>
+   <button data-bg="prism" onclick="setBg('prism')" class="pill-pill">Prism</button>
+   <span class="w-px h-6 bg-[#E6E9F2] mx-1"></span>
+   <button onclick="toggleGlass()" class="pill-pill">Glass: <span id="glass-state">ON — blur 20px</span></button>
+   <button onclick="toggleDark()" class="pill-pill">Theme: <span id="dark-state">LIGHT — paper</span></button>
   </div>
-  <span class="hidden lg:inline text-[11px] font-bold text-gray-500">Move mouse → lime aura 720px · Exclusively via Salla engine</span>
  </div>
- <p class="text-center text-[11px] font-bold tracking-wide text-gray-400 mt-2">In Salla: Theme Settings → <b class="text-[#0A1834]">Animated Background</b> → choose engine → Save (no code)</p>
+ <p class="text-center text-[11px] font-bold text-gray-500 mt-2">Salla: Theme Settings → <b class="text-[#0A1834]">Glassmorphism / Dark Mode / Animated Background</b> → toggle → Save</p>
 </div>
 
-<!-- Hero -->
 <section class="mx-auto max-w-[1280px] px-4 mt-6">
- <div class="rounded-[32px] overflow-hidden relative h-[480px] glass-panel border border-white/20 shadow-elevated">
-  <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400&q=80" style="width:100%;height:100%;object-fit:cover"/>
-  <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(10,24,52,.72), transparent 62%)"></div>
-  <div class="absolute bottom-0 p-8 md:p-10 max-w-[640px]">
-   <p class="text-white/70 text-[11px] tracking-[0.16em] font-bold">4 ENGINES — EACH BETTER THAN ITSELF</p>
-   <h1 class="font-display text-white text-[36px] md:text-[48px] font-bold leading-[0.9] tracking-[-0.04em] mt-2">خلفية تختارها،<br/>لا تفرضها.</h1>
-   <p class="text-white/80 text-[13px] leading-6 mt-3">Aurora (lime/forest aura drift 18s) · Silk (waves) · Cosmic (planets float) · Prism (beams sweep) — all 756K, all Salla CLI VALID.</p>
-   <div class="flex gap-2 mt-4"><span class="btn-atelier-lime px-6 py-2.5 rounded-full font-bold text-[13px]">Aurora — default</span><span class="bg-white/90 backdrop-blur border border-white/40 text-[#0A1834] px-5 py-2.5 rounded-full font-bold text-[13px]">Move mouse for aura</span></div>
+ <div class="glass-panel rounded-[32px] bg-white/70 border border-white/30 p-6 grid md:grid-cols-3 gap-4">
+  <div>
+   <p class="text-[11px] font-bold tracking-[0.08em] text-red-500">BEFORE — DEAD</p>
+   <h3 class="font-display font-bold text-[14px] text-[#0A1834] mt-1">Glass & Dark not wired</h3>
+   <p class="text-[12px] leading-5 text-gray-600 mt-1">twilight had <code>glassmorphism / dark_mode</code> but <code>grep</code> 0 hits in src. Switch did nothing, glass always on, dark never.</p>
+  </div>
+  <div>
+   <p class="text-[11px] font-bold tracking-[0.08em] text-emerald-600">AFTER — OPERATIONAL</p>
+   <h3 class="font-display font-bold text-[14px] text-[#0A1834] mt-1">Body classes + CSS</h3>
+   <p class="text-[12px] leading-5 text-gray-600 mt-1"><code>body.glass-on/off</code> + <code>dark-mode-enabled @media(prefers-color-scheme:dark)</code> + <code>.dark</code> toggle. Toggle above to test.</p>
+  </div>
+  <div>
+   <p class="text-[11px] font-bold tracking-[0.08em] text-emerald-600">BONUS</p>
+   <h3 class="font-display font-bold text-[14px] text-[#0A1834] mt-1">4 backgrounds</h3>
+   <p class="text-[12px] leading-5 text-gray-600 mt-1">aurora/silk/cosmic/prism all 757K. Change via Theme Settings → Animated Background.</p>
   </div>
  </div>
 </section>
 
-<!-- Engine explainers -->
-<section class="mx-auto max-w-[1280px] px-4 mt-6 grid md:grid-cols-4 gap-3">
- <div class="glass-panel rounded-[24px] bg-white/70 border border-white/30 p-4">
-  <p class="text-[11px] font-bold tracking-[0.08em] text-gray-400">01 — AURORA</p>
-  <h3 class="font-display font-bold text-[15px] text-[#0A1834] mt-1">Aurora Drift</h3>
-  <p class="text-[12px] leading-5 text-gray-500 mt-1">5 blurred gradients, lime 0.18 + forest 0.13, drift 18s+22s. Most premium, default.</p>
-  <span class="inline-flex mt-3 text-[11px] font-bold bg-[#D4FF00] text-[#0A1834] px-3 py-1 rounded-full">Salla: aurora</span>
- </div>
- <div class="glass-panel rounded-[24px] bg-white/70 border border-white/30 p-4">
-  <p class="text-[11px] font-bold tracking-[0.08em] text-gray-400">02 — SILK</p>
-  <h3 class="font-display font-bold text-[15px] text-[#0A1834] mt-1">Silk Flow</h3>
-  <p class="text-[12px] leading-5 text-gray-500 mt-1">2 silk waves 140% width, wave flow 16s. Editorial whisper.</p>
-  <span class="inline-flex mt-3 text-[11px] font-bold bg-white border border-[#E6E9F2] text-[#0A1834] px-3 py-1 rounded-full">Salla: silk</span>
- </div>
- <div class="glass-panel rounded-[24px] bg-white/70 border border-white/30 p-4">
-  <p class="text-[11px] font-bold tracking-[0.08em] text-gray-400">03 — COSMIC</p>
-  <h3 class="font-display font-bold text-[15px] text-[#0A1834] mt-1">Cosmic Orbs</h3>
-  <p class="text-[12px] leading-5 text-gray-500 mt-1">4 planets 280-520px float 13-18s. Playful luxury.</p>
-  <span class="inline-flex mt-3 text-[11px] font-bold bg-white border border-[#E6E9F2] text-[#0A1834] px-3 py-1 rounded-full">Salla: cosmic</span>
- </div>
- <div class="glass-panel rounded-[24px] bg-white/70 border border-white/30 p-4">
-  <p class="text-[11px] font-bold tracking-[0.08em] text-gray-400">04 — PRISM</p>
-  <h3 class="font-display font-bold text-[15px] text-[#0A1834] mt-1">Prism Light</h3>
-  <p class="text-[12px] leading-5 text-gray-500 mt-1">Diagonal beams sweep 8s + glow. Architectural.</p>
-  <span class="inline-flex mt-3 text-[11px] font-bold bg-white border border-[#E6E9F2] text-[#0A1834] px-3 py-1 rounded-full">Salla: prism</span>
+<!-- BASKET PROFESSIONAL -->
+<section class="mx-auto max-w-[1280px] px-4 mt-6">
+ <h2 class="font-display text-[22px] font-bold tracking-[-0.03em] text-[#0A1834]">Basket — Professional Editorial (was glass-on-glass)</h2>
+ <p class="text-[12px] text-gray-500 mt-1">Solid white cards 24px + paper quantity pills + lime free-shipping bar + glass summary with trust</p>
+ <div class="mt-4 grid lg:grid-cols-[1fr_380px] gap-6">
+  <!-- items -->
+  <div class="bg-white rounded-[32px] border border-[#E6E9F2] p-5 shadow-ambient">
+   <div class="flex justify-between items-center border-b border-[#E6E9F2]/60 pb-4 mb-4">
+    <h3 class="font-display font-bold text-[20px] text-[#0A1834]">سلة التسوق</h3>
+    <span class="bg-[#F8F9FF] border border-[#E6E9F2] px-3 py-1 rounded-full text-[12px] font-bold">3 عناصر</span>
+   </div>
+   <div class="bg-[#F8F9FF] rounded-[24px] border border-[#E6E9F2] p-4 flex gap-4">
+    <div class="w-24 h-24 rounded-[16px] bg-white border border-[#E6E9F2] overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300" style="width:100%;height:100%;object-fit:cover"/></div>
+    <div class="flex-1 min-w-0">
+     <h4 class="font-display font-bold text-[15px] text-[#0A1834]">حقيبة Atelier — جلد إيطالي</h4>
+     <p class="text-[13px] text-gray-500">SKU AT-001 · أسود</p>
+     <div class="flex items-center gap-2 mt-2">
+      <span class="font-display font-bold tabular-nums text-[#0A1834]">1,290 ر.س</span>
+      <span class="text-gray-300">·</span>
+      <span class="flex items-center bg-white border border-[#E6E9F2] rounded-full px-2 h-[32px] text-[12px] font-bold">− 1 +</span>
+     </div>
+    </div>
+    <div class="hidden md:flex flex-col items-end gap-2">
+     <span class="text-[11px] font-bold tracking-wide text-gray-400">الإجمالي</span>
+     <span class="font-display font-bold text-[18px] tabular-nums text-[#0A1834]">1,290 ر.س</span>
+     <span class="w-8 h-8 rounded-full bg-white border border-[#E6E9F2] grid place-items-center text-gray-400">✕</span>
+    </div>
+   </div>
+   <div class="bg-[#F8F9FF] rounded-[24px] border border-[#E6E9F2] p-4 flex gap-4 mt-3">
+    <div class="w-24 h-24 rounded-[16px] bg-white border border-[#E6E9F2] overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" style="width:100%;height:100%;object-fit:cover"/></div>
+    <div class="flex-1"><h4 class="font-display font-bold text-[15px] text-[#0A1834]">حذاء Runway — شامواه</h4><p class="text-[13px] text-gray-500">مقاس 42</p><div class="font-display font-bold tabular-nums text-[#0A1834] mt-2">890 ر.س</div></div>
+    <div class="hidden md:flex flex-col items-end"><span class="text-[11px] font-bold text-gray-400">الإجمالي</span><span class="font-display font-bold text-[18px] text-[#0A1834]">890 ر.س</span></div>
+   </div>
+  </div>
+  <!-- summary -->
+  <div class="space-y-4">
+   <div class="bg-[#F8F9FF] rounded-[24px] border border-[#E6E9F2] p-4">
+    <div class="flex gap-3 items-center">
+     <div class="w-10 h-10 rounded-full bg-white border border-[#E6E9F2] grid place-items-center">↗</div>
+     <div><h4 class="text-[13px] font-bold text-[#0A1834]">شحن مجاني</h4><p class="text-[12px] text-gray-500">أضف <b>120 ر.س</b> للشحن المجاني</p></div>
+    </div>
+    <div class="mt-3 bg-white rounded-full h-2.5 border border-[#E6E9F2] overflow-hidden"><div class="h-full bg-[#D4FF00] rounded-full" style="width:68%"></div></div>
+   </div>
+   <div class="bg-white rounded-[32px] border border-[#E6E9F2] shadow-elevated p-6">
+    <h3 class="font-display font-bold text-[16px] text-[#0A1834]">ملخص الطلب</h3>
+    <div class="mt-4 space-y-2 text-[13px]"><div class="flex justify-between"><span class="text-gray-500">المجموع</span><span class="font-bold tabular-nums text-[#0A1834]">2,180 ر.س</span></div><div class="flex justify-between"><span class="text-gray-500">الشحن</span><span class="font-bold text-emerald-600">مجاني</span></div><div class="flex justify-between border-t border-[#E6E9F2] pt-3 text-[16px]"><span class="font-bold text-[#0A1834]">الإجمالي</span><span class="font-display font-bold text-[20px] tabular-nums text-[#0A1834]">2,180 ر.س</span></div></div>
+    <button class="btn-atelier-lime w-full mt-4 py-3.5 rounded-full font-bold text-[15px] shadow-glow">إتمام الشراء — Checkout</button>
+    <p class="text-center text-[11px] font-bold tracking-wide text-gray-400 mt-3">دفع آمن · إرجاع 14 يوم · دعم فوري</p>
+   </div>
+  </div>
  </div>
 </section>
 
-<!-- Products — same cards, background does the talking -->
-<section class="mx-auto max-w-[1280px] px-4 mt-6">
- <div class="flex items-baseline justify-between mb-4">
-  <h2 class="font-display text-[22px] font-bold tracking-[-0.03em] text-[#0A1834]">منتجات مختارة — Atelier cards 32px</h2>
-  <span class="text-[12px] font-bold text-gray-400">Hover → glow + translateY-4</span>
- </div>
- <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-  <article class="product-card-atelier group rounded-[32px] bg-white border border-[#E6E9F2] overflow-hidden shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all duration-400"><div class="relative aspect-[4/5] overflow-hidden bg-[#F8F9FF]"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" style="width:100%;height:100%;object-fit:cover" class="thumb-zoom"/><span class="absolute top-3 start-3 bg-[#D4FF00] text-[#0A1834] text-[11px] font-bold px-3 py-1 rounded-full">جديد</span></div><div class="p-4"><p class="text-[11px] font-bold tracking-wide text-gray-400">MAISON</p><h3 class="font-display font-bold text-[15px] text-[#0A1834] mt-1">حقيبة Atelier</h3><div class="font-bold tabular-nums text-[#0A1834] mt-2">1,290 ر.س</div><button class="btn-atelier-primary w-full mt-3 py-2.5 rounded-full text-[13px]">أضف للسلة</button></div></article>
-  <article class="product-card-atelier group rounded-[32px] bg-white border border-[#E6E9F2] overflow-hidden shadow-ambient hidden md:block"><div class="relative aspect-[4/5] overflow-hidden bg-[#F8F9FF]"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600" style="width:100%;height:100%;object-fit:cover" class="thumb-zoom"/></div><div class="p-4"><h3 class="font-display font-bold text-[15px] text-[#0A1834]">حذاء Runway</h3><div class="font-bold tabular-nums mt-2">890 ر.س</div><button class="btn-atelier-ghost w-full mt-3 py-2.5 rounded-full text-[13px] border">أضف</button></div></article>
-  <article class="product-card-atelier group rounded-[32px] bg-white border border-[#E6E9F2] overflow-hidden shadow-ambient hidden md:block"><div class="relative aspect-[4/5] overflow-hidden bg-[#F8F9FF]"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600" style="width:100%;height:100%;object-fit:cover" class="thumb-zoom"/></div><div class="p-4"><h3 class="font-display font-bold text-[15px] text-[#0A1834]">قميص Overshirt</h3><div class="font-bold tabular-nums mt-2">650 ر.س</div><button class="btn-atelier-ghost w-full mt-3 py-2.5 rounded-full text-[13px] border">أضف</button></div></article>
-  <article class="product-card-atelier group rounded-[32px] bg-white border border-[#E6E9F2] overflow-hidden shadow-ambient hidden md:block"><div class="relative aspect-[4/5] overflow-hidden bg-[#F8F9FF]"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600" style="width:100%;height:100%;object-fit:cover" class="thumb-zoom"/></div><div class="p-4"><h3 class="font-display font-bold text-[15px] text-[#0A1834]">نظارة Atelier</h3><div class="font-bold tabular-nums mt-2">420 ر.س</div><button class="btn-atelier-ghost w-full mt-3 py-2.5 rounded-full text-[13px] border">أضف</button></div></article>
+<!-- PRODUCT PROFESSIONAL -->
+<section class="mx-auto max-w-[1280px] px-4 mt-8">
+ <h2 class="font-display text-[22px] font-bold tracking-[-0.03em] text-[#0A1834]">Product — Professional Editorial (was half-finished)</h2>
+ <p class="text-[12px] text-gray-500 mt-1">46/54 split · 120px thumbs · pill options · SKU + delivery · trust row · tabular 32px price</p>
+ <div class="mt-4 bg-white rounded-[32px] border border-[#E6E9F2] shadow-ambient p-4 md:p-6 grid md:grid-cols-[46%_54%] gap-6">
+  <div class="space-y-3">
+   <div class="rounded-[24px] overflow-hidden bg-white border border-[#E6E9F2] aspect-[4/5]"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700" style="width:100%;height:100%;object-fit:cover"/></div>
+   <div class="flex gap-2"><span class="w-24 h-24 rounded-[16px] bg-white border border-[#E6E9F2] overflow-hidden"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200" style="width:100%;height:100%;object-fit:cover"/></span><span class="w-24 h-24 rounded-[16px] bg-white border border-[#E6E9F2] overflow-hidden opacity-60"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200" style="width:100%;height:100%;object-fit:cover"/></span><span class="w-24 h-24 rounded-[16px] bg-white border border-[#E6E9F2] overflow-hidden opacity-60"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=200" style="width:100%;height:100%;object-fit:cover"/></span></div>
+  </div>
+  <div>
+   <span class="inline-flex bg-white border border-[#E6E9F2] px-3 py-1 rounded-full text-[11px] font-bold tracking-wide text-gray-500">MAISON</span>
+   <h3 class="font-display font-bold text-[26px] md:text-[30px] leading-[0.95] tracking-[-0.03em] text-[#0A1834] mt-2">حقيبة Atelier — نسخة محدودة</h3>
+   <div class="w-12 h-1 bg-[#D4FF00] rounded-full mt-3 shadow-glow"></div>
+   <p class="text-[11px] font-bold tracking-wide text-gray-400 mt-3">SKU AT-001 · توصيل خلال 2-4 أيام</p>
+   <div class="inline-flex items-center gap-2 bg-white border border-[#E6E9F2] px-3 py-1.5 rounded-full mt-3"><span class="text-yellow-500">★</span><span class="text-[13px] font-bold text-[#0A1834]">4.8</span><span class="text-[12px] text-gray-400">(127)</span></div>
+   <div class="bg-[#F8F9FF] rounded-[24px] border border-[#E6E9F2] p-4 mt-4">
+    <p class="text-[11px] font-bold tracking-wide text-gray-400 uppercase">اللون</p>
+    <div class="flex gap-2 mt-2"><span class="px-4 py-2 rounded-full bg-[#0A1834] text-white text-[13px] font-bold">أسود</span><span class="px-4 py-2 rounded-full bg-white border border-[#E6E9F2] text-[#0A1834] text-[13px] font-bold">جملي</span><span class="px-4 py-2 rounded-full bg-white border border-[#E6E9F2] text-[#0A1834] text-[13px] font-bold">كريمي</span></div>
+    <p class="text-[11px] font-bold tracking-wide text-gray-400 uppercase mt-4">المقاس</p>
+    <div class="flex gap-2 mt-2"><span class="px-4 py-2 rounded-full bg-white border border-[#E6E9F2] text-[13px] font-bold">S</span><span class="px-4 py-2 rounded-full bg-[#0A1834] text-white text-[13px] font-bold">M</span><span class="px-4 py-2 rounded-full bg-white border border-[#E6E9F2] text-[13px] font-bold">L</span></div>
+   </div>
+   <div class="bg-white rounded-[32px] border border-[#E6E9F2] p-5 mt-4 shadow-ambient">
+    <div class="flex justify-between items-baseline"><span class="text-[11px] font-bold tracking-wide text-gray-400">السعر</span><span class="font-display font-bold text-[30px] tabular-nums text-[#0A1834]">1,290 ر.س</span></div>
+    <div class="h-px bg-[#E6E9F2]/60 my-4"></div>
+    <div class="flex gap-3"><span class="flex-1 grid place-items-center bg-[#F8F9FF] border border-[#E6E9F2] rounded-full h-[52px] font-bold text-[13px]">− 1 +</span><span class="flex-[2] grid place-items-center bg-[#0A1834] text-white rounded-full h-[52px] font-bold text-[14px] shadow-glow">أضف للسلة</span></div>
+    <div class="grid grid-cols-3 gap-2 mt-4 text-center"><span class="bg-[#F8F9FF] border border-[#E6E9F2]/60 rounded-[16px] py-2.5 text-[11px] font-bold">أصلي 100%</span><span class="bg-[#F8F9FF] border border-[#E6E9F2]/60 rounded-[16px] py-2.5 text-[11px] font-bold">شحن سريع</span><span class="bg-[#F8F9FF] border border-[#E6E9F2]/60 rounded-[16px] py-2.5 text-[11px] font-bold">إرجاع سهل</span></div>
+   </div>
+  </div>
  </div>
 </section>
 
 <footer class="mx-auto max-w-[1280px] px-4 mt-8 mb-10">
  <div class="rounded-[32px] bg-[#0A1834] text-white p-6 flex flex-col md:flex-row justify-between gap-3">
-  <div><div class="font-display font-bold text-[16px]">SYNC Atelier — 4 Engines</div><p class="text-white/60 text-[12px] mt-1">756K · 16f 15c 9s VALID · Salla CLI 3.2.30 · Switch in Theme Settings, no rebuild</p></div>
-  <div class="text-[12px] text-white/60">Draft 308547145 · assets http://localhost:8000 · ws 8001 · <span class="text-[#D4FF00]">LIVE</span></div>
+  <div><div class="font-display font-bold">SYNC Atelier — Professional</div><p class="text-white/60 text-[12px] mt-1">757K · glass+dark operational · basket solid editorial · product pill options · 9s VALID</p></div>
+  <div class="text-[12px] text-white/60">Draft 308547145 · http://localhost:8000 · ws 8001 · <span class="text-[#D4FF00]">LIVE</span></div>
  </div>
 </footer>
 </div>
