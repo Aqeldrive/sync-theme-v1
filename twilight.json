@@ -118,6 +118,23 @@
             "required": false,
             "value": true,
             "selected": true
+        },
+        {
+            "type": "string",
+            "id": "background_animation",
+            "label": "نمط الخلفية المتحركة — Animated Background",
+            "description": "اختر محرك الخلفية: كل خيار مستوى عالمي",
+            "labelHTML": null,
+            "icon": "sicon-magic-wand",
+            "format": "select",
+            "required": false,
+            "value": "aurora",
+            "options": [
+                {"id": "aurora", "name": "Aurora Drift — أورورا (lime · forest · ink)"},
+                {"id": "silk", "name": "Silk Flow — حرير متدفق"},
+                {"id": "cosmic", "name": "Cosmic Orbs — كواكب عائمة"},
+                {"id": "prism", "name": "Prism Light — ضوء منشوري"}
+            ]
         }
     ],
     "components": [
