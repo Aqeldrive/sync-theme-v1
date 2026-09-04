@@ -4,13 +4,13 @@
  */
 
 /* ═══════════════════════════════════════════════════════════════
-   ANIMATED MESH BACKGROUND — Subtle, premium, not tacky
-   Soft gradient orbs that drift slowly. Low opacity, high taste.
+   ANIMATED MESH BACKGROUND — VISIBLE AURORA (CEO FIX)
+   Clearly animated — orbs drift across viewport. Luxury, not subtle to invisible.
    ═══════════════════════════════════════════════════════════════ */
 .mesh-background {
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: 0;
     background: #F8F9FF;
     overflow: hidden;
     pointer-events: none;
@@ -19,50 +19,64 @@
 .mesh-background::before {
     content: "";
     position: absolute;
-    inset: -20%;
+    inset: -22%;
     background:
-        radial-gradient(ellipse 700px 500px at 15% 20%, rgba(212,255,0,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 600px 400px at 85% 15%, rgba(10,24,52,0.03) 0%, transparent 60%),
-        radial-gradient(ellipse 800px 600px at 50% 85%, rgba(13,59,46,0.04) 0%, transparent 65%),
-        radial-gradient(ellipse 500px 500px at 90% 85%, rgba(212,255,0,0.04) 0%, transparent 60%);
-    animation: meshDrift 32s ease-in-out infinite alternate;
+        radial-gradient(ellipse 820px 620px at 18% 22%, rgba(212,255,0,0.18) 0%, rgba(212,255,0,0.06) 42%, transparent 72%),
+        radial-gradient(ellipse 780px 560px at 84% 18%, rgba(10,24,52,0.10) 0%, transparent 62%),
+        radial-gradient(ellipse 900px 680px at 52% 88%, rgba(13,59,46,0.13) 0%, transparent 68%),
+        radial-gradient(ellipse 640px 520px at 88% 82%, rgba(212,255,0,0.11) 0%, transparent 64%),
+        radial-gradient(ellipse 560px 460px at 38% 52%, rgba(238,241,255,0.85) 0%, transparent 70%);
+    filter: blur(18px);
+    animation: meshDrift 18s ease-in-out infinite alternate;
+    will-change: transform;
 }
 
 .mesh-background::after {
     content: "";
     position: absolute;
-    inset: 0;
+    inset: -18%;
     background:
-        radial-gradient(ellipse 900px 700px at 30% 50%, rgba(238,241,255,0.6) 0%, transparent 70%);
-    animation: meshPulse 16s ease-in-out infinite alternate;
+        radial-gradient(ellipse 700px 520px at 72% 48%, rgba(212,255,0,0.09) 0%, transparent 60%),
+        radial-gradient(ellipse 620px 480px at 30% 70%, rgba(10,24,52,0.06) 0%, transparent 65%);
+    filter: blur(28px);
+    animation: meshDrift2 22s ease-in-out infinite alternate-reverse;
+    will-change: transform;
 }
 
 @keyframes meshDrift {
-    0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
-    33%  { transform: translate(-2%, 1%) scale(1.02) rotate(0.3deg); }
-    66%  { transform: translate(1.5%, -1.5%) scale(0.98) rotate(-0.2deg); }
-    100% { transform: translate(0, 1%) scale(1.01) rotate(0.2deg); }
+    0%   { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+    25%  { transform: translate(-28px, 18px) scale(1.04) rotate(0.4deg); }
+    50%  { transform: translate(22px, -16px) scale(1.02) rotate(-0.3deg); }
+    75%  { transform: translate(16px, 22px) scale(1.06) rotate(0.5deg); }
+    100% { transform: translate(-18px, -10px) scale(1.03) rotate(-0.2deg); }
+}
+
+@keyframes meshDrift2 {
+    0%   { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+    33%  { transform: translate(26px, -14px) scale(1.03) rotate(-0.4deg); }
+    66%  { transform: translate(-20px, 20px) scale(0.98) rotate(0.3deg); }
+    100% { transform: translate(12px, 8px) scale(1.05) rotate(0.2deg); }
 }
 
 @keyframes meshPulse {
-    0%   { opacity: 0.7; }
+    0%   { opacity: 0.85; }
     100% { opacity: 1; }
 }
 
-/* Mouse aura — soft lime glow that follows cursor elegantly */
+/* Mouse aura — VISIBLE lime glow that follows cursor */
 .mouse-glow {
     position: fixed;
-    width: 600px;
-    height: 600px;
+    width: 720px;
+    height: 720px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(212,255,0,0.09) 0%, rgba(212,255,0,0.03) 30%, transparent 70%);
+    background: radial-gradient(circle, rgba(212,255,0,0.16) 0%, rgba(212,255,0,0.07) 28%, rgba(212,255,0,0.02) 48%, transparent 72%);
     pointer-events: none;
     transform: translate(-50%, -50%);
     opacity: 0;
-    transition: opacity 0.6s ease;
+    transition: opacity 0.45s ease;
     z-index: 1;
     will-change: transform;
-    filter: blur(1px);
+    filter: blur(2px);
 }
 
 /* ═══════════════════════════════════════════════════════════════

@@ -3,108 +3,54 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SYNC Atelier — High Level</title>
+<title>SYNC Atelier — VISIBLE AURORA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="http://localhost:8000/app.css"/>
-<style>
-  :root{--font-display:'Cormorant Garamond',serif}
-  .font-display{font-family:var(--font-display)}
-  body{margin:0;background:#F8F9FF}
-  .mesh-background{position:fixed;inset:0;z-index:0;background:#F8F9FF;overflow:hidden;pointer-events:none}
-  .mesh-background::before{content:"";position:absolute;inset:-20%;background:
-    radial-gradient(ellipse 700px 500px at 15% 20%, rgba(212,255,0,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 600px 400px at 85% 15%, rgba(10,24,52,0.03) 0%, transparent 60%),
-    radial-gradient(ellipse 800px 600px at 50% 85%, rgba(13,59,46,0.04) 0%, transparent 65%);
-    animation:meshDrift 32s ease-in-out infinite alternate}
-  @keyframes meshDrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-2%,1%) scale(1.03)}}
-</style>
+<style>body{margin:0} .demo-badge{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:50;background:#0A1834;color:#D4FF00;font:700 12px system-ui;padding:8px 16px;border-radius:9999px;box-shadow:0 8px 24px rgba(0,0,0,.2);letter-spacing:.04em}</style>
 </head>
 <body>
-<div class="mesh-background"></div>
-<div style="position:relative;z-index:10">
-
- <!-- Floating pill header -->
- <header class="sticky top-4 z-50 mx-auto max-w-[1280px] px-4">
-  <div class="flex items-center justify-between glass-panel rounded-full bg-white/86 border border-white/40 backdrop-blur-[20px] shadow-ambient px-5 h-[72px]">
-   <div class="font-display font-bold text-[20px] tracking-tight text-[#0A1834]">SYNC <span style="color:#D4FF00;text-shadow:0 0 12px rgba(212,255,0,.4)">•</span> Atelier</div>
-   <nav class="hidden md:flex gap-6 text-[13px] font-bold tracking-wide text-[#0A1834]"><a>المتجر</a><a>المجموعات</a><a>عنا</a></nav>
-   <div class="flex gap-2"><span class="w-9 h-9 rounded-full bg-[#0A1834] text-white grid place-items-center text-[13px]">◯</span><span class="btn-atelier-lime text-[13px] px-5 py-2 rounded-full">السلة</span></div>
+<div class="mesh-background"><div class="mouse-glow"></div></div>
+<div class="demo-badge">◉ AURORA DRIFT 18s + 22s — move your mouse for lime aura — Salla engine http://localhost:8000</div>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+ const g=document.querySelector('.mouse-glow');
+ if(g){ let t=false,mx=0,my=0; const u=()=>{g.style.left=mx+'px';g.style.top=my+'px';g.style.opacity='1';t=false}; document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY; if(!t){requestAnimationFrame(u);t=true}}); document.addEventListener('mouseleave',()=>g.style.opacity='0') }
+});
+</script>
+<div class="app-inner flex flex-col min-h-screen relative" style="z-index:10">
+<header class="sticky top-4 z-50 mx-auto max-w-[1280px] w-full px-4">
+ <div class="flex items-center justify-between glass-panel rounded-full bg-white/86 border border-white/40 backdrop-blur-[20px] shadow-ambient px-5 h-[72px]">
+  <div class="font-display font-bold text-[20px] tracking-tight text-[#0A1834]">SYNC <span style="color:#D4FF00">•</span> Atelier</div>
+  <nav class="hidden md:flex gap-6 text-[13px] font-bold text-[#0A1834]"><a>المتجر</a><a>المجموعات</a><a>عنا</a></nav>
+  <div class="flex gap-2"><span class="w-9 h-9 rounded-full bg-[#0A1834] text-white grid place-items-center">◯</span><span class="btn-atelier-lime text-[13px] px-5 py-2 rounded-full">السلة</span></div>
+ </div>
+</header>
+<section class="mx-auto max-w-[1280px] w-full px-4 mt-10">
+ <div class="rounded-[32px] overflow-hidden relative h-[520px] glass-panel border border-white/20 shadow-elevated">
+  <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400&q=80" style="width:100%;height:100%;object-fit:cover"/>
+  <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(10,24,52,.72), transparent 62%)"></div>
+  <div class="absolute bottom-0 p-8 md:p-10 max-w-[640px]">
+   <p class="text-white/70 text-[11px] tracking-[0.16em] font-bold">AURORA — VISIBLE MOVEMENT</p>
+   <h1 class="font-display text-white text-[40px] md:text-[52px] font-bold leading-[0.9] tracking-[-0.04em] mt-2">خلفية تتنفس.</h1>
+   <p class="text-white/80 text-[14px] leading-6 mt-3">5 orbs · lime 0.18 + ink 0.10 + forest 0.13 · blur 18px/28px · drift 18s + 22s alternate · lime aura 720px follows cursor</p>
+   <span class="btn-atelier-lime inline-flex mt-5 px-7 py-3 rounded-full font-bold text-[14px] shadow-glow">تسوّق الآن</span>
   </div>
- </header>
-
- <!-- Hero editorial -->
- <section class="mx-auto max-w-[1280px] px-4 mt-8">
-  <div class="rounded-[32px] overflow-hidden relative h-[520px] glass-panel border border-white/20 shadow-elevated">
-   <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400&q=80" style="width:100%;height:100%;object-fit:cover"/>
-   <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(10,24,52,.72) 0%, transparent 62%)"></div>
-   <div class="absolute bottom-0 p-8 md:p-10 max-w-[640px]">
-    <p class="text-white/70 text-[11px] tracking-[0.16em] font-bold">EDIT 01 — QUIET LUXURY</p>
-    <h1 class="font-display text-white text-[38px] md:text-[52px] font-bold leading-[0.9] tracking-[-0.04em] mt-2">هدوء يصنع<br/>حضورا.</h1>
-    <p class="text-white/75 text-[14px] leading-6 mt-3 max-w-[520px]">سِنك أتيليه — تجارة هادئة، جراحية، تترك المنتج يتكلم. Cormorant للعنوان، لوحة 1280px، 32px انحناء.</p>
-    <a class="btn-atelier-lime inline-flex mt-5 px-7 py-3 rounded-full font-bold text-[14px] shadow-glow">تسوّق المجموعة — <span style="opacity:.6">Shop the edit</span></a>
-   </div>
-  </div>
- </section>
-
- <!-- Product cards — Atelier -->
- <section class="mx-auto max-w-[1280px] px-4 mt-10">
-  <div class="flex items-baseline justify-between mb-5">
-   <h2 class="font-display text-[26px] font-bold tracking-[-0.03em] text-[#0A1834]">منتجات مختارة</h2>
-   <a class="text-[13px] font-bold text-[#0A1834] border-b border-[#0A1834]/20">عرض الكل — View all</a>
-  </div>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-   <!-- repeat 4 -->
-   <article class="product-card-atelier group rounded-[32px] bg-white border border-[#E6E9F2] overflow-hidden shadow-ambient hover:shadow-elevated hover:border-[rgba(212,255,0,.28)] transition-all duration-400 hover:-translate-y-1">
-    <div class="relative aspect-[4/5] overflow-hidden bg-[#F8F9FF]"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80" style="width:100%;height:100%;object-fit:cover" class="group-hover:scale-[1.05] transition-transform duration-700"/><span class="absolute top-3 start-3 bg-[#D4FF00] text-[#0A1834] text-[11px] font-bold px-3 py-1 rounded-full">جديد</span><div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity" style="background:linear-gradient(to top, rgba(10,24,52,.18), transparent 55%)"></div></div>
-    <div class="p-4"><p class="text-[11px] tracking-[0.08em] font-bold text-gray-400">MAISON</p><h3 class="font-display font-bold text-[15px] leading-tight text-[#0A1834] mt-1">حقيبة Atelier — جلد إيطالي</h3><div class="flex items-baseline gap-2 mt-2"><span class="font-bold tabular-nums text-[#0A1834]">1,290 ر.س</span><span class="text-[12px] line-through text-gray-400">1,590 ر.س</span></div><button class="btn-atelier-primary w-full mt-3 py-2.5 rounded-full text-[13px] font-bold">أضف للسلة</button></div>
-   </article>
-   <article class="product-card-atelier group rounded-[32px] bg-white border border-[#E6E9F2] overflow-hidden shadow-ambient hover:shadow-elevated hover:border-[rgba(212,255,0,.28)] transition-all duration-400 hover:-translate-y-1">
-    <div class="relative aspect-[4/5] overflow-hidden bg-[#F8F9FF]"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80" style="width:100%;height:100%;object-fit:cover" class="group-hover:scale-[1.05] transition-transform duration-700"/><span class="absolute top-3 start-3 bg-white border border-[#E6E9F2] text-[#0A1834] text-[11px] font-bold px-3 py-1 rounded-full">حصري</span></div>
-    <div class="p-4"><p class="text-[11px] tracking-[0.08em] font-bold text-gray-400">ATELIER</p><h3 class="font-display font-bold text-[15px] leading-tight text-[#0A1834] mt-1">حذاء Runway — شامواه</h3><div class="flex items-baseline gap-2 mt-2"><span class="font-bold tabular-nums text-[#0A1834]">890 ر.س</span></div><button class="btn-atelier-ghost w-full mt-3 py-2.5 rounded-full text-[13px] font-bold border border-[#E6E9F2]">أضف للسلة</button></div>
-   </article>
-   <article class="product-card-atelier hidden md:block group rounded-[32px] bg-white border border-[#E6E9F2] overflow-hidden shadow-ambient hover:shadow-elevated transition-all duration-400 hover:-translate-y-1">
-    <div class="relative aspect-[4/5] overflow-hidden bg-[#F8F9FF]"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&q=80" style="width:100%;height:100%;object-fit:cover" class="group-hover:scale-[1.05] transition-transform duration-700"/></div>
-    <div class="p-4"><p class="text-[11px] tracking-[0.08em] font-bold text-gray-400">STUDIO</p><h3 class="font-display font-bold text-[15px] leading-tight text-[#0A1834] mt-1">قميص Overshirt — صوف</h3><div class="flex items-baseline gap-2 mt-2"><span class="font-bold tabular-nums text-[#0A1834]">650 ر.س</span></div><button class="btn-atelier-ghost w-full mt-3 py-2.5 rounded-full text-[13px] font-bold border border-[#E6E9F2]">أضف للسلة</button></div>
-   </article>
-   <article class="product-card-atelier hidden md:block group rounded-[32px] bg-white border border-[#E6E9F2] overflow-hidden shadow-ambient hover:shadow-elevated transition-all duration-400 hover:-translate-y-1">
-    <div class="relative aspect-[4/5] overflow-hidden bg-[#F8F9FF]"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&q=80" style="width:100%;height:100%;object-fit:cover" class="group-hover:scale-[1.05] transition-transform duration-700"/></div>
-    <div class="p-4"><p class="text-[11px] tracking-[0.08em] font-bold text-gray-400">EDIT</p><h3 class="font-display font-bold text-[15px] leading-tight text-[#0A1834] mt-1">نظارة Atelier — أسيتات</h3><div class="flex items-baseline gap-2 mt-2"><span class="font-bold tabular-nums text-[#0A1834]">420 ر.س</span></div><button class="btn-atelier-ghost w-full mt-3 py-2.5 rounded-full text-[13px] font-bold border border-[#E6E9F2]">أضف للسلة</button></div>
-   </article>
-  </div>
- </section>
-
- <!-- High-level product detail peek — tabular pricing + trust -->
- <section class="mx-auto max-w-[1280px] px-4 mt-10">
-  <div class="glass-panel rounded-[32px] bg-white/70 border border-white/30 backdrop-blur-xl shadow-ambient p-6 md:p-8 grid md:grid-cols-[46%_54%] gap-8 items-start">
-   <div class="rounded-[24px] overflow-hidden bg-white border border-[#E6E9F2] aspect-[4/5]"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80" style="width:100%;height:100%;object-fit:cover"/></div>
-   <div>
-    <p class="text-[11px] tracking-[0.12em] font-bold text-gray-500 bg-white border border-[#E6E9F2] inline-flex px-3 py-1 rounded-full">MAISON</p>
-    <h3 class="font-display text-[32px] font-bold tracking-[-0.03em] leading-[0.95] text-[#0A1834] mt-3">حقيبة Atelier — نسخة محدودة</h3>
-    <div class="w-12 h-1 bg-[#D4FF00] rounded-full mt-4 shadow-glow"></div>
-    <p class="text-[14px] leading-7 text-gray-600 mt-4">جلد عجل إيطالي، بطانة قطنية، هاردوير مطلي. صممت لتدوم، لا لتستهلك.</p>
-    <div class="bg-white rounded-[24px] border border-[#E6E9F2] p-5 mt-6">
-     <div class="flex justify-between items-baseline"><span class="text-[11px] tracking-[0.1em] font-bold text-gray-400">السعر</span><span class="font-display text-[30px] font-bold tabular-nums text-[#0A1834]">1,290 ر.س</span></div>
-     <div class="h-px bg-[#E6E9F2]/60 my-4"></div>
-     <div class="flex gap-3"><span class="flex-1 grid place-items-center bg-[#F8F9FF] border border-[#E6E9F2] rounded-full h-[52px] text-[13px] font-bold">1</span><span class="flex-[2] grid place-items-center bg-[#0A1834] text-white rounded-full h-[52px] font-bold text-[14px] shadow-glow">أضف للسلة — Add to cart</span></div>
-     <div class="grid grid-cols-3 gap-2 mt-4 text-center">
-      <span class="bg-[#F8F9FF] border border-[#E6E9F2]/60 rounded-[16px] py-3 text-[11px] font-bold">أصلي 100%</span>
-      <span class="bg-[#F8F9FF] border border-[#E6E9F2]/60 rounded-[16px] py-3 text-[11px] font-bold">شحن سريع</span>
-      <span class="bg-[#F8F9FF] border border-[#E6E9F2]/60 rounded-[16px] py-3 text-[11px] font-bold">إرجاع سهل</span>
-     </div>
-    </div>
-   </div>
-  </div>
- </section>
-
- <footer class="mx-auto max-w-[1280px] px-4 mt-10 mb-10">
-  <div class="rounded-[32px] bg-[#0A1834] text-white p-8 flex flex-col md:flex-row justify-between gap-6">
-   <div><div class="font-display font-bold text-[18px]">SYNC Atelier</div><p class="text-white/60 text-[12px] mt-2 max-w-[420px]">Quiet luxury, surgical commerce. 1280px container · 32px section radius · glow border + elevation. Salla CLI 16f/15c/8s — VALID.</p></div>
-   <div class="text-[12px] text-white/60">© Sync · <span class="text-[#D4FF00]">● Live on :8000 — 750K</span> · Cormorant + IBM Plex Arabic</div>
-  </div>
- </footer>
-
+ </div>
+</section>
+<section class="mx-auto max-w-[1280px] w-full px-4 mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+ <article class="product-card-atelier group rounded-[32px] bg-white border border-[#E6E9F2] overflow-hidden shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all duration-400"><div class="relative aspect-[4/5] overflow-hidden bg-[#F8F9FF]"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" style="width:100%;height:100%;object-fit:cover" class="thumb-zoom"/><span class="absolute top-3 start-3 bg-[#D4FF00] text-[#0A1834] text-[11px] font-bold px-3 py-1 rounded-full">جديد</span></div><div class="p-4"><p class="text-[11px] font-bold tracking-wide text-gray-400">MAISON</p><h3 class="font-display font-bold text-[15px] text-[#0A1834] mt-1">حقيبة Atelier</h3><div class="font-bold tabular-nums text-[#0A1834] mt-2">1,290 ر.س</div><button class="btn-atelier-primary w-full mt-3 py-2.5 rounded-full text-[13px]">أضف للسلة</button></div></article>
+ <article class="product-card-atelier group rounded-[32px] bg-white border border-[#E6E9F2] overflow-hidden shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all duration-400 hidden md:block"><div class="relative aspect-[4/5] overflow-hidden bg-[#F8F9FF]"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600" style="width:100%;height:100%;object-fit:cover" class="thumb-zoom"/></div><div class="p-4"><p class="text-[11px] font-bold tracking-wide text-gray-400">ATELIER</p><h3 class="font-display font-bold text-[15px] text-[#0A1834] mt-1">حذاء Runway</h3><div class="font-bold tabular-nums text-[#0A1834] mt-2">890 ر.س</div><button class="btn-atelier-ghost w-full mt-3 py-2.5 rounded-full text-[13px] border">أضف للسلة</button></div></article>
+ <article class="product-card-atelier group rounded-[32px] bg-white border border-[#E6E9F2] overflow-hidden shadow-ambient hidden md:block"><div class="relative aspect-[4/5] overflow-hidden bg-[#F8F9FF]"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600" style="width:100%;height:100%;object-fit:cover" class="thumb-zoom"/></div><div class="p-4"><h3 class="font-display font-bold text-[15px] text-[#0A1834]">قميص Overshirt</h3><div class="font-bold tabular-nums mt-2">650 ر.س</div><button class="btn-atelier-ghost w-full mt-3 py-2.5 rounded-full text-[13px] border">أضف</button></div></article>
+ <article class="product-card-atelier group rounded-[32px] bg-white border border-[#E6E9F2] overflow-hidden shadow-ambient hidden md:block"><div class="relative aspect-[4/5] overflow-hidden bg-[#F8F9FF]"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600" style="width:100%;height:100%;object-fit:cover" class="thumb-zoom"/></div><div class="p-4"><h3 class="font-display font-bold text-[15px] text-[#0A1834]">نظارة Atelier</h3><div class="font-bold tabular-nums mt-2">420 ر.س</div><button class="btn-atelier-ghost w-full mt-3 py-2.5 rounded-full text-[13px] border">أضف</button></div></article>
+</section>
+<div class="mx-auto max-w-[1280px] w-full px-4 mt-10 mb-12">
+ <div class="glass-panel rounded-[32px] bg-white/70 border border-white/30 p-6 text-center">
+  <h3 class="font-display font-bold text-[18px] text-[#0A1834]">Watch the background behind this card — it drifts.</h3>
+  <p class="text-[13px] text-gray-500 mt-2">If you don't see movement: hard-refresh <b>Ctrl+Shift+R</b> · ensure <code>http://localhost:8000/app.css</code> is 770K with <code>blur(18px)</code> · move mouse for aura</p>
+ </div>
+</div>
 </div>
 </body>
 </html>
