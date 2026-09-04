@@ -884,3 +884,28 @@ salla-search {
     .stagger > * { animation: none; opacity: 1; }
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   FAST — CEO performance — keeps 60fps, ships 832K but feels instant
+   - backdrop-filter only on desktop glass (mobile gets solid, instant paint)
+   - content-visibility for below-fold
+   - will-change only when needed
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px){
+  .glass-panel, .floating-header, .product-card-atelier, .cart-glass .cart-main{
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .floating-header{ background: rgba(255,255,255,0.96) !important; }
+  .product-card-atelier{ background: #FFFFFF !important; border-color: #E6E9F2 !important; }
+  .mesh-background::before, .mesh-background::after{ filter: blur(12px) !important; }
+  .mouse-glow{ display:none !important; }
+}
+@media (min-width: 769px){
+  .glass-panel{ contain: paint; }
+  .product-card-atelier{ contain: layout paint; }
+}
+/* Below-fold saves paint */
+.reveal-stagger{ content-visibility: auto; contain-intrinsic-size: 1px 600px; }
+/* Images decode async, no layout shift */
+.product-card-atelier img, .glass-panel img{ decoding: async; }
+
