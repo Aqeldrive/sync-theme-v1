@@ -106,11 +106,15 @@
                 {% endif %}
 
                 {% if product.rating %}
-                    <div class="inline-flex items-center gap-2 bg-white border border-outline px-3 py-1.5 rounded-full mb-5">
+                    <div class="inline-flex items-center gap-2 bg-white border border-outline px-3 py-1.5 rounded-full mb-4">
                         <i class="sicon-star text-yellow-400 text-[14px]"></i>
                         <span class="text-[13px] font-bold text-ink tabular-nums">{{ product.rating.stars }}</span>
                         <span class="text-[12px] text-gray-400">({{ product.rating.count }})</span>
                     </div>
+                {% endif %}
+                
+                {% if product.sku %}
+                    <p class="text-[11px] tracking-[0.08em] font-bold text-gray-400 uppercase mb-4">SKU {{ product.sku }} · توصيل خلال 2-4 أيام</p>
                 {% endif %}
 
                 {% if product.description %}

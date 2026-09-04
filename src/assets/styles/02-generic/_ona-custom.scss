@@ -304,6 +304,100 @@ salla-add-product-button {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   GLASS SWITCH — operational via Theme Settings > Glassmorphism
+   ═══════════════════════════════════════════════════════════════ */
+.glass-off .glass-panel {
+    background: #FFFFFF !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-color: #E6E9F2 !important;
+    box-shadow: 0 1px 3px rgba(10,24,52,0.04) !important;
+}
+.glass-off .glass-panel:hover {
+    border-color: #E6E9F2 !important;
+    box-shadow: 0 1px 3px rgba(10,24,52,0.04) !important;
+}
+.glass-off .floating-header {
+    background: #FFFFFF !important;
+    backdrop-filter: none !important;
+    border-color: #E6E9F2 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DARK MODE — operational via Theme Settings > Dark Mode
+   Respects system preference + manual .dark toggle
+   ═══════════════════════════════════════════════════════════════ */
+@media (prefers-color-scheme: dark) {
+  .dark-mode-enabled {
+    color-scheme: dark;
+  }
+  .dark-mode-enabled .mesh-background { background: #070F24 !important; }
+  .dark-mode-enabled .mesh-background::before {
+    background:
+        radial-gradient(ellipse 820px 620px at 18% 22%, rgba(212,255,0,0.12) 0%, transparent 72%),
+        radial-gradient(ellipse 780px 560px at 84% 18%, rgba(255,255,255,0.06) 0%, transparent 62%),
+        radial-gradient(ellipse 900px 680px at 52% 88%, rgba(212,255,0,0.06) 0%, transparent 68%) !important;
+  }
+  .dark-mode-enabled .glass-panel {
+    background: rgba(16, 28, 58, 0.78) !important;
+    border-color: rgba(255,255,255,0.10) !important;
+    color: #F8F9FF !important;
+  }
+  .dark-mode-enabled .glass-panel h1,
+  .dark-mode-enabled .glass-panel h2,
+  .dark-mode-enabled .glass-panel h3 { color: #FFFFFF !important; }
+  .dark-mode-enabled .floating-header {
+    background: rgba(16, 28, 58, 0.88) !important;
+    border-color: rgba(255,255,255,0.10) !important;
+  }
+  .dark-mode-enabled .product-card-atelier {
+    background: #111E3A !important;
+    border-color: rgba(255,255,255,0.08) !important;
+    color: #F8F9FF !important;
+  }
+  .dark-mode-enabled .btn-atelier-ghost {
+    background: rgba(255,255,255,0.08) !important;
+    border-color: rgba(255,255,255,0.12) !important;
+    color: #FFFFFF !important;
+  }
+}
+.dark-mode-enabled.dark {
+    color-scheme: dark;
+    background: #0A1834 !important;
+    color: #F8F9FF !important;
+}
+
+/* PRODUCT OPTIONS — pill swatches, luxury */
+.salla-product-options, .product-options {
+  --pill-bg: #FFFFFF;
+  --pill-border: #E6E9F2;
+}
+.salla-product-options .option-title,
+.product-options .option-title {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: #6B7280 !important;
+}
+.salla-product-options label,
+.product-options label {
+  border-radius: 9999px !important;
+  border: 1px solid #E6E9F2 !important;
+  background: #FFFFFF !important;
+  padding: 9px 16px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #0A1834 !important;
+}
+.salla-product-options input:checked + label,
+.product-options input:checked + label {
+  background: #0A1834 !important;
+  border-color: #0A1834 !important;
+  color: #FFFFFF !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
    SALLA SEARCH — Atelier ink
    ═══════════════════════════════════════════════════════════════ */
 salla-search {
