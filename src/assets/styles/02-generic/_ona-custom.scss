@@ -885,6 +885,17 @@ salla-search {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   CENTREPOINT RIGOR — card badges + red sale + bundle + second image
+   ═══════════════════════════════════════════════════════════════ */
+.badge-sale{ background:#FFE9E9 !important; color:#C00 !important; border:1px solid #FFD0D0 !important; }
+.badge-bundle{ background:#E6F7ED !important; color:#0A6B4A !important; border:1px solid #B8E6C8 !important; }
+.badge-colours{ background:#F2F2F2 !important; color:#666 !important; border:1px solid #E5E5E5 !important; }
+.product-card-atelier .second-image{ position:absolute; inset:0; opacity:0; transition:opacity 0.35s ease; }
+.product-card-atelier:hover .second-image{ opacity:1; }
+.product-card-atelier .brand-micro{ font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:#888; font-weight:700; }
+.text-sale-red{ color:#C00 !important; }
+
+/* ═══════════════════════════════════════════════════════════════
    FAST — CEO performance — keeps 60fps, ships 832K but feels instant
    - backdrop-filter only on desktop glass (mobile gets solid, instant paint)
    - content-visibility for below-fold

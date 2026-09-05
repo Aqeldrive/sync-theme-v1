@@ -55,11 +55,19 @@
             
         </div>
         
-        <div class="border-t border-outline mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <span class="text-[13px] text-gray-400">
-                {% hook copyright %}
-            </span>
-            <salla-payments class="grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"></salla-payments>
+        <div class="border-t border-outline mt-10 pt-6 flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-3 text-[11px] leading-5 text-gray-500">
+                <span class="inline-flex items-center gap-2 bg-paper border border-outline rounded-full px-3 py-1"><i class="sicon-shield text-ink"></i> CR 1010438584</span>
+                {% if store.settings.tax.number %}<span class="inline-flex items-center gap-2 bg-paper border border-outline rounded-full px-3 py-1">VAT {{ store.settings.tax.number }}</span>{% endif %}
+                <span class="inline-flex items-center gap-2 bg-forest text-white rounded-full px-3 py-1 font-bold"><span class="w-2 h-2 bg-lime rounded-full"></span> توصيل مجاني فوق 99 ر.س</span>
+                <span class="inline-flex items-center gap-1.5">🇸🇦 المملكة العربية السعودية</span>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <span class="text-[13px] text-gray-400">
+                    {% hook copyright %}
+                </span>
+                <salla-payments class="grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"></salla-payments>
+            </div>
         </div>
         
     </div>
